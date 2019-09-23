@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function handleClick(event) {
+      var req_body = {
+        "organization_id" : parseInt(document.getElementById("organization_id").value, 10),
+        "locations" : [ document.getElementById("location-1").value ]
+      }
+      if (document.getElementById("location-2").value !== "") {
+          req_body["locations"].push(document.getElementById("location-2"))
+      }
+      if (document.getElementById("location-3").value !== "") {
+          req_body["locations"].push(document.getElementById("location-3"))
+      }
+      if (document.getElementById("location-4").value !== "") {
+          req_body["locations"].push(document.getElementById("location-4"))
+      }
+      if (document.getElementById("location-5").value !== "") {
+          req_body["locations"].push(document.getElementById("location-5"))
+      }
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          alert(this.responseText);
+        }
+      };
+      xhttp.open("POST", "http://localhost:8181/remove-locations", false);
+      xhttp.send(JSON.stringify(req_body));
+    };
+</script>
+</head>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form onSubmit="JavaScript:handleClick()">
+  Organization ID:<br>
+  <input type="number" id="organization_id" value="">
+  <br>
+  Location ID 1:<br>
+  <input type="number" id="location-1" value="">
+  <br>
+  Location ID 2 (Optional):<br>
+  <input type="number" id="location-2" value="">
+  <br>
+  Location ID 3 (Optional):<br>
+  <input type="number" id="location-3" value="">
+  <br>
+  Location ID 4 (Optional):<br>
+  <input type="number" id="location-4" value="">
+  <br>
+  Location ID 5 (Optional):<br>
+  <input type="number" id="location-5" value="">
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-locations.html">Add Locations</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-organization.html">Add Organization</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/begin-membership.html">Begin Membership</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/remove-locations.html">Remove Locations</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/terminate-membership.html">Terminate Membership</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/validate-member.html">Validate Member</a><br>
+</p>
+
+</body>
+</html>

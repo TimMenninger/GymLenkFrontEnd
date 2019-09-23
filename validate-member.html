@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function handleClick(event) {
+      var req_body = {
+        "location_id" : parseInt(document.getElementById("location_id").value, 10),
+        "barcode" : parseInt(document.getElementById("barcode").value, 10)
+      }
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          alert(this.responseText);
+        }
+      };
+      xhttp.open("POST", "http://localhost:8181/validate-member", false);
+      xhttp.send(JSON.stringify(req_body));
+    };
+</script>
+</head>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form onSubmit="JavaScript:handleClick()">
+  Location ID:<br>
+  <input type="number" id="location_id" value="">
+  <br>
+  Barcode: <br>
+  <input type="text" id="barcode" value="">
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-locations.html">Add Locations</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-organization.html">Add Organization</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/begin-membership.html">Begin Membership</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/remove-locations.html">Remove Locations</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/terminate-membership.html">Terminate Membership</a><br>
+<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/validate-member.html">Validate Member</a><br>
+</p>
+
+</body>
+</html>
