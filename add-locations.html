@@ -26,14 +26,21 @@
           alert(this.responseText);
         }
       };
-      xhttp.open("POST", "http://localhost:8181/add-locations", false);
+      xhttp.open("POST", "http://18.222.127.1:80/api/add-locations", false);
       xhttp.send(JSON.stringify(req_body));
     };
 </script>
 </head>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Add Locations</h2>
+Add a location to an existing organization.  This requires the ID of the
+organization being added to and at least one location.  Note that there isn't
+a limit in the backend to how many can be added at once, I just didn't feel like
+putting the effort into allowing arbitrarily many locations to be added in the
+front end since this is primarily for demonstrative purposes.
+<br>
+<br>
 
 <form onSubmit="JavaScript:handleClick()">
   Organization ID:<br>
@@ -58,12 +65,14 @@
 </form>
 
 <p>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-locations.html">Add Locations</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-organization.html">Add Organization</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/begin-membership.html">Begin Membership</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/remove-locations.html">Remove Locations</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/terminate-membership.html">Terminate Membership</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/validate-member.html">Validate Member</a><br>
+<a href="../../index.nginx-debian.html">Home</a><br>
+<a href="add-locations.html">Add Locations</a><br>
+<a href="add-organization.html">Add Organization</a><br>
+<a href="begin-membership.html">Begin Membership</a><br>
+<a href="query-phone-number.html">Query Phone Number</a><br>
+<a href="remove-locations.html">Remove Locations</a><br>
+<a href="terminate-membership.html">Terminate Membership</a><br>
+<a href="validate-member.html">Validate Member</a><br>
 </p>
 
 </body>

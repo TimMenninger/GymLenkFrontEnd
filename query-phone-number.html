@@ -5,8 +5,6 @@
 <script type="text/javascript">
     function handleClick(event) {
       var req_body = {
-        "organization_id" : parseInt(document.getElementById("organization_id").value, 10),
-        "zip" : document.getElementById("zip").value,
         "phone_number" : document.getElementById("phone_number").value
       }
       var xhttp = new XMLHttpRequest();
@@ -15,31 +13,22 @@
           alert(this.responseText);
         }
       };
-      xhttp.open("POST", "http://18.222.127.1:80/api/begin-membership", false);
+      xhttp.open("POST", "http://18.222.127.1:80/api/query-phone-number", false);
       xhttp.send(JSON.stringify(req_body));
     };
 </script>
 </head>
 <body>
 
-<h2>Begin Membership</h2>
-Use this to begin a membership.  This requires an organization that the member
-is joining so we know to blacklist all of that organization's locations' ZIP
-codes.  It also requires a member's ZIP code so we black that out.  Finally, a
-phone number for the new member to ensure uniqueness.
+<h2>Query Phone Number</h2>
+This takes a phone number and responds with all organization names the user is
+associated with and the barcode for each.
 <br>
 <br>
 
 <form onSubmit="JavaScript:handleClick()">
-  Organization ID:<br>
-  <input type="number" id="organization_id" value="">
-  <br>
-  Member ZIP Code: <br>
-  <input type="text" id="zip" value="">
-  <br>
   Member Phone Number:<br>
   <input type="text" id="phone_number" value="">
-  <br>
   <input type="submit" value="Submit">
 </form>
 

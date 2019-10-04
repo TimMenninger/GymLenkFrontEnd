@@ -29,20 +29,31 @@
           alert(this.responseText);
         }
       };
-      xhttp.open("POST", "http://localhost:8181/add-organization", false);
+      xhttp.open("POST", "http://18.222.127.1:80/api/add-organization", false);
       xhttp.send(JSON.stringify(req_body));
     };
 </script>
 </head>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Add Organization</h2>
+This adds an organization.  Adding an organization requires the name of the
+organization for human readability.  The bill day is the day of month that a
+bill is generated.  If the bill day is 29, 30, or 31 in a month that has fewer
+than that many days, the billing cycle will happen on the last day of the month.
+The member price is how much we charge the gym per member, not the membership
+price at the gym.  So if this organization gives us $2.50 per member, the Member
+Price should be 2.50.  Finally, at least one location must be added to this
+organization.  There again is no limit to the number, but I didn't go through
+the effort to make it limitless in this simple HTML front end.
+<br>
+<br>
 
 <form onSubmit="JavaScript:handleClick()">
   Organization Name:<br>
   <input type="text" id="organization_name" value="">
   <br>
-  Bill Day (1 to 28):<br>
+  Bill Day (1 to 31):<br>
   <input type="number" id="bill_day" value="">
   <br>
   Member Price: <br>
@@ -67,12 +78,14 @@
 </form>
 
 <p>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-locations.html">Add Locations</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-organization.html">Add Organization</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/begin-membership.html">Begin Membership</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/remove-locations.html">Remove Locations</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/terminate-membership.html">Terminate Membership</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/validate-member.html">Validate Member</a><br>
+<a href="../../index.nginx-debian.html">Home</a><br>
+<a href="add-locations.html">Add Locations</a><br>
+<a href="add-organization.html">Add Organization</a><br>
+<a href="begin-membership.html">Begin Membership</a><br>
+<a href="query-phone-number.html">Query Phone Number</a><br>
+<a href="remove-locations.html">Remove Locations</a><br>
+<a href="terminate-membership.html">Terminate Membership</a><br>
+<a href="validate-member.html">Validate Member</a><br>
 </p>
 
 </body>

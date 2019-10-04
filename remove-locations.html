@@ -26,14 +26,22 @@
           alert(this.responseText);
         }
       };
-      xhttp.open("POST", "http://localhost:8181/remove-locations", false);
+      xhttp.open("POST", "http://18.222.127.1:80/api/remove-locations", false);
       xhttp.send(JSON.stringify(req_body));
     };
 </script>
 </head>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Remove Locations</h2>
+Use this to remove locations from an organization, e.g. if a branch closes.  It
+requires an organization ID to remove from (a sanity check, the backend knows
+from the location ID what organization it belongs to).  It also requires the
+location(s) to remove.  This requires at least one location to move and has no
+limit on how many.  It is the HTML front end I wrote that imposes the limit of
+5.
+<br>
+<br>
 
 <form onSubmit="JavaScript:handleClick()">
   Organization ID:<br>
@@ -58,12 +66,14 @@
 </form>
 
 <p>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-locations.html">Add Locations</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/add-organization.html">Add Organization</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/begin-membership.html">Begin Membership</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/remove-locations.html">Remove Locations</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/terminate-membership.html">Terminate Membership</a><br>
-<a href="file:///Users/tmenninger/Documents/Personal/GymLenk/frontend/validate-member.html">Validate Member</a><br>
+<a href="../../index.nginx-debian.html">Home</a><br>
+<a href="add-locations.html">Add Locations</a><br>
+<a href="add-organization.html">Add Organization</a><br>
+<a href="begin-membership.html">Begin Membership</a><br>
+<a href="query-phone-number.html">Query Phone Number</a><br>
+<a href="remove-locations.html">Remove Locations</a><br>
+<a href="terminate-membership.html">Terminate Membership</a><br>
+<a href="validate-member.html">Validate Member</a><br>
 </p>
 
 </body>
