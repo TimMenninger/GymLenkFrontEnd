@@ -5,7 +5,7 @@
 <script type="text/javascript">
     function handleClick(event) {
       var req_body = {
-        "organization_id" : parseInt(document.getElementById("organization_id").value, 10),
+        "location_id" : parseInt(document.getElementById("location_id").value, 10),
         "zip" : document.getElementById("zip").value,
         "phone_number" : document.getElementById("phone_number").value
       }
@@ -31,8 +31,8 @@ phone number for the new member to ensure uniqueness.
 <br>
 
 <form onSubmit="JavaScript:handleClick()">
-  Organization ID:<br>
-  <input type="number" id="organization_id" value="">
+  Location ID:<br>
+  <input type="number" id="location_id" value="">
   <br>
   Member ZIP Code: <br>
   <input type="text" id="zip" value="">
