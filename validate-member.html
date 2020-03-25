@@ -6,7 +6,7 @@
     function handleClick(event) {
       var req_body = {
         "location_id" : parseInt(document.getElementById("location_id").value, 10),
-        "barcode" : parseInt(document.getElementById("barcode").value, 10)
+        "phone_number" : document.getElementById("phone_number").value
       }
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -22,12 +22,12 @@
 <body>
 
 <h2>Validate Member</h2>
-This takes a location ID and a barcode.  The location ID is the ID of the gym
-the member is trying to sign into and the barcode is the member's barcode.  This
-should block from any gym within 50 miles of a location of a gym they are a
-member of, unless they are a member of the gym they're logging into.  This means
-if they are a member of 3 gyms, it will block all locations from all 3
-organizations.
+This takes a location ID and a phone number.  The location ID is the ID of the
+gym the member is trying to sign into and the phone number is the member's
+number.  This should block from any gym within 50 miles of a location of a gym
+they are a member of, unless they are a member of the gym they're logging into.
+This means if they are a member of 3 gyms, it will block all locations from all
+3 organizations.
 <br>
 <br>
 
@@ -35,8 +35,8 @@ organizations.
   Location ID:<br>
   <input type="number" id="location_id" value="">
   <br>
-  Barcode: <br>
-  <input type="text" id="barcode" value="">
+  Phone Number: <br>
+  <input type="text" id="phone_number" value="">
   <br>
   <input type="submit" value="Submit">
 </form>

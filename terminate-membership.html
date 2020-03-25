@@ -24,8 +24,9 @@
 
 <h2>Terminate Membership</h2>
 This is to terminate a membership, as if the member has stopped its membership
-with the gym.  It requires an organization ID (for sanity check), a barcode and
-a phone number.
+with the gym.  It requires an organization ID (for sanity check), a barcode so
+we can grab the correct membership (in case they are a member of 2+ gyms), and a
+phone number.
 <br>
 <br>
 
@@ -33,8 +34,8 @@ a phone number.
   Organization ID:<br>
   <input type="number" id="organization_id" value="">
   <br>
-  Barcode: <br>
-  <input type="text" id="barcode" value="">
+  Barcode:<br>
+  <input type="number" id="barcode" value="">
   <br>
   Member Phone Number:<br>
   <input type="text" id="phone_number" value="">
