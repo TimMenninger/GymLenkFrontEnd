@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-        if (localStorage.getItem("dashboard") == null) {
+        if (!loggedIn()) {
             // Sanity - if no dashboard items, clear everything else to start
             // fresh
             clearState();
@@ -35,6 +35,25 @@
             if (address_lines.length > 0) {
                 address = address_lines.join("\n");
             }
+        }
+
+        // Hours. Description of how to interpret array is in dashboard.go
+        var hours = "[Not Specified]";
+        if ("hours" in dashboard) {
+            hours_list = [];
+            sunday_hours = "[Not Specified]";
+            if ("Sunday" in dashboard["hours"]) {
+                if (dashboard["hours"]["Sunday"].length === 1) {
+                    if (dashboard["hours"]["Sunday"][0] === -1) {
+                        sunday_hours = "Closed";
+                    } else if (dashboard["hours"]["Sunday"][0] === 0) {
+                        sunday_hours = "24 Hours";
+                    }
+                } else if (dashboard["hours"]["Sunday"].length > 1) {
+                    // TODO
+                }
+            }
+            hours_list.push("Sunday: " + sunday_hours);
         }
 
         function setOrDefault(element_id, dashboard_key, default_value) {
