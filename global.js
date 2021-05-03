@@ -24,7 +24,11 @@
     // Frontend Pages
     const FE_mygym = "/mygym";
     const FE_dashboard = "/dashboard";
-    const FE_onboarding = "/onboarding";
+    const FE_onboarding = "/onboarding-2";
+    const FE_onboarding_aboutmygym = "/onboarding/aboutmygym";
+    const FE_onboarding_amenities = "/onboarding/amenities";
+    const FE_onboarding_links = "/onboarding/links";
+    const FE_onboarding_getstarted = "/onboarding/getstarted";
     const FE_login = "/login";
 
     // Request Headers
@@ -33,6 +37,11 @@
     // Other URLs
     const URL_landing_after_login = FE_mygym;
     const URL_landing_after_signup = FE_onboarding;
+    const URL_landing_after_onboarding = FE_onboarding_aboutmygym;
+    const URL_landing_after_onboarding_aboutmygym = FE_onboarding_amenities;
+    const URL_landing_after_onboarding_amenities = FE_onboarding_links;
+    const URL_landing_after_onboarding_links = FE_onboarding_getstarted
+    const URL_landing_after_onboarding_getstarted = "";
     const URL_landing_after_logout = FE_login;
 
     ////////////////////////////////////////////////////////////////////////////
