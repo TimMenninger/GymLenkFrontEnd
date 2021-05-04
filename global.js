@@ -4,8 +4,8 @@
 //
 
 // Backend URL
-const host = "127.0.0.1";
-const port = "8181";
+const host = "18.218.204.67";
+const port = "443";
 const backend_URL = "http://" + host + ":" + port;
 
 // Backend Endpoints
