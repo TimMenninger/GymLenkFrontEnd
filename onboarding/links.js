@@ -21,13 +21,11 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     // Open a new connection, using the POST request on the URL endpoint
     request.open("POST", backend_URL + BE_onboard, true);
     request.setRequestHeader("Content-Type", HDR_content_type_json);
+    request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
             if (request.status != 200) {
                 console.log("Request failed");
-                console.log(data)
-                console.log(request.responseText)
-                console.log(localStorage.getItem("logged_in"))
                 return;
             }
 
@@ -44,6 +42,5 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     }
 
     // Send request
-    console.log(data)
     request.send(JSON.stringify(data));
 });
