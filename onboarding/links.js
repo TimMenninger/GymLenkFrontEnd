@@ -35,10 +35,6 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
                 return;
             }
 
-            // // Success - go to dashboard if the account is complete, or to
-            // // onboarding if they must still set things up
-            // localStorage.setItem("logged_in", "true");
-
             // Go to next onboarding item
             window.location.assign(URL_landing_after_onboarding_links);
         }

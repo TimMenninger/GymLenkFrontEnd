@@ -25,6 +25,9 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
                 return;
             }
 
+            // Success - now signed in even if we haven't done onboarding yet
+            localStorage.setItem("logged_in", "true");
+
             // Success
             localStorage.setItem("account_id", data["account_id"]);
             window.location.replace(URL_landing_after_signup);
