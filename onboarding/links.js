@@ -25,6 +25,7 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
         if (request.readyState === 4) {
             if (request.status != 200) {
                 console.log("Request failed");
+                console.log(data)
                 return;
             }
 
