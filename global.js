@@ -11,6 +11,7 @@ const backend_URL = "https://" + host + ":" + port;
 // Backend Endpoints
 const BE_sign_in = "/sign-in";
 const BE_create_account = "/create-account";
+const BE_onboard = "/onboard";
 
 // Frontend URL
 const frontend_URL = "gymlenk-dashboard.webflow.io"
