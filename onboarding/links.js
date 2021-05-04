@@ -41,5 +41,6 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     }
 
     // Send request
+    console.log(data)
     request.send(JSON.stringify(data));
 });
