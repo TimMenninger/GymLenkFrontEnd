@@ -6,7 +6,7 @@
 // Backend URL
 const host = "18.218.204.67";
 const port = "443";
-const backend_URL = "http://" + host + ":" + port;
+const backend_URL = "https://" + host + ":" + port;
 
 // Backend Endpoints
 const BE_sign_in = "/sign-in";
