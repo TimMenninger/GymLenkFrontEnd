@@ -27,6 +27,7 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
                 console.log("Request failed");
                 console.log(data)
                 console.log(request.responseText)
+                console.log(localStorage.getItem("logged_in"))
                 return;
             }
 
