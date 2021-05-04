@@ -1,8 +1,3 @@
-//
-// USED EXAMPLE FROM:
-// https://gts-webflow-playground.webflow.io/samples/fetch-data-from-external-api-to-webflow
-//
-
 ////////////////////////////////////////////////////////////////////////////
 //
 // CONSTANTS
@@ -29,6 +24,7 @@ const FE_onboarding_amenities = "/onboarding/amenities";
 const FE_onboarding_links = "/onboarding/links";
 const FE_onboarding_getstarted = "/onboarding/getstarted";
 const FE_login = "/login";
+const FE_onboard = "/onboard";
 
 // Request Headers
 const HDR_content_type_json = "application/json; charset=UTF-8";
@@ -63,16 +59,16 @@ function loggedIn() {
 // NAVBAR
 //
 
-document.getElementById("navbar-log-out").addEventListener("click", function() {
-    clearState();
-})
+//document.getElementById("navbar-log-out").addEventListener("click", function() {
+//    clearState();
+//})
 
 ////////////////////////////////////////////////////////////////////////////
 //
 // SIDEBAR
 //
 
-document.getElementById("sidebar-log-out").addEventListener("click", function() {
-    clearState();
-})
+//document.getElementById("sidebar-log-out").addEventListener("click", function() {
+//    clearState();
+//})
 
