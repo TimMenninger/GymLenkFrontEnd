@@ -2,6 +2,9 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     // Load the info that we have so far
     var data = JSON.parse(localStorage.getItem("onboard_info"));
 
+    // Session ID so the backend knows we're logged on
+    data["session_id"]  = parseInt(localStorage.getItem("session_id"));
+
     // Insert links
     data["website"]     = document.getElementById("Gym-Website-Link-4").value;
     data["facebook"]    = document.getElementById("Gym-Facebook-Link").value;

@@ -29,6 +29,9 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             // onboarding if they must still set things up
             localStorage.setItem("logged_in", "true");
 
+            // Store the session ID, which must be used with subsequent requests
+            localStorage.setItem("session_id", data["session_id"].toString());
+
             if ("dashboard" in data && "locationId" in data["dashboard"]) {
                 localStorage.setItem("dashboard", JSON.stringify(data["dashboard"]));
                 window.location.replace(URL_landing_after_login);
