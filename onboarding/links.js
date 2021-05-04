@@ -3,7 +3,7 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     var data = JSON.parse(localStorage.getItem("onboard_info"));
 
     // Session ID so the backend knows we're logged on
-    data["session_id"]  = parseInt(localStorage.getItem("session_id"));
+    data["session_id"]  = localStorage.getItem("session_id");
 
     // Insert links
     data["website"]     = document.getElementById("Gym-Website-Link-4").value;
