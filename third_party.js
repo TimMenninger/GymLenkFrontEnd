@@ -12,7 +12,7 @@ let formatPhoneNumber = (str) => {
         //Remove the matched extension code
         //Change this to format for any country code.
         let intlCode = (match[1] ? '+1 ' : '')
-        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
+        return [intlCode, '#', match[2], ') ', match[3], '-', match[4]].join('')
     }
 
     return null;
