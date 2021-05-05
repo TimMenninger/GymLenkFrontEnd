@@ -3,7 +3,7 @@ $(document).ready(function() {
     const inputElement = document.getElementById("onboarding-edit-phone");
     inputElement.addEventListener("keydown", enforceFormat);
     inputElement.addEventListener("keyup", formatToPhone);
-}
+})
 
 document.getElementById("onboarding-about-continue-button").addEventListener("click", function() {
     var data = {};
