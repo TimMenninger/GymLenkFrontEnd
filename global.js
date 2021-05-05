@@ -97,7 +97,7 @@ function checkLoggedIn() {
     return true;
 }
 
-function storeDashboardData(dash) {
+function storeDashboardData(dashboard) {
     // Address came in parts, make it line1 / line2 / city, state zip
     var address_lines = [];
     if ("physical_address" in dashboard) {
