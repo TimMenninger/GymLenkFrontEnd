@@ -57,8 +57,8 @@ function clearState() {
 function checkLoggedIn() {
     // If no data, definitely not logged in
     if ((localStorage.getItem("dashboard") === null)
-        || (localStorage.getItem("session_id") !== null)
-        || (localStorage.getItem("logged_in") === "true")) {
+        || (localStorage.getItem("session_id") === null)
+        || (localStorage.getItem("logged_in") !== "true")) {
         return false;
     }
 
