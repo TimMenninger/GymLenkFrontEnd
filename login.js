@@ -1,4 +1,10 @@
 document.getElementById("gym-login-button").addEventListener("click", function() {
+    // If logged in, go to dashboard
+    if (checkLoggedIn()) {
+        window.location.replace(URL_landing_after_login);
+        return;
+    }
+
     // Get email and password
     var email    = document.getElementById("gym-login-email").value;
     var password = document.getElementById("gym-login-password").value;
