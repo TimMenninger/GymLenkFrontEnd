@@ -26,7 +26,7 @@ $(document).ready(function() {
         }
 
         if ("line2" in dashboard["physical_address"]) {
-            addr_line_2 = dashboard["physical_address"]["line2"]);
+            addr_line_2 = dashboard["physical_address"]["line2"];
         }
 
         if ("city" in dashboard["physical_address"]) {
