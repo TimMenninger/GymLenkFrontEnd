@@ -36,7 +36,7 @@ $(document).ready(function() {
             }
         }
         if ("zip" in dashboard["physical_address"]) {
-            city_state_zip += dashboard["physical_address"]["zip";
+            city_state_zip += dashboard["physical_address"]["zip"];
         }
         address_lines.push(city_state_zip);
 
