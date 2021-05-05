@@ -39,6 +39,7 @@ $(document).ready(function() {
             city_state_zip += dashboard["physical_address"]["zip"];
         }
         address_lines.push(city_state_zip);
+        console.log(address_lines);
 
         address_lines.filter(function (el) {
             return el !== null && el !== "";
@@ -48,7 +49,8 @@ $(document).ready(function() {
 
     // Hours. Description of how to interpret array is in dashboard.go
     var hours_list = [];
-    for (dow in DaysOfWeek) {
+    for (i in DaysOfWeek) {
+        var dow = DaysOfWeek[i];
         var day_hours = "[Not Specified]";
         if ("hours" in dashboard) {
             if (dow in dashboard["hours"]) {
