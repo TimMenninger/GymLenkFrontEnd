@@ -23,7 +23,6 @@ $(document).ready(function() {
             document.getElementById(element_id+"-section").style.display = "block";
             document.getElementById(element_id).innerText = dashboard[dashboard_key];
         }
-
     }
 
     setOrHide("gym-name2",          "organization_name",    true)

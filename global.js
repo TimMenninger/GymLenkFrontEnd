@@ -179,6 +179,6 @@ function storeDashboardData(dashboard) {
     dashboard["formatted_hours"] = hours_list.join("\n");
 
     // Store the dashboard now
-    localStorage.setItem("dashboard", JSON.stringify(data["dashboard"]));
+    localStorage.setItem("dashboard", JSON.stringify(dashboard));
 }
 

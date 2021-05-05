@@ -40,6 +40,7 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
             }
 
             // Done onboarding
+            storeDashboardData(data["dashboard"]);
             window.location.assign(URL_landing_after_onboarding_links);
         }
     }

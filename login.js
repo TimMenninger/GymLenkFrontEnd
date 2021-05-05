@@ -39,7 +39,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             localStorage.setItem("session_id", data["session_id"]);
 
             if ("dashboard" in data && "location_id" in data["dashboard"]) {
-                localStorage.setItem("dashboard", JSON.stringify(data["dashboard"]));
+                storeDashboardData(data["dashboard"]);
                 window.location.replace(URL_landing_after_login);
             } else {
                 window.location.replace(URL_landing_after_signup);
