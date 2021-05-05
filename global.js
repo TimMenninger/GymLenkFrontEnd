@@ -93,5 +93,7 @@ function checkLoggedIn() {
     request.send(JSON.stringify({
         "session_id" : localStorage.getItem("session_id")
     }));
+
+    return true;
 }
 
