@@ -97,3 +97,88 @@ function checkLoggedIn() {
     return true;
 }
 
+function storeDashboardData(dash) {
+    // Address came in parts, make it line1 / line2 / city, state zip
+    var address_lines = [];
+    if ("physical_address" in dashboard) {
+        var addr_line_1 = "";
+        var addr_line_2 = "";
+        var city_state_zip = "";
+
+        // Set the address fields if they're given
+        if ("line1" in dashboard["physical_address"]) {
+            addr_line_1 = dashboard["physical_address"]["line1"];
+        }
+
+        if ("line2" in dashboard["physical_address"]) {
+            addr_line_2 = dashboard["physical_address"]["line2"];
+        }
+
+        if ("city" in dashboard["physical_address"]) {
+            city_state_zip += dashboard["physical_address"]["city"];
+            if ("state" in dashboard["physical_address"] || "zip" in dashboard["physical_address"]) {
+                city_state_zip += ", ";
+            }
+        }
+        if ("state" in dashboard["physical_address"]) {
+            city_state_zip += dashboard["physical_address"]["state"];
+            if ("zip" in dashboard["physical_address"]) {
+                city_state_zip += " ";
+            }
+        }
+        if ("zip" in dashboard["physical_address"]) {
+            city_state_zip += dashboard["physical_address"]["zip"];
+        }
+
+        // Append only nonempty address fields
+        if (addr_line_1 !== "") {
+            address_lines.push(addr_line_1);
+        }
+        if (addr_line_2 !== "") {
+            address_lines.push(addr_line_2);
+        }
+        if (city_state_zip !== "") {
+            address_lines.push(city_state_zip);
+        }
+    }
+    dashboard["formatted_address"] = address_lines.join("\n");
+
+    // Hours. Description of how to interpret array is in dashboard.go
+    var hours_list = [];
+    for (i in DaysOfWeek) {
+        var dow = DaysOfWeek[i];
+        var day_hours = "[Not Specified]";
+        if ("hours" in dashboard) {
+            if (dow in dashboard["hours"]) {
+                if (dashboard["hours"][dow].length === 1) {
+                    if (dashboard["hours"][dow][0] === -1) {
+                        day_hours = "Closed";
+                    } else if (dashboard["hours"][dow][0] === 0) {
+                        day_hours = "24 Hours";
+                    }
+                } else if (dashboard["hours"][dow].length > 1) {
+                    var time_range = "";
+                    var time_ranges = [];
+                    for (i = 0; i < dashboard["hours"][dow].length; i++) {
+                        var hour = dashboard["hours"][dow][i] / 60;
+                        var min  = dashboard["hours"][dow][i] % 60;
+                        time_range += hour.toString() + ":" + min.toString();
+                        if (i % 2 == 0) {
+                            time_range += "-";
+                        } else {
+                            time_ranges.push(time_range);
+                            time_range = "";
+                        }
+                    }
+                    day_hours = time_ranges.join(", ");
+                }
+            }
+        }
+        hours_list.push(dow + ": " + day_hours);
+    }
+    dashboard["formatted_hours"] = hours_list.join("\n");
+
+    // Store the dashboard now
+    localStorage.setItem("dashboard", JSON.stringify(data["dashboard"]));
+}
+

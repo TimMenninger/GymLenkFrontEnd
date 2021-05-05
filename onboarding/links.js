@@ -39,7 +39,7 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
                 return;
             }
 
-            // Go to next onboarding item
+            // Done onboarding
             window.location.assign(URL_landing_after_onboarding_links);
         }
     }
