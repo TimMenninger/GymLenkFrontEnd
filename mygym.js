@@ -74,7 +74,7 @@ $(document).ready(function() {
 
     function setOrHideLink(element_id, dashboard_key) {
         document.getElementById(element_id).href = dashboard[dashboard_key]
-        if dashboard[dashboard_key] === "" {
+        if (dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
         } else {
             document.getElementById(element_id).style.display = "block";
