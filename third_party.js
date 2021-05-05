@@ -73,28 +73,14 @@ function formatToPhone(event) {
   let middle = input.substring(3 + offset, 6 + offset);
   let last = input.substring(6 + offset, 10 + offset);
 
-  if (input.length > 6) {
+  if (input.length > 10+offset) {
+    target.value = `${input}`;
+  } else if (input.length > 6) {
     target.value = `${intlCode}(${area}) ${middle}-${last}`;
   } else if (input.length > 3) {
     target.value = `${intlCode}(${area}) ${middle}`;
   } else if (input.length > 0) {
     target.value = `${intlCode}(${area}`;
   }
-
-  //Filter only numbers from the input
-  let cleaned = ('' + event.target.value).replace(/\D/g, '');
-  let formatted = cleaned;
-
-  //Check if the input is of correct
-  let match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
-
-  if (match) {
-    //Remove the matched extension code
-    //Change this to format for any country code.
-    let intlCode = (match[1] ? '+1 ' : '')
-    formatted = [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-  }
-
-  target.value = `${formatted}`
 };
 
