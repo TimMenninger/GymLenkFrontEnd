@@ -14,7 +14,7 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
     data["address_line_1"]      = document.getElementById("onboarding-address1").value;
     data["address_line_2"]      = document.getElementById("onboarding-address2").value;
     data["zip"]                 = document.getElementById("onboarding-zip").value;
-    data["phone"]               = document.getElementById("onboarding-phone").value;
+    data["phone"]               = ('' + document.getElementById("onboarding-phone").value).replace(/\D/g, '');
     data["email"]               = document.getElementById("onboarding-email").value;
     data["description"]         = document.getElementById("onboarding-description").value;
     data["hours"]               = {};
