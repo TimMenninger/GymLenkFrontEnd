@@ -16,13 +16,19 @@ $(document).ready(function() {
     // Address came in parts, make it line1 / line2 / city, state zip
     var address_lines = [];
     if ("physical_address" in dashboard) {
-        if ("line1" in dashboard["physical_address"]) {
-            address_lines.push(dashboard["physical_address"]["line1"])
-        }
-        if ("line2" in dashboard["physical_address"]) {
-            address_lines.push(dashboard["physical_address"]["line2"])
-        }
+        var addr_line_1 = "";
+        var addr_line_2 = "";
         var city_state_zip = "";
+
+        // Set the address fields if they're given
+        if ("line1" in dashboard["physical_address"]) {
+            addr_line_1 = dashboard["physical_address"]["line1"];
+        }
+
+        if ("line2" in dashboard["physical_address"]) {
+            addr_line_2 = dashboard["physical_address"]["line2"]);
+        }
+
         if ("city" in dashboard["physical_address"]) {
             city_state_zip += dashboard["physical_address"]["city"];
             if ("state" in dashboard["physical_address"] || "zip" in dashboard["physical_address"]) {
@@ -38,12 +44,17 @@ $(document).ready(function() {
         if ("zip" in dashboard["physical_address"]) {
             city_state_zip += dashboard["physical_address"]["zip"];
         }
-        address_lines.push(city_state_zip);
-        console.log(address_lines);
 
-        address_lines.filter(function (el) {
-            return el !== null && el !== "";
-        })
+        // Append only nonempty address fields
+        if (addr_line_1 !== "") {
+            address_lines.push(addr_line_1);
+        }
+        if (addr_line_2 !== "") {
+            address_lines.push(addr_line_2);
+        }
+        if (city_state_zip !== "") {
+            address_lines.push(city_state_zip);
+        }
     }
     dashboard["formatted_address"] = address_lines.join("\n");
 
