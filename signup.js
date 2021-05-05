@@ -30,7 +30,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             localStorage.setItem("logged_in", "true");
 
             // Store the session ID, which must be used with subsequent requests
-            localStorage.setItem("session_id", data["session_id"].toString());
+            localStorage.setItem("session_id", data["session_id"]);
 
             // Success
             localStorage.setItem("account_id", data["account_id"]);
