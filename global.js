@@ -64,12 +64,3 @@ function loggedIn() {
 //    clearState();
 //})
 
-////////////////////////////////////////////////////////////////////////////
-//
-// SIDEBAR
-//
-
-//document.getElementById("sidebar-log-out").addEventListener("click", function() {
-//    clearState();
-//})
-
