@@ -8,5 +8,10 @@ $(document).ready(function() {
         console.log("Not logged in");
         return;
     }
+
+    /* Format phone number */
+    const inputElement = document.getElementById("gym-edit-phone");
+    inputElement.addEventListener("keydown", enforceFormat);
+    inputElement.addEventListener("keyup", formatToPhone);
 })
 

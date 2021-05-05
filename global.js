@@ -98,6 +98,9 @@ function checkLoggedIn() {
 }
 
 function storeDashboardData(dashboard) {
+    // Format phone number
+    dashboard["formatted_phone_number"] = formatPhoneNumber(dashboard["phone_number"]);
+
     // Address came in parts, make it line1 / line2 / city, state zip
     var address_lines = [];
     if ("physical_address" in dashboard) {

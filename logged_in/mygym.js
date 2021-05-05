@@ -25,16 +25,16 @@ $(document).ready(function() {
         }
     }
 
-    setOrHide("gym-name2",          "organization_name",    true)
-    setOrHide("gym-name3",          "organization_name",    true)
-    setOrHide("gym-location3",      "location_name",        true)
-    setOrHide("gym-location2",      "location_name",        true)
-    setOrHide("gym-phone-number",   "phone_number",         false)
-    setOrHide("gym-email",          "email",                false)
-    setOrHide("gym-link-website",   "website",              false)
-    setOrHide("gym-description",    "description",          false)
-    setOrHide("gym-address",        "formatted_address",    false)
-    setOrHide("gym-hours",          "formatted_hours",      false)
+    setOrHide("gym-name2",          "organization_name",        true)
+    setOrHide("gym-name3",          "organization_name",        true)
+    setOrHide("gym-location3",      "location_name",            true)
+    setOrHide("gym-location2",      "location_name",            true)
+    setOrHide("gym-phone-number",   "formatted_phone_number",   false)
+    setOrHide("gym-email",          "email",                    false)
+    setOrHide("gym-link-website",   "website",                  false)
+    setOrHide("gym-description",    "description",              false)
+    setOrHide("gym-address",        "formatted_address",        false)
+    setOrHide("gym-hours",          "formatted_hours",          false)
 
     function showOrHide(element_id, dashboard_key) {
         document.getElementById(element_id).href = dashboard[dashboard_key]
