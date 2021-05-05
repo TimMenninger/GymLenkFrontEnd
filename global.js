@@ -11,6 +11,7 @@ const backend_URL = "https://" + host + ":" + port;
 // Backend Endpoints
 const BE_sign_in = "/sign-in";
 const BE_create_account = "/create-account";
+const BE_check_signed_in = "/check-signed-in";
 const BE_onboard = "/onboard";
 
 // Frontend URL
@@ -53,7 +54,40 @@ function clearState() {
     window.location.replace(URL_landing_after_logout);
 }
 
-function loggedIn() {
-    return (localStorage.getItem("dashboard") !== null)
-        && (localStorage.getItem("logged_in") === "true");
+function checkLoggedIn() {
+    // If no data, definitely not logged in
+    if ((localStorage.getItem("dashboard") === null)
+        || (localStorage.getItem("session_id") !== null)
+        || (localStorage.getItem("logged_in") === "true")) {
+        return false;
+    }
+
+    // Otherwise make a request to check
+    request.open("POST", backend_URL + BE_check_signed_in, true);
+    request.setRequestHeader("Content-Type", HDR_content_type_json);
+    request.withCredentials = true;
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            if (request.status != 200) {
+                console.log("Request failed");
+                return;
+            }
+
+            // Begin accessing JSON data here
+            var data = JSON.parse(request.responseText);
+            if ("success" in data && data["success"] && "authenticated" in data && data["authenticated"]) {
+                return;
+            }
+
+            // Not signed in, go to sign in page
+            clearState();
+            console.log(data["message"]);
+        }
+    }
+
+    // Send request
+    request.send(JSON.stringify({
+        "session_id" : localStorage.getItem("session_id")
+    }));
 }
+
