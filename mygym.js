@@ -56,9 +56,9 @@ $(document).ready(function() {
     }
 
     function setOrDefault(element_id, dashboard_key, default_value) {
-        document.getElementbyId(element_id).innerText = (dashboard_key in dashboard)
+        document.getElementById(element_id).innerText = (dashboard_key in dashboard)
             ? dashboard[dashboard_key]
-            : document.getElementbyId(element_id).innerText = default_value;
+            : document.getElementById(element_id).innerText = default_value;
     }
 
     setOrDefault("gym-name2",        "organizationName", "[No Name]");
