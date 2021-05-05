@@ -61,14 +61,29 @@ $(document).ready(function() {
             : document.getElementbyId(element_id).innerText = default_value;
     }
 
-    setOrDefault("gym-name",         "organizationName", "[No Name]");
     setOrDefault("gym-name2",        "organizationName", "[No Name]");
-    setOrDefault("gym-location",     "locationName",     "");
+    setOrDefault("gym-name3",        "organizationName", "[No Name]");
+    setOrDefault("gym-location3",    "locationName",     "");
     setOrDefault("gym-location2",    "locationName",     "");
     setOrDefault("gym-phone-number", "phone",            "[No Phone]");
     setOrDefault("gym-email",        "email",            "[No Email]");
-    setOrDefault("gym-website-link", "website",          "[No URL]");
+    setOrDefault("gym-link-website", "website",          "[No URL]");
     setOrDefault("gym-description",  "description",      "[No Description]");
     document.getElementById("gym-address").innerText = address;
     document.getElementById("gym-hours").innerText   = "hello\nhi";
+
+    function setOrHideLink(element_id, dashboard_key) {
+        document.getElementById(element_id).href = dashboard[dashboard_key]
+        if dashboard[dashboard_key] === "" {
+            document.getElementById(element_id).style.display = "none";
+        } else {
+            document.getElementById(element_id).style.display = "block";
+        }
+    }
+
+    setOrHideLink("gym-link-fb", "facebook");
+    setOrHideLink("gym-link-twitter", "twitter");
+    setOrHideLink("gym-link-ig", "instagram");
+    setOrHideLink("gym-link-linkedin", "linkedin");
+    setOrHideLink("gym-link-tiktok", "tiktok");
 })
