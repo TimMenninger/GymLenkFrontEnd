@@ -55,24 +55,31 @@ $(document).ready(function() {
         hours_list.push("Sunday: " + sunday_hours);
     }
 
-    function setOrDefault(element_id, dashboard_key, default_value) {
-        document.getElementById(element_id).innerText = (dashboard_key in dashboard)
-            ? dashboard[dashboard_key]
-            : document.getElementById(element_id).innerText = default_value;
+    function setOrHide(element_id, dashboard_key) {
+        if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
+            document.getElementById(element_id).style.display = "none";
+        } else {
+            document.getElementById(element_id).style.display = "block";
+            document.getElementById(element_id).innerText = dashboard[dashboard_key];
+        }
+
     }
 
-    setOrDefault("gym-name2",        "organizationName", "[No Name]");
-    setOrDefault("gym-name3",        "organizationName", "[No Name]");
-    setOrDefault("gym-location3",    "locationName",     "");
-    setOrDefault("gym-location2",    "locationName",     "");
-    setOrDefault("gym-phone-number", "phone",            "[No Phone]");
-    setOrDefault("gym-email",        "email",            "[No Email]");
-    setOrDefault("gym-link-website", "website",          "[No URL]");
-    setOrDefault("gym-description",  "description",      "[No Description]");
-    document.getElementById("gym-address").innerText = address;
-    document.getElementById("gym-hours").innerText   = "hello\nhi";
+    dashboard["formatted_address"] = address;
+    dashboard["formatted_hours"] = "";
 
-    function setOrHideLink(element_id, dashboard_key) {
+    setOrHide("gym-name2",          "organizationName")
+    setOrHide("gym-name3",          "organizationName")
+    setOrHide("gym-location3",      "locationName")
+    setOrHide("gym-location2",      "locationName")
+    setOrHide("gym-phone-number",   "phone")
+    setOrHide("gym-email",          "email")
+    setOrHide("gym-link-website",   "website")
+    setOrHide("gym-description",    "description")
+    setOrHide("gym-address",        "formatted_address")
+    setOrHide("gym-hours",          "formatted_hours")
+
+    function showOrHide(element_id, dashboard_key) {
         document.getElementById(element_id).href = dashboard[dashboard_key]
         if (dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
@@ -81,9 +88,28 @@ $(document).ready(function() {
         }
     }
 
-    setOrHideLink("gym-link-fb", "facebook");
-    setOrHideLink("gym-link-twitter", "twitter");
-    setOrHideLink("gym-link-ig", "instagram");
-    setOrHideLink("gym-link-linkedin", "linkedin");
-    setOrHideLink("gym-link-tiktok", "tiktok");
+    showOrHide("gym-link-fb",       "facebook");
+    showOrHide("gym-link-twitter",  "twitter");
+    showOrHide("gym-link-ig",       "instagram");
+    showOrHide("gym-link-linkedin", "linkedin");
+    showOrHide("gym-link-tiktok",   "tiktok");
+
+    showOrHide("gym-amenities-free-weights",    "has_free_weights");
+    showOrHide("gym-amenities-cardio",          "has_cardio");
+    showOrHide("gym-amenities-turf",            "has_turf");
+    showOrHide("gym-amenities-trx",             "has_trx");
+    showOrHide("gym-amenities-bench",           "has_bench_press");
+    showOrHide("gym-amenities-squat-rack",      "has_squat_rack");
+    showOrHide("gym-amenities-smith-machine",   "has_smith_machine");
+    showOrHide("gym-amenities-pt",              "has_training");
+    showOrHide("gym-amenities-outdoor",         "has_outdoor");
+    showOrHide("gym-amenities-showers",         "has_showers");
+    showOrHide("gym-amenities-lockers",         "has_lockers");
+    showOrHide("gym-amenities-wifi",            "has_wifi");
+    showOrHide("gym-amenities-classes",         "has_classes");
+    showOrHide("gym-amenities-spinning",        "has_spinning");
+    showOrHide("gym-amenities-pool",            "has_pool");
+    showOrHide("gym-amenities-hot-tub",         "has_hot_tub");
+    showOrHide("gym-amenities-sauna",           "has_sauna");
+    showOrHide("gym-amenities-basketball",      "has_basketball");
 })
