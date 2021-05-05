@@ -62,6 +62,10 @@ function checkLoggedIn() {
         return false;
     }
 
+    // Create a request variable and assign a new XMLHttpRequest object to
+    // it.
+    var request = new XMLHttpRequest();
+
     // Otherwise make a request to check
     request.open("POST", backend_URL + BE_check_signed_in, true);
     request.setRequestHeader("Content-Type", HDR_content_type_json);
