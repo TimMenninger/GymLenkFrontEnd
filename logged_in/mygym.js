@@ -80,12 +80,15 @@ $(document).ready(function() {
     }
     dashboard["formatted_hours"] = hours_list.join("\n");
 
-    function setOrHide(element_id, dashboard_key) {
+    function setOrHide(element_id, dashboard_key, text_only) {
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
-        } else {
+        } else if (text_only) {
             document.getElementById(element_id).style.display = "block";
-            document.getElementById(element_id+"-text").innerText = dashboard[dashboard_key];
+            document.getElementById(element_id).innerText = dashboard[dashboard_key];
+        } else {
+            document.getElementById(element_id+"-section").style.display = "block";
+            document.getElementById(element_id).innerText = dashboard[dashboard_key];
         }
 
     }
