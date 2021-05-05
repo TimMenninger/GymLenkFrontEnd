@@ -14,65 +14,87 @@ $(document).ready(function() {
     var dashboard = JSON.parse(localStorage.getItem("dashboard"));
 
     // Address came in parts, make it line1 / line2 / city, state zip
-    var address = "[No Address]";
-    if ("address" in dashboard) {
-        var address_lines = [];
-        if ("line1" in dashboard["address"]) {
-            address_lines.push(dashboard["address"]["line1"])
+    var address_lines = [];
+    if ("physical_address" in dashboard) {
+        if ("line1" in dashboard["physical_address"]) {
+            address_lines.push(dashboard["physical_address"]["line1"])
         }
-        if ("line2" in dashboard["address"]) {
-            address_lines.push(dashboard["address"]["line2"])
+        if ("line2" in dashboard["physical_address"]) {
+            address_lines.push(dashboard["physical_address"]["line2"])
         }
-        if ("city" in dashboard["address"] && "state" in dashboard["address"] && "zip" in dashboard["address"]) {
-            address_lines.push(dashboard["address"]["city"] + ", " + dashboard["address"]["state"] + " " + dashboard["address"]["zip"]);
+        var city_state_zip = "";
+        if ("city" in dashboard["physical_address"]) {
+            city_state_zip += dashboard["physical_address"]["city"];
+            if ("state" in dashboard["physical_address"] || "zip" in dashboard["physical_address"]) {
+                city_state_zip += ", ";
+            }
         }
+        if ("state" in dashboard["physical_address"]) {
+            city_state_zip += dashboard["physical_address"]["state"];
+            if ("zip" in dashboard["physical_address"]) {
+                city_state_zip += " ";
+            }
+        }
+        if ("zip" in dashboard["physical_address"]) {
+            city_state_zip += dashboard["physical_address"]["zip";
+        }
+        address_lines.push(city_state_zip);
 
         address_lines.filter(function (el) {
             return el !== null && el !== "";
         })
-
-        if (address_lines.length > 0) {
-            address = address_lines.join("\n");
-        }
     }
+    dashboard["formatted_address"] = address_lines.join("\n");
 
     // Hours. Description of how to interpret array is in dashboard.go
-    var hours = "[Not Specified]";
-    if ("hours" in dashboard) {
-        hours_list = [];
-        sunday_hours = "[Not Specified]";
-        if ("Sunday" in dashboard["hours"]) {
-            if (dashboard["hours"]["Sunday"].length === 1) {
-                if (dashboard["hours"]["Sunday"][0] === -1) {
-                    sunday_hours = "Closed";
-                } else if (dashboard["hours"]["Sunday"][0] === 0) {
-                    sunday_hours = "24 Hours";
+    var hours_list = [];
+    for (dow in DaysOfWeek) {
+        var day_hours = "[Not Specified]";
+        if ("hours" in dashboard) {
+            if (dow in dashboard["hours"]) {
+                if (dashboard["hours"][dow].length === 1) {
+                    if (dashboard["hours"][dow][0] === -1) {
+                        day_hours = "Closed";
+                    } else if (dashboard["hours"][dow][0] === 0) {
+                        day_hours = "24 Hours";
+                    }
+                } else if (dashboard["hours"][dow].length > 1) {
+                    var time_range = "";
+                    var time_ranges = [];
+                    for (i = 0; i < dashboard["hours"][dow].length; i++) {
+                        var hour = dashboard["hours"][dow][i] / 60;
+                        var min  = dashboard["hours"][dow][i] % 60;
+                        time_range += hour.toString() + ":" + min.toString();
+                        if (i % 2 == 0) {
+                            time_range += "-";
+                        } else {
+                            time_ranges.push(time_range);
+                            time_range = "";
+                        }
+                    }
+                    day_hours = time_ranges.join(", ");
                 }
-            } else if (dashboard["hours"]["Sunday"].length > 1) {
-                // TODO
             }
         }
-        hours_list.push("Sunday: " + sunday_hours);
+        hours_list.push(dow + ": " + day_hours);
     }
+    dashboard["formatted_hours"] = hours_list.join("\n");
 
     function setOrHide(element_id, dashboard_key) {
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
         } else {
             document.getElementById(element_id).style.display = "block";
-            document.getElementById(element_id).innerText = dashboard[dashboard_key];
+            document.getElementById(element_id+"-text").innerText = dashboard[dashboard_key];
         }
 
     }
 
-    dashboard["formatted_address"] = address;
-    dashboard["formatted_hours"] = "";
-
-    setOrHide("gym-name2",          "organizationName")
-    setOrHide("gym-name3",          "organizationName")
-    setOrHide("gym-location3",      "locationName")
-    setOrHide("gym-location2",      "locationName")
-    setOrHide("gym-phone-number",   "phone")
+    setOrHide("gym-name2",          "organization_name")
+    setOrHide("gym-name3",          "organization_name")
+    setOrHide("gym-location3",      "location_name")
+    setOrHide("gym-location2",      "location_name")
+    setOrHide("gym-phone-number",   "phone_number")
     setOrHide("gym-email",          "email")
     setOrHide("gym-link-website",   "website")
     setOrHide("gym-description",    "description")

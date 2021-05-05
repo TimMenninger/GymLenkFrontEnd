@@ -40,6 +40,9 @@ const URL_landing_after_onboarding_links = FE_onboarding_getstarted
 const URL_landing_after_onboarding_getstarted = "";
 const URL_landing_after_logout = FE_login;
 
+// Convenience
+const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+
 ////////////////////////////////////////////////////////////////////////////
 //
 // COMMON
@@ -54,13 +57,3 @@ function loggedIn() {
     return (localStorage.getItem("dashboard") !== null)
         && (localStorage.getItem("logged_in") === "true");
 }
-
-////////////////////////////////////////////////////////////////////////////
-//
-// NAVBAR
-//
-
-//document.getElementById("navbar-log-out").addEventListener("click", function() {
-//    clearState();
-//})
-
