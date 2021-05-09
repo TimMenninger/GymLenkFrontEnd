@@ -92,7 +92,6 @@ $(document).ready(function() {
         document.getElementById("onboarding-email").value = data["email"];
         document.getElementById("onboarding-description").value = data["description"];
 
-        console.log(data)
         for (const dow of days_of_week) {
             var is_24h = false;
             var is_closed = false;
@@ -106,10 +105,12 @@ $(document).ready(function() {
                 }
             }
             if (!is_24h && !is_closed && data["hours"][dow].length >= 1) {
-                open = (data["hours"][dow][0] / 60).toString() + ":" + (data["hours"][dow][0] % 60);
+                var mins = data["hours"][dow][0] / 60 / 1000;
+                open = (mins / 60).toString() + ":" + (mins % 60).toString();
             }
             if (data["hours"][dow].length > 1) {
-                close = (data["hours"][dow][1] / 60).toString() + ":" + (data["hours"][dow][1] % 60);
+                var mins = data["hours"][dow][1] / 60 / 1000;
+                close = (mins / 60).toString() + ":" + (mins % 60).toString();
             }
 
             document.getElementById("onboarding-hours-" + dow + "-open").value = open;
