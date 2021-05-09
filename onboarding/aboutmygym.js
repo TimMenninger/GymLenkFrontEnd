@@ -113,7 +113,7 @@ $(document).ready(function() {
             }
 
             document.getElementById("onboarding-hours-" + dow + "-open").value = open;
-            document.getElementById("onboarding-hours-" + dow + "-close").disabled = close;
+            document.getElementById("onboarding-hours-" + dow + "-close").value = close;
 
             if (document.getElementById("24h-" + dow + "-onboarding-checkbox").checked != is_24h) {
                 document.getElementById("24h-" + dow + "-onboarding-checkbox").click();
