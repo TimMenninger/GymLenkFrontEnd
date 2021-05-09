@@ -15,6 +15,38 @@ $(document).ready(function() {
         document.getElementById("onboarding-phone").value = formatToPhone(data["phone"]);
         document.getElementById("onboarding-email").value = data["email"];
         document.getElementById("onboarding-description").value = data["description"];
+
+        for (const dow of days_of_week) {
+            var is_24h = false;
+            var is_closed = false;
+            var open = "";
+            var close = "";
+            if (data["hours"][dow].length == 1) {
+                if (data["hours"][dow][0] == 0) {
+                    is_24h = true;
+                } else if (data["hours"][dow][0] < 0) {
+                    is_closed = true;
+                }
+            }
+            if (!is_24h && !is_closed && data["hours"][dow].length >= 1) {
+                open = (data["hours"][dow][0] / 60).toString() + ":" + (data["hours"][dow][0] % 60);
+            }
+            if (data["hours"][dow].length > 1) {
+                close = (data["hours"][dow][1] / 60).toString() + ":" + (data["hours"][dow][1] % 60);
+            }
+
+            document.getElementById("24h-" + dow + "-onboarding-checkbox").value = is_24h;
+            document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (is_closed || open !== "" || close !== "");
+
+            document.getElementById("closed-" + dow + "-onboarding-checkbox").value = is_closed;
+            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (is_24h || open !== "" || close !== "");
+
+            document.getElementById("onboarding-hours-" + dow + "-open").value = open;
+            document.getElementById("onboarding-hours-" + dow + "-open").disabled = (is_24h || is_closed);
+
+            document.getElementById("onboarding-hours-" + dow + "-close").disabled = close;
+            document.getElementById("onboarding-hours-" + dow + "-close").disabled = (is_24h || is_closed);
+        }
     }
 
     // Format phone number
