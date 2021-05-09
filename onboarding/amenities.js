@@ -32,7 +32,7 @@ document.getElementById("onboarding-amenities-continue-button").addEventListener
     var data = JSON.parse(localStorage.getItem("onboard_info"));
 
     // Store flags
-    data["has_free_weights"]    = document.getElementById("onboarding-has-free-weights").checked)
+    data["has_free_weights"]    = document.getElementById("onboarding-has-free-weights").checked;
     data["has_cardio"]          = document.getElementById("onboarding-has-cardio").checked;
     data["has_spinning"]        = document.getElementById("onboarding-has-spinning").checked;
     data["has_classes"]         = document.getElementById("onboarding-has-classes").checked;
