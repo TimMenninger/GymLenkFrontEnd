@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     // Load the info that we have so far
     var data = JSON.parse(localStorage.getItem("onboard_info"));
+    console.log(data)
 
     // If we've done amenities before, re-populate them
     if (localStorage.getItem("onboarding_amenities") === "done") {
