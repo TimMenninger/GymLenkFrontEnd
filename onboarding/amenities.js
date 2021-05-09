@@ -4,6 +4,9 @@ $(document).ready(function() {
         window.location.replace(URL_onboarding_aboutmygym);
     }
 
+    // Load the info that we have so far
+    var data = JSON.parse(localStorage.getItem("onboard_info"));
+
     // If we've done amenities before, re-populate them
     if (localStorage.getItem("onboarding_amenities") === "done") {
         document.getElementById("onboarding-has-free-weights").checked  = data["has_free_weights"];
