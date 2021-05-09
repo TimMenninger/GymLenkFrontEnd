@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     // If we've done amenities before, re-populate them
     if (localStorage.getItem("onboarding_amenities") === "done") {
-        document.getElementById("onboarding-has-free-weights").checked) = data["has_free_weights"];
+        document.getElementById("onboarding-has-free-weights").checked  = data["has_free_weights"];
         document.getElementById("onboarding-has-cardio").checked        = data["has_cardio"];
         document.getElementById("onboarding-has-spinning").checked      = data["has_spinning"];
         document.getElementById("onboarding-has-classes").checked       = data["has_classes"];
