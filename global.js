@@ -9,10 +9,11 @@ const port = "443";
 const backend_URL = "https://" + host + ":" + port;
 
 // Backend Endpoints
-const BE_sign_in = "/sign-in";
 const BE_create_account = "/create-account";
+const BE_change_password = "/change-password";
 const BE_check_signed_in = "/check-signed-in";
 const BE_onboard = "/onboard";
+const BE_sign_in = "/sign-in";
 
 // Frontend URL
 const frontend_URL = "gymlenk-dashboard.webflow.io"
@@ -95,6 +96,36 @@ function checkLoggedIn() {
     }));
 
     return true;
+}
+
+const PasswordError = {
+    SUCCESS:            0,
+    MISMATCH:           1,
+    TOO_SHORT:          2,
+    NEEDS_LETTER:       3,
+    NEEDS_NONLETTER:    4,
+}
+function checkPasswordRequirements(new_pw, confirm_new_pw) {
+    // Passwords must match first and foremost
+    if (new_pw !== confirm_new_pw) {
+        return PasswordError.MISMATCH;
+    }
+
+    // Password must have:
+    //      8+ characters
+    //      1+ letter
+    //      1+ nonletter
+    if (new_pw.length < 8) {
+        return PasswordError.TOO_SHORT;
+    }
+    if (!new_pw.match(/.*[a-zA-Z]+.*/i)) {
+        return PasswordError.NEEDS_LETTER;
+    }
+    if (!new_pw.match(/.*[^a-zA-Z]+.*/i)) {
+        return PasswordError.NEEDS_NONLETTER;
+    }
+
+    return PasswordError.SUCCESS;
 }
 
 function storeDashboardData(dashboard) {
