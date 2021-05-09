@@ -16,6 +16,7 @@ $(document).ready(function() {
         document.getElementById("onboarding-email").value = data["email"];
         document.getElementById("onboarding-description").value = data["description"];
 
+        console.log(data)
         for (const dow of days_of_week) {
             var is_24h = false;
             var is_closed = false;
@@ -109,7 +110,7 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
         if (is_24h) {
             data["hours"][dow] = [ 0 ];
         } else if (is_closed) {
-            data["hours"][dow] = [];
+            data["hours"][dow] = [ -1 ];
         } else {
             data["hours"][dow].push(Date.parse("01 Jan 1970 " + open_time + ":00 GMT"))
             if (close_time !== "") {
