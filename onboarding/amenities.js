@@ -12,6 +12,8 @@ document.getElementById("onboarding-amenities-continue-button").addEventListener
     // Store for later.  We don't use the info till we have it all
     localStorage.setItem("onboard_info", JSON.stringify(data));
 
+    console.log(document.getElementById("onboarding-has-free-weights").checked)
+
     // Go to next onboarding item
     localStorage.setItem("onboarding_amenities", "done");
     window.location.assign(URL_landing_after_onboarding_amenities);
