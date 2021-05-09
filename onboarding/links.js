@@ -1,3 +1,24 @@
+$(document).ready(function() {
+    // Don't do links until after about gym and amenities
+    if (localStorage.getItem("onboarding_aboutyourgym") !== "done") {
+        window.location.replace(URL_onboarding_aboutmygym);
+    }
+    if (localStorage.getItem("onboarding_amenities") !== "done") {
+        window.location.replace(URL_onboarding_aboutmygym);
+    }
+
+    // Load the info that we have so far and replace items (if applicable)
+    var data = JSON.parse(localStorage.getItem("onboard_info"));
+
+    // Get gym info
+    document.getElementById("Gym-Website-Link-4").value = data["website"];
+    document.getElementById("Gym-Facebook-Link").value = data["facebook"];
+    document.getElementById("Gym-Instagram-Link").value = data["instagram"];
+    document.getElementById("Gym-LinkedIn-Link").value = data["linkedin"];
+    document.getElementById("Gym-TikTok").value = data["tiktok"];
+    document.getElementById("Gym-Yelp-Link").value = data["yelp"];
+});
+
 document.getElementById("onboarding-links-continue-button").addEventListener("click", function() {
     // Load the info that we have so far
     var data = JSON.parse(localStorage.getItem("onboard_info"));

@@ -4,6 +4,28 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     var password      = document.getElementById("gym-sign-up-pw").value;
     var conf_password = document.getElementById("gym-sign-up-confirmpw").value;
 
+    // New password and confirmation must match
+    var pw_err = checkPasswordRequirements(password, conf_password);
+    switch (pw_err) {
+    case PasswordError.SUCCESS:
+        break;
+    case PasswordError.MISMATCH:
+        alert("Passwords do not match");
+        return;
+    case PasswordError.TOO_SHORT:
+        alert("Password must be at least 8 characters");
+        return;
+    case PasswordError.NEEDS_LETTER:
+        alert("Password must have at least one letter");
+        return;
+    case PasswordError.NEEDS_NONLETTER:
+        alert("Password must have at least one number or special character");
+        return;
+    default:
+        alert("Error changing password");
+        return;
+    }
+
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
     var request = new XMLHttpRequest();

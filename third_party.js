@@ -53,8 +53,14 @@ function formatToPhone(event) {
     return;
   }
 
-  // I am lazy and don't like to type things more than once
   let target = event.target;
+  let input = ('' + event.target.value).replace(/\D/g, ''); // First ten digits of input only
+  let formatted = formatPhoneString(input);
+  target.value = `${formatted}`;
+};
+
+function formatPhoneString(input) {
+  // I am lazy and don't like to type things more than once
   let input = ('' + event.target.value).replace(/\D/g, ''); // First ten digits of input only
 
   // Check if the input is of correct
@@ -74,13 +80,15 @@ function formatToPhone(event) {
   let last = input.substring(6 + offset, 10 + offset);
 
   if (input.length > 10+offset) {
-    target.value = `${input}`;
-  } else if (input.length > 6) {
-    target.value = `${intlCode}(${area}) ${middle}-${last}`;
-  } else if (input.length > 3) {
-    target.value = `${intlCode}(${area}) ${middle}`;
-  } else if (input.length > 0) {
-    target.value = `${intlCode}(${area}`;
+    return input;
+  } else if (input.length > 6+offset) {
+    return intlCode + "(" + area + ") " + middle + "-" + last;
+  } else if (input.length > 3+offset) {
+    return intlCode + "(" + area + ") " + middle;
+  } else if (input.length > 0+offset) {
+    return intlCode + "(" + area;
+  } else {
+    return input;
   }
 };
 

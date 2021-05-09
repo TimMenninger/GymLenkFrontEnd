@@ -27,16 +27,19 @@ document.getElementById("update-pw-button").addEventListener("click", function()
         break;
     case PasswordError.MISMATCH:
         alert("Passwords do not match");
-        break;
+        return;
     case PasswordError.TOO_SHORT:
         alert("Password must be at least 8 characters");
-        break;
+        return;
     case PasswordError.NEEDS_LETTER:
         alert("Password must have at least one letter");
-        break;
+        return;
     case PasswordError.NEEDS_NONLETTER:
         alert("Password must have at least one number or special character");
-        break;
+        return;
+    default:
+        alert("Error changing password");
+        return;
     }
 
     // Create a request variable and assign a new XMLHttpRequest object to

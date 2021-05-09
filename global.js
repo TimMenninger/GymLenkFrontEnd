@@ -39,8 +39,12 @@ const URL_landing_after_onboarding = FE_onboarding_aboutmygym;
 const URL_landing_after_onboarding_aboutmygym = FE_onboarding_amenities;
 const URL_landing_after_onboarding_amenities = FE_onboarding_links;
 const URL_landing_after_onboarding_links = FE_onboarding_getstarted
-const URL_landing_after_onboarding_getstarted = "";
+const URL_landing_after_onboarding_getstarted = URL_landing_after_login;
 const URL_landing_after_logout = FE_login;
+
+const URL_onboarding_aboutmygym = FE_onboarding_aboutmygym;
+const URL_onboarding_amenities  = FE_onboarding_amenities;
+const URL_onboarding_links      = FE_onboarding_links;
 
 // Convenience
 const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
