@@ -60,9 +60,6 @@ function formatToPhone(event) {
 };
 
 function formatPhoneString(input) {
-  // I am lazy and don't like to type things more than once
-  let input = ('' + event.target.value).replace(/\D/g, ''); // First ten digits of input only
-
   // Check if the input is of correct
   let offset = 0;
   let intlCode = '';
