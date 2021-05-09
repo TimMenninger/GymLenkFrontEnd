@@ -3,8 +3,6 @@ $(document).ready(function() {
         // Sanity - if no dashboard items, clear everything else to start
         // fresh
         clearState();
-
-        // TODO
         console.log("Not logged in");
         return;
     }
@@ -16,6 +14,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     var new_password      = document.getElementById("new-pw").value;
     var conf_new_password = document.getElementById("confirm-new-pw").value;
     var data = {
+        session_id:         localStorage.getItem("session_id"),
         current_password:   current_password,
         new_password:       new_password
     };
