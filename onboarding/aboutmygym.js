@@ -45,9 +45,10 @@ $(document).ready(function() {
             if (document.getElementById("closed-" + dow + "-onboarding-checkbox").checked != is_closed) {
                 document.getElementById("closed-" + dow + "-onboarding-checkbox").click();
             }
-
-            document.getElementById("closed-" + dow + "-onboarding-checkbox").checked = is_closed;
-            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (is_24h || open !== "" || close !== "");
+            if (open !== "" || close !== "") {
+                document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled    = true;
+                document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = true;
+            }
 
         }
     }
