@@ -51,20 +51,23 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
+            document.getElementById("new-pw").value = "";
+            document.getElementById("confirm-new-pw").value = "";
             if (request.status != 200) {
-                console.log("Request failed");
+                alert("Request failed");
                 return;
             }
 
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                console.log(data["message"]);
+                alert(data["message"]);
                 return;
             }
 
             // Done changing password
             alert("Password successfully changed")
+            document.getElementById("current-pw").value = "";
         }
     }
 
