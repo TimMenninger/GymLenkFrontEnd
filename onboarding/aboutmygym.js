@@ -25,12 +25,12 @@ for (const dow of days_of_week) {
     document.getElementById("24h-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
         document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = this.checked;
         document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
-        document.getElementById("onboarding-hours-" + dow + "-closed").disabled = this.checked;
+        document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
     });
     document.getElementById("closed-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
         document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = this.checked;
         document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
-        document.getElementById("onboarding-hours-" + dow + "-closed").disabled = this.checked;
+        document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
     });
     document.getElementById("onboarding-hours-" + dow + "-open").addEventListener("change", function(event) {
         document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
