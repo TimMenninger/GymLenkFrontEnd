@@ -12,7 +12,7 @@ $(document).ready(function() {
         document.getElementById("onboarding-address1").value = data["physical_address"]["line1"];
         document.getElementById("onboarding-address2").value = data["physical_address"]["line2"];
         document.getElementById("onboarding-zip").value = data["physical_address"]["zip"];
-        document.getElementById("onboarding-phone").value = formatToPhone(data["phone"]);
+        document.getElementById("onboarding-phone").value = formatPhoneNumber(data["phone"]);
         document.getElementById("onboarding-email").value = data["email"];
         document.getElementById("onboarding-description").value = data["description"];
 

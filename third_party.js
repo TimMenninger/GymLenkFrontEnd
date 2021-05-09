@@ -1,24 +1,4 @@
 //
-// Copied from: https://learnersbucket.com/examples/javascript/how-to-format-phone-number-in-javascript/
-//
-let formatPhoneNumber = (str) => {
-    //Filter only numbers from the input
-    let cleaned = ('' + str).replace(/\D/g, '');
-
-    //Check if the input is of correct
-    let match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
-
-    if (match) {
-        //Remove the matched extension code
-        //Change this to format for any country code.
-        let intlCode = (match[1] ? '+1 ' : '')
-        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-    }
-
-    return null;
-}
-
-//
 // Copied from: https://stackoverflow.com/questions/30058927/format-a-phone-number-as-a-user-types-using-pure-javascript
 //
 
@@ -56,12 +36,12 @@ function formatToPhone(event) {
   let target = event.target;
   if (target != null) {
       let input = ('' + target.value).replace(/\D/g, ''); // First ten digits of input only
-      let formatted = formatPhoneString(input);
+      let formatted = formatPhoneNumber(input);
       target.value = `${formatted}`;
   }
 };
 
-function formatPhoneString(input) {
+function formatPhoneNumber(input) {
   // Check if the input is of correct
   let offset = 0;
   let intlCode = '';
