@@ -3,6 +3,7 @@ document.getElementById("onboarding-phone").addEventListener("keydown", enforceF
 document.getElementById("onboarding-phone").addEventListener("keyup", formatToPhone);
 
 // Hours checkboxes
+const days_of_week = [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
 for (const dow of days_of_week) {
     document.getElementById("24h-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
         document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = this.checked;
@@ -41,7 +42,6 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
     data["hours"]               = {};
 
     // Gym hours
-    const days_of_week = [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
     for (const dow of days_of_week) {
         var is_24h     = document.getElementById("24h-" + dow + "-onboarding-checkbox").checked;
         var is_closed  = document.getElementById("closed-" + dow + "-onboarding-checkbox").checked;
