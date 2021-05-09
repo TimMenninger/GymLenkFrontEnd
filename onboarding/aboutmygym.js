@@ -36,10 +36,10 @@ $(document).ready(function() {
                 close = (data["hours"][dow][1] / 60).toString() + ":" + (data["hours"][dow][1] % 60);
             }
 
-            document.getElementById("24h-" + dow + "-onboarding-checkbox").value = is_24h;
+            document.getElementById("24h-" + dow + "-onboarding-checkbox").checked = is_24h;
             document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (is_closed || open !== "" || close !== "");
 
-            document.getElementById("closed-" + dow + "-onboarding-checkbox").value = is_closed;
+            document.getElementById("closed-" + dow + "-onboarding-checkbox").checked = is_closed;
             document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (is_24h || open !== "" || close !== "");
 
             document.getElementById("onboarding-hours-" + dow + "-open").value = open;
@@ -96,8 +96,8 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
     // Gym hours
     const days_of_week = [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
     for (const dow of days_of_week) {
-        var is_24h     = document.getElementById("24h-" + dow + "-onboarding-checkbox").value;
-        var is_closed  = document.getElementById("closed-" + dow + "-onboarding-checkbox").value;
+        var is_24h     = document.getElementById("24h-" + dow + "-onboarding-checkbox").checked;
+        var is_closed  = document.getElementById("closed-" + dow + "-onboarding-checkbox").checked;
         var open_time  = document.getElementById("onboarding-hours-" + dow + "-open").value;
         var close_time = document.getElementById("onboarding-hours-" + dow + "-close").value;
 
