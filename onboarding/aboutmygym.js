@@ -42,7 +42,7 @@ $(document).ready(function() {
             if (document.getElementById("24h-" + dow + "-onboarding-checkbox").checked != is_24h) {
                 document.getElementById("24h-" + dow + "-onboarding-checkbox").click();
             }
-            if (document.getElementById("closed-" + dow + "-onboarding-checkbox").checked != is_24h) {
+            if (document.getElementById("closed-" + dow + "-onboarding-checkbox").checked != is_closed) {
                 document.getElementById("closed-" + dow + "-onboarding-checkbox").click();
             }
 
