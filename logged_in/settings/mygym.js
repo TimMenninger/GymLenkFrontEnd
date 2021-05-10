@@ -144,7 +144,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
         line2   : document.getElementById("gym-edit-address2").value,
         zip     : document.getElementById("gym-edit-zip").value
     };
-    data["phone"]               = ('' + document.getElementById("gym-edit-phone").value).replace(/\D/g, '');
+    data["phone_number"]               = ('' + document.getElementById("gym-edit-phone").value).replace(/\D/g, '');
     data["email"]               = document.getElementById("gym-edit-email").value;
     data["description"]         = document.getElementById("gym-edit-description").value;
     data["hours"]               = {};

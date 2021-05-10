@@ -9,7 +9,7 @@ $(document).ready(function() {
         document.getElementById("onboarding-address1").value = data["physical_address"]["line1"];
         document.getElementById("onboarding-address2").value = data["physical_address"]["line2"];
         document.getElementById("onboarding-zip").value = data["physical_address"]["zip"];
-        document.getElementById("onboarding-phone").value = formatPhoneNumber(data["phone"]);
+        document.getElementById("onboarding-phone").value = formatPhoneNumber(data["phone_number"]);
         document.getElementById("onboarding-email").value = data["email"];
         document.getElementById("onboarding-description").value = data["description"];
 
@@ -92,7 +92,7 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
         line2   : document.getElementById("onboarding-address2").value,
         zip     : document.getElementById("onboarding-zip").value
     };
-    data["phone"]               = ('' + document.getElementById("onboarding-phone").value).replace(/\D/g, '');
+    data["phone_number"]        = ('' + document.getElementById("onboarding-phone").value).replace(/\D/g, '');
     data["email"]               = document.getElementById("onboarding-email").value;
     data["description"]         = document.getElementById("onboarding-description").value;
     data["hours"]               = {};
