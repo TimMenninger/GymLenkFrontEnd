@@ -15,7 +15,7 @@ $(document).ready(function() {
     document.getElementById("gym-edit-address").value = data["physical_address"]["line1"];
     document.getElementById("gym-edit-address2").value = data["physical_address"]["line2"];
     document.getElementById("gym-edit-zip").value = data["physical_address"]["zip"];
-    document.getElementById("gym-edit-phone").value = formatPhoneNumber(data["phone"]);
+    document.getElementById("gym-edit-phone").value = data["formatted_phone_number"];
     document.getElementById("gym-edit-email").value = data["email"];
     document.getElementById("gym-edit-description").value = data["description"];
 
