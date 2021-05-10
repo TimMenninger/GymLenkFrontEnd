@@ -210,7 +210,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     var request = new XMLHttpRequest();
 
     // Open a new connection, using the POST request on the URL endpoint
-    request.open("POST", backend_URL + BE_onboard, true);
+    request.open("POST", backend_URL + BE_set_dashboard_info, true);
     request.setRequestHeader("Content-Type", HDR_content_type_json);
     request.withCredentials = true;
     request.onreadystatechange = function () {
@@ -229,7 +229,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
 
             // Done Editing
             storeDashboardData(data["dashboard"]);
-            window.location.assign(URL_landing_after_onboarding_links);
+            alert("Update successful");
         }
     }
 
