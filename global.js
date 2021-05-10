@@ -14,6 +14,7 @@ const BE_change_password = "/change-password";
 const BE_check_signed_in = "/check-signed-in";
 const BE_onboard = "/onboard";
 const BE_sign_in = "/sign-in";
+const BE_set_dashboard_info = "/set-dashboard-info";
 
 // Frontend URL
 const frontend_URL = "gymlenk-dashboard.webflow.io"
