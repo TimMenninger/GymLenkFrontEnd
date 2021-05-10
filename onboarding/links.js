@@ -16,13 +16,13 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     data["session_id"]  = localStorage.getItem("session_id");
 
     // Insert links
-    data["website"]     = document.getElementById("Gym-Website-Link-4").value;
-    data["facebook"]    = document.getElementById("Gym-Facebook-Link").value;
-    data["instagram"]   = document.getElementById("Gym-Instagram-Link").value;
-    data["linkedin"]    = document.getElementById("Gym-LinkedIn-Link").value;
-    data["tiktok"]      = document.getElementById("Gym-TikTok").value;
-    data["yelp"]        = document.getElementById("Gym-Yelp-Link").value;
-    data["twitter"]     = ""; // document.getElementById("Gym-Twitter-Handle").value;
+    data["website"]     = document.getElementById("gym-website-link").value;
+    data["facebook"]    = document.getElementById("gym-facebook-link").value;
+    data["instagram"]   = document.getElementById("gym-instagram-link").value;
+    data["linkedin"]    = document.getElementById("gym-linkedin-link").value;
+    data["tiktok"]      = document.getElementById("gym-tiktok").value;
+    data["yelp"]        = document.getElementById("gym-yelp-link").value;
+    data["twitter"]     = document.getElementById("gym-twitter-handle").value;
 
     // Store for later.  We don't use the info till we have it all
     localStorage.setItem("onboard_info", JSON.stringify(data));
