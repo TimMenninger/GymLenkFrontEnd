@@ -197,13 +197,13 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     data["has_basketball"]      = document.getElementById("edit-gym-amenities-basketball").checked;
 
     // Insert links
-    data["website"]     = document.getElementById("edit-gym-website").value;
-    data["facebook"]    = document.getElementById("edit-gym-facebook").value;
-    data["instagram"]   = document.getElementById("edit-gym-instagram").value;
-    data["linkedin"]    = document.getElementById("edit-gym-linkedin").value;
-    data["tiktok"]      = document.getElementById("edit-gym-tiktok").value;
-    data["yelp"]        = document.getElementById("edit-gym-yelp").value;
-    data["twitter"]     = document.getElementById("edit-gym-twitter").value;
+    data["website"]     = document.getElementById("gym-edit-website").value;
+    data["facebook"]    = document.getElementById("gym-edit-facebook").value;
+    data["instagram"]   = document.getElementById("gym-edit-instagram").value;
+    data["linkedin"]    = document.getElementById("gym-edit-linkedin").value;
+    data["tiktok"]      = document.getElementById("gym-edit-tiktok").value;
+    data["yelp"]        = document.getElementById("gym-edit-yelp").value;
+    data["twitter"]     = document.getElementById("gym-edit-twitter").value;
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
