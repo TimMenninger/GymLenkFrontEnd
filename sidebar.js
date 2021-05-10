@@ -3,7 +3,7 @@ $(document).ready(function() {
     var data = JSON.parse(localStorage.getItem("dashboard"));
 
     // Gym name goes on side bar
-    document.getElementById("gym-name-sidebar").value = data["organization_name"]
+    document.getElementById("gym-name-sidebar").innerText = data["organization_name"]
 })
 
 // Log out when sidebar log out is clicked
