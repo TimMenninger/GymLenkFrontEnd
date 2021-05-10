@@ -48,6 +48,7 @@ $(document).ready(function() {
     showOrHide("gym-link-ig",       "instagram");
     showOrHide("gym-link-linkedin", "linkedin");
     showOrHide("gym-link-tiktok",   "tiktok");
+    showOrHide("gym-link-yelp",     "yelp");
 
     showOrHide("gym-amenities-free-weights",    "has_free_weights");
     showOrHide("gym-amenities-cardio",          "has_cardio");
