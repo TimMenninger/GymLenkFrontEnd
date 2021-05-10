@@ -140,7 +140,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     data["organization_name"]   = document.getElementById("gym-edit-name").value;
     data["location_name"]       = document.getElementById("gym-edit-location").value;
     data["physical_address"]    = {
-        line1   : document.getElementById("gym-edit-address1").value,
+        line1   : document.getElementById("gym-edit-address").value,
         line2   : document.getElementById("gym-edit-address2").value,
         zip     : document.getElementById("gym-edit-zip").value
     };
