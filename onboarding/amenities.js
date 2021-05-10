@@ -10,24 +10,60 @@ $(document).ready(function() {
 
     // If we've done amenities before, re-populate them
     if (localStorage.getItem("onboarding_amenities") === "done") {
-        document.getElementById("onboarding-amenities-free-weights").checked  = data["has_free_weights"];
-        document.getElementById("onboarding-amenities-cardio").checked        = data["has_cardio"];
-        document.getElementById("onboarding-amenities-spinning").checked      = data["has_spinning"];
-        document.getElementById("onboarding-amenities-classes").checked       = data["has_classes"];
-        document.getElementById("onboarding-amenities-squat-rack").checked    = data["has_squat_rack"];
-        document.getElementById("onboarding-amenities-smith-machine").checked = data["has_smith_machine"];
-        document.getElementById("onboarding-amenities-bench-press").checked   = data["has_bench_press"];
-        document.getElementById("onboarding-amenities-trx").checked           = data["has_trx"];
-        document.getElementById("onboarding-amenities-pt").checked            = data["has_pt"];
-        document.getElementById("onboarding-amenities-turf").checked          = data["has_turf"];
-        document.getElementById("onboarding-amenities-outdoor").checked       = data["has_outdoor"];
-        document.getElementById("onboarding-amenities-wifi").checked          = data["has_wifi"];
-        document.getElementById("onboarding-amenities-showers").checked       = data["has_showers"];
-        document.getElementById("onboarding-amenities-lockers").checked       = data["has_lockers"];
-        document.getElementById("onboarding-amenities-pool").checked          = data["has_pool"];
-        document.getElementById("onboarding-amenities-hot-tub").checked       = data["has_hot_tub"];
-        document.getElementById("onboarding-amenities-sauna").checked         = data["has_sauna"];
-        document.getElementById("onboarding-amenities-basketball").checked    = data["has_basketball"];
+        if (document.getElementById("onboarding-amenities-free-weights").checked != data["has_free_weights"]) {
+            document.getElementById("onboarding-amenities-free-weights").click();
+        }
+        if (document.getElementById("onboarding-amenities-cardio").checked != data["has_cardio"]) {
+            document.getElementById("onboarding-amenities-cardio").click();
+        }
+        if (document.getElementById("onboarding-amenities-spinning").checked != data["has_spinning"]) {
+            document.getElementById("onboarding-amenities-spinning").click();
+        }
+        if (document.getElementById("onboarding-amenities-classes").checked != data["has_classes"]) {
+            document.getElementById("onboarding-amenities-classes").click();
+        }
+        if (document.getElementById("onboarding-amenities-squat-rack").checked != data["has_squat_rack"]) {
+            document.getElementById("onboarding-amenities-squat-rack").click();
+        }
+        if (document.getElementById("onboarding-amenities-smith-machine").checked != data["has_smith_machine"]) {
+            document.getElementById("onboarding-amenities-smith-machine").click();
+        }
+        if (document.getElementById("onboarding-amenities-bench-press").checked != data["has_bench_press"]) {
+            document.getElementById("onboarding-amenities-bench-press").click();
+        }
+        if (document.getElementById("onboarding-amenities-trx").checked != data["has_trx"]) {
+            document.getElementById("onboarding-amenities-trx").click();
+        }
+        if (document.getElementById("onboarding-amenities-pt").checked != data["has_pt"]) {
+            document.getElementById("onboarding-amenities-pt").click();
+        }
+        if (document.getElementById("onboarding-amenities-turf").checked != data["has_turf"]) {
+            document.getElementById("onboarding-amenities-turf").click();
+        }
+        if (document.getElementById("onboarding-amenities-outdoor").checked != data["has_outdoor"]) {
+            document.getElementById("onboarding-amenities-outdoor").click();
+        }
+        if (document.getElementById("onboarding-amenities-wifi").checked != data["has_wifi"]) {
+            document.getElementById("onboarding-amenities-wifi").click();
+        }
+        if (document.getElementById("onboarding-amenities-showers").checked != data["has_showers"]) {
+            document.getElementById("onboarding-amenities-showers").click();
+        }
+        if (document.getElementById("onboarding-amenities-lockers").checked != data["has_lockers"]) {
+            document.getElementById("onboarding-amenities-lockers").click();
+        }
+        if (document.getElementById("onboarding-amenities-pool").checked != data["has_pool"]) {
+            document.getElementById("onboarding-amenities-pool").click();
+        }
+        if (document.getElementById("onboarding-amenities-hot-tub").checked != data["has_hot_tub"]) {
+            document.getElementById("onboarding-amenities-hot-tub").click();
+        }
+        if (document.getElementById("onboarding-amenities-sauna").checked != data["has_sauna"]) {
+            document.getElementById("onboarding-amenities-sauna").click();
+        }
+        if (document.getElementById("onboarding-amenities-basketball").checked != data["has_basketball"]) {
+            document.getElementById("onboarding-amenities-basketball").click();
+        }
     }
 });
 
