@@ -11,9 +11,9 @@ $(document).ready(function() {
     // they look how we want for displaying
     var dashboard = JSON.parse(localStorage.getItem("dashboard"));
 
-    document.getElementById("gym-name").innerText = data["organization_name"]
-    if (data["location_name"] !== "") {
-        document.getElementById("gym-location").innerText = data["location_name"]
+    document.getElementById("gym-name").innerText = dashboard["organization_name"]
+    if (dashboard["location_name"] !== "") {
+        document.getElementById("gym-location").innerText = dashboard["location_name"]
         document.getElementById("gym-location").style.display = "none";
     } else {
         document.getElementById("gym-location").style.display = "block";
