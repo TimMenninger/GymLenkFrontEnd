@@ -50,7 +50,6 @@ $(document).ready(function() {
                 document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled    = true;
                 document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = true;
             }
-
         }
     }
 });
