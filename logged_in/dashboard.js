@@ -14,8 +14,8 @@ $(document).ready(function() {
     document.getElementById("gym-name").innerText = dashboard["organization_name"]
     if (dashboard["location_name"] !== "") {
         document.getElementById("gym-location").innerText = dashboard["location_name"]
-        document.getElementById("gym-location").style.display = "none";
-    } else {
         document.getElementById("gym-location").style.display = "block";
+    } else {
+        document.getElementById("gym-location").style.display = "none";
     }
 })
