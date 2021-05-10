@@ -19,7 +19,9 @@ $(document).ready(function() {
     document.getElementById("gym-edit-email").value = data["email"];
     document.getElementById("gym-edit-description").value = data["description"];
 
-    for (const dow of days_of_week) {
+    for (const raw_dow of DaysOfWeek) {
+        var dow = raw_dow.toLowerCase();
+
         var is_24h = false;
         var is_closed = false;
         var open = "";
@@ -112,7 +114,9 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     data["hours"]               = {};
 
     // Gym hours
-    for (const dow of days_of_week) {
+    for (const raw_dow of DaysOfWeek) {
+        var dow        = raw_dow.toLowerCase();
+
         var is_24h     = document.getElementById("24h-" + dow + "-gym-checkbox").checked;
         var is_closed  = document.getElementById("closed-" + dow + "-gym-checkbox").checked;
         var open_time  = document.getElementById("gym-edit-hours-" + dow + "-opening").value;

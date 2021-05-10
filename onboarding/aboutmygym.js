@@ -1,7 +1,4 @@
 $(document).ready(function() {
-    // Shorthand
-    const days_of_week = [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
-
     // Load the info that we have so far and replace items (if applicable)
     if (localStorage.getItem("onboard_info") !== null) {
         var data = JSON.parse(localStorage.getItem("onboard_info"));
@@ -16,7 +13,9 @@ $(document).ready(function() {
         document.getElementById("onboarding-email").value = data["email"];
         document.getElementById("onboarding-description").value = data["description"];
 
-        for (const dow of days_of_week) {
+        for (const raw_dow of DaysOfWeek) {
+            var dow = raw_dow.toLowerCase();
+
             var is_24h = false;
             var is_closed = false;
             var open = "";
@@ -59,8 +58,9 @@ document.getElementById("onboarding-phone").addEventListener("keydown", enforceF
 document.getElementById("onboarding-phone").addEventListener("keyup", formatToPhone);
 
 // Hours checkboxes
-const days_of_week = [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
-for (const dow of days_of_week) {
+for (const raw_dow of DaysOfWeek) {
+    var dow = raw_dow.toLowerCase();
+
     document.getElementById("24h-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
         document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = this.checked;
         document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
@@ -98,7 +98,9 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
     data["hours"]               = {};
 
     // Gym hours
-    for (const dow of days_of_week) {
+    for (const raw_dow of DaysOfWeek) {
+        var dow        = raw_dow.toLowerCase();
+
         var is_24h     = document.getElementById("24h-" + dow + "-onboarding-checkbox").checked;
         var is_closed  = document.getElementById("closed-" + dow + "-onboarding-checkbox").checked;
         var open_time  = document.getElementById("onboarding-hours-" + dow + "-open").value;
