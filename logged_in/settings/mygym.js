@@ -9,6 +9,7 @@ $(document).ready(function() {
     var data = JSON.parse(localStorage.getItem("dashboard"));
 
     // Get gym info
+    console.log(data)
     document.getElementById("gym-edit-name").value = data["organization_name"];
     document.getElementById("gym-edit-location").value = data["location_name"];
     document.getElementById("gym-edit-address").value = data["physical_address"]["line1"];
