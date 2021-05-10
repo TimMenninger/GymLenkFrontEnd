@@ -59,24 +59,60 @@ $(document).ready(function() {
     }
 
     /* Amenities checkboxes */
-    document.getElementById("edit-gym-amenities-free-weights").checked  = data["has_free_weights"];
-    document.getElementById("edit-gym-amenities-cardio").checked        = data["has_cardio"];
-    document.getElementById("edit-gym-amenities-spinning").checked      = data["has_spinning"];
-    document.getElementById("edit-gym-amenities-classes").checked       = data["has_classes"];
-    document.getElementById("edit-gym-amenities-squat-rack").checked    = data["has_squat_rack"];
-    document.getElementById("edit-gym-amenities-smith-machine").checked = data["has_smith_machine"];
-    document.getElementById("edit-gym-amenities-bench-press").checked   = data["has_bench_press"];
-    document.getElementById("edit-gym-amenities-trx").checked           = data["has_trx"];
-    document.getElementById("edit-gym-amenities-pt").checked            = data["has_pt"];
-    document.getElementById("edit-gym-amenities-turf").checked          = data["has_turf"];
-    document.getElementById("edit-gym-amenities-outdoor").checked       = data["has_outdoor"];
-    document.getElementById("edit-gym-amenities-wifi").checked          = data["has_wifi"];
-    document.getElementById("edit-gym-amenities-showers").checked       = data["has_showers"];
-    document.getElementById("edit-gym-amenities-lockers").checked       = data["has_lockers"];
-    document.getElementById("edit-gym-amenities-pool").checked          = data["has_pool"];
-    document.getElementById("edit-gym-amenities-hot-tub").checked       = data["has_hot_tub"];
-    document.getElementById("edit-gym-amenities-sauna").checked         = data["has_sauna"];
-    document.getElementById("edit-gym-amenities-basketball").checked    = data["has_basketball"];
+    if (document.getElementById("edit-gym-amenities-free-weights").checked != data["has_free_weights"]) {
+        document.getElementById("edit-gym-amenities-free-weights").click();
+    }
+    if (document.getElementById("edit-gym-amenities-cardio").checked != data["has_cardio"]) {
+        document.getElementById("edit-gym-amenities-cardio").click();
+    }
+    if (document.getElementById("edit-gym-amenities-spinning").checked != data["has_spinning"]) {
+        document.getElementById("edit-gym-amenities-spinning").click();
+    }
+    if (document.getElementById("edit-gym-amenities-classes").checked != data["has_classes"]) {
+        document.getElementById("edit-gym-amenities-classes").click();
+    }
+    if (document.getElementById("edit-gym-amenities-squat-rack").checked != data["has_squat_rack"]) {
+        document.getElementById("edit-gym-amenities-squat-rack").click();
+    }
+    if (document.getElementById("edit-gym-amenities-smith-machine").checked != data["has_smith_machine"]) {
+        document.getElementById("edit-gym-amenities-smith-machine").click();
+    }
+    if (document.getElementById("edit-gym-amenities-bench-press").checked != data["has_bench_press"]) {
+        document.getElementById("edit-gym-amenities-bench-press").click();
+    }
+    if (document.getElementById("edit-gym-amenities-trx").checked != data["has_trx"]) {
+        document.getElementById("edit-gym-amenities-trx").click();
+    }
+    if (document.getElementById("edit-gym-amenities-pt").checked != data["has_pt"]) {
+        document.getElementById("edit-gym-amenities-pt").click();
+    }
+    if (document.getElementById("edit-gym-amenities-turf").checked != data["has_turf"]) {
+        document.getElementById("edit-gym-amenities-turf").click();
+    }
+    if (document.getElementById("edit-gym-amenities-outdoor").checked != data["has_outdoor"]) {
+        document.getElementById("edit-gym-amenities-outdoor").click();
+    }
+    if (document.getElementById("edit-gym-amenities-wifi").checked != data["has_wifi"]) {
+        document.getElementById("edit-gym-amenities-wifi").click();
+    }
+    if (document.getElementById("edit-gym-amenities-showers").checked != data["has_showers"]) {
+        document.getElementById("edit-gym-amenities-showers").click();
+    }
+    if (document.getElementById("edit-gym-amenities-lockers").checked != data["has_lockers"]) {
+        document.getElementById("edit-gym-amenities-lockers").click();
+    }
+    if (document.getElementById("edit-gym-amenities-pool").checked != data["has_pool"]) {
+        document.getElementById("edit-gym-amenities-pool").click();
+    }
+    if (document.getElementById("edit-gym-amenities-hot-tub").checked != data["has_hot_tub"]) {
+        document.getElementById("edit-gym-amenities-hot-tub").click();
+    }
+    if (document.getElementById("edit-gym-amenities-sauna").checked != data["has_sauna"]) {
+        document.getElementById("edit-gym-amenities-sauna").click();
+    }
+    if (document.getElementById("edit-gym-amenities-basketball").checked != data["has_basketball"]) {
+        document.getElementById("edit-gym-amenities-basketball").click();
+    }
 
     /* Links */
     document.getElementById("gym-edit-website").value   = data["website"];
