@@ -71,14 +71,6 @@ for (const raw_dow of DaysOfWeek) {
             document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
             document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
         });
-        document.getElementById("onboarding-hours-" + dow + "-open").addEventListener("change", function(event) {
-            document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-        });
-        document.getElementById("onboarding-hours-" + dow + "-close").addEventListener("change", function(event) {
-            document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-        });
     }()); // Immediate invocation
 }
 
