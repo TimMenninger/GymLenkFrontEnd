@@ -200,9 +200,9 @@ function storeDashboardData(dashboard) {
                     var time_range = "";
                     var time_ranges = [];
                     for (i = 0; i < dashboard["hours"][dow].length; i++) {
-                        var hour = dashboard["hours"][dow][i] / 60;
-                        var min  = dashboard["hours"][dow][i] % 60;
-                        time_range += hour.toString() + ":" + min.toString();
+                        var hour = (dashboard["hours"][dow][i] / 60 / 1000) / 60;
+                        var min  = (dashboard["hours"][dow][i] / 60 / 1000) % 60;
+                        time_range += hour.toString().padStart(2, '0') + ":" + min.toString().padStart(2, '0');
                         if (i % 2 == 0) {
                             time_range += "-";
                         } else {
