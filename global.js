@@ -31,6 +31,8 @@ const FE_login = "/login";
 const HDR_content_type_json = "application/json; charset=UTF-8";
 
 // Other URLs
+const URL_homepage = FE_dashboard;
+
 const URL_landing_after_login = FE_mygym;
 const URL_landing_after_signup = FE_onboarding;
 const URL_landing_after_onboarding = FE_onboarding_aboutmygym;

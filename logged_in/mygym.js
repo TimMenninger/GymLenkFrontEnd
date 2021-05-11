@@ -11,6 +11,7 @@ $(document).ready(function() {
     // they look how we want for displaying
     var dashboard = JSON.parse(localStorage.getItem("dashboard"));
 
+    console.log(dashboard)
     function setOrHide(element_id, dashboard_key, text_only) {
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
