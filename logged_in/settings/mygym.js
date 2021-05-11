@@ -50,10 +50,6 @@ $(document).ready(function() {
         if (document.getElementById("closed-" + dow + "-gym-edit-checkbox").checked != is_closed) {
             document.getElementById("closed-" + dow + "-gym-edit-checkbox").click();
         }
-        if (open !== "" || close !== "") {
-            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled    = true;
-            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = true;
-        }
     }
 
     /* Amenities checkboxes */
