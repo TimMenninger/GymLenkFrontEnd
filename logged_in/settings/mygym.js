@@ -126,6 +126,30 @@ $(document).ready(function() {
     const inputElement = document.getElementById("gym-edit-phone");
     inputElement.addEventListener("keydown", enforceFormat);
     inputElement.addEventListener("keyup", formatToPhone);
+
+    // Hours checkboxes
+    for (const raw_dow of DaysOfWeek) {
+        var dow = raw_dow.toLowerCase();
+
+        document.getElementById("24h-" + dow + "-gym-edit-checkbox").addEventListener("change", function() {
+            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-open").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
+        });
+        document.getElementById("closed-" + dow + "-gym-edit-checkbox").addEventListener("change", function() {
+            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-open").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
+        });
+        document.getElementById("gym-edit-hours-" + dow + "-open").addEventListener("change", function(event) {
+            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = (event.target.value !== "");
+            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = (event.target.value !== "");
+        });
+        document.getElementById("gym-edit-hours-" + dow + "-close").addEventListener("change", function(event) {
+            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = (event.target.value !== "");
+            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = (event.target.value !== "");
+        });
+    }
 })
 
 document.getElementById("save-changes-my-gym-button").addEventListener("click", function() {

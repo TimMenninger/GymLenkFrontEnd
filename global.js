@@ -16,19 +16,16 @@ const BE_onboard = "/onboard";
 const BE_sign_in = "/sign-in";
 const BE_set_dashboard_info = "/set-dashboard-info";
 
-// Frontend URL
-const frontend_URL = "gymlenk-dashboard.webflow.io"
-
 // Frontend Pages
 const FE_mygym = "/mygym";
 const FE_dashboard = "/dashboard";
-const FE_onboarding = "/onboarding-2";
+const FE_onboard = "/onboard";
+const FE_onboarding = "/onboarding/welcome";
 const FE_onboarding_aboutmygym = "/onboarding/aboutyourgym";
 const FE_onboarding_amenities = "/onboarding/amenities";
 const FE_onboarding_links = "/onboarding/links";
 const FE_onboarding_getstarted = "/onboarding/getstarted";
 const FE_login = "/login";
-const FE_onboard = "/onboard";
 
 // Request Headers
 const HDR_content_type_json = "application/json; charset=UTF-8";

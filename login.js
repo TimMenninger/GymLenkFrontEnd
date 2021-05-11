@@ -37,6 +37,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
             // Store the session ID, which must be used with subsequent requests
             localStorage.setItem("session_id", data["session_id"]);
+            localStorage.setItem("account_email", email);
 
             if ("dashboard" in data && "location_id" in data["dashboard"]) {
                 storeDashboardData(data["dashboard"]);

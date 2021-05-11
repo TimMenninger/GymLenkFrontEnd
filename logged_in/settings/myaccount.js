@@ -6,6 +6,10 @@ $(document).ready(function() {
         console.log("Not logged in");
         return;
     }
+
+    // Set email address for acocunt email
+    var email = localStorage.getItem("account_email");
+    document.getElementById("gym-account-email").innerText = email;
 })
 
 document.getElementById("update-pw-button").addEventListener("click", function() {
