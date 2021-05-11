@@ -20,7 +20,7 @@ document.getElementById("onboarding-links-continue-button").addEventListener("cl
     data["facebook"]    = document.getElementById("gym-facebook-link").value;
     data["instagram"]   = document.getElementById("gym-instagram-link").value;
     data["linkedin"]    = document.getElementById("gym-linkedin-link").value;
-    data["tiktok"]      = document.getElementById("gym-tiktok").value;
+    data["tiktok"]      = document.getElementById("gym-tiktok-link").value;
     data["yelp"]        = document.getElementById("gym-yelp-link").value;
     data["twitter"]     = document.getElementById("gym-twitter-handle").value;
 
