@@ -188,7 +188,6 @@ function storeDashboardData(dashboard) {
 
         var day_hours = "[Not Specified]";
         if ("hours" in dashboard) {
-            console.log(dow)
             if (dow in dashboard["hours"]) {
                 if (dashboard["hours"][dow].length === 1) {
                     if (dashboard["hours"][dow][0] === -1) {

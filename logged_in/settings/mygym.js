@@ -129,34 +129,33 @@ inputElement.addEventListener("keyup", formatToPhone);
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {
-    var dow = raw_dow.toLowerCase();
-
-    document.getElementById("24h-" + dow + "-gym-edit-checkbox").addEventListener("change", function() {
-        document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = this.checked;
-        document.getElementById("gym-edit-hours-" + dow + "-open").disabled = this.checked;
-        document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
-    });
-    document.getElementById("closed-" + dow + "-gym-edit-checkbox").addEventListener("change", function() {
-        document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = this.checked;
-        document.getElementById("gym-edit-hours-" + dow + "-open").disabled = this.checked;
-        document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
-    });
-    document.getElementById("gym-edit-hours-" + dow + "-open").addEventListener("change", function() {
-        var have_hours =
-            (document.getElementById("gym-edit-hours-" + dow + "-open").value === "") &&
-            (document.getElementById("gym-edit-hours-" + dow + "-close").value === "");
-        document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
-        document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
-    });
-    document.getElementById("gym-edit-hours-" + dow + "-close").addEventListener("change", function() {
-        console.log(dow);
-        console.log(document.getElementById("gym-edit-hours-" + dow + "-close").value);
-        var have_hours =
-            (document.getElementById("gym-edit-hours-" + dow + "-open").value === "") &&
-            (document.getElementById("gym-edit-hours-" + dow + "-close").value === "");
-        document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
-        document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
-    });
+    (function () {
+        var dow = raw_dow.toLowerCase();
+        document.getElementById("24h-" + dow + "-gym-edit-checkbox").addEventListener("change", function() {
+            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-open").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
+        });
+        document.getElementById("closed-" + dow + "-gym-edit-checkbox").addEventListener("change", function() {
+            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-open").disabled = this.checked;
+            document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
+        });
+        document.getElementById("gym-edit-hours-" + dow + "-open").addEventListener("change", function() {
+            var have_hours =
+                (document.getElementById("gym-edit-hours-" + dow + "-open").value === "") &&
+                (document.getElementById("gym-edit-hours-" + dow + "-close").value === "");
+            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
+            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
+        });
+        document.getElementById("gym-edit-hours-" + dow + "-close").addEventListener("change", function() {
+            var have_hours =
+                (document.getElementById("gym-edit-hours-" + dow + "-open").value === "") &&
+                (document.getElementById("gym-edit-hours-" + dow + "-close").value === "");
+            document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
+            document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
+        });
+    }()); // Immediate invocation
 }
 
 document.getElementById("save-changes-my-gym-button").addEventListener("click", function() {

@@ -59,26 +59,27 @@ document.getElementById("onboarding-phone").addEventListener("keyup", formatToPh
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {
-    var dow = raw_dow.toLowerCase();
-
-    document.getElementById("24h-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
-        document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = this.checked;
-        document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
-        document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
-    });
-    document.getElementById("closed-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
-        document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = this.checked;
-        document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
-        document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
-    });
-    document.getElementById("onboarding-hours-" + dow + "-open").addEventListener("change", function(event) {
-        document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-        document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-    });
-    document.getElementById("onboarding-hours-" + dow + "-close").addEventListener("change", function(event) {
-        document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-        document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
-    });
+    (function() {
+        var dow = raw_dow.toLowerCase();
+        document.getElementById("24h-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
+            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = this.checked;
+            document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
+            document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
+        });
+        document.getElementById("closed-" + dow + "-onboarding-checkbox").addEventListener("change", function() {
+            document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = this.checked;
+            document.getElementById("onboarding-hours-" + dow + "-open").disabled = this.checked;
+            document.getElementById("onboarding-hours-" + dow + "-close").disabled = this.checked;
+        });
+        document.getElementById("onboarding-hours-" + dow + "-open").addEventListener("change", function(event) {
+            document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
+            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
+        });
+        document.getElementById("onboarding-hours-" + dow + "-close").addEventListener("change", function(event) {
+            document.getElementById("24h-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
+            document.getElementById("closed-" + dow + "-onboarding-checkbox").disabled = (event.target.value !== "");
+        });
+    }()); // Immediate invocation
 }
 
 document.getElementById("onboarding-about-continue-button").addEventListener("click", function() {
