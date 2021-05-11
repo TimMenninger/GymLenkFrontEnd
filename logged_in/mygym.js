@@ -11,29 +11,23 @@ $(document).ready(function() {
     // they look how we want for displaying
     var dashboard = JSON.parse(localStorage.getItem("dashboard"));
 
-    console.log(dashboard)
     function setOrHide(element_id, dashboard_key, text_only) {
-        console.log(dashboard_key)
-        console.log(dashboard_key in dashboard)
-        console.log(dashboard[dashboard_key])
-        console.log(dashboard[dashboard_key] === "")
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
-            console.log(1)
             document.getElementById(element_id).style.display = "none";
-        } else if (text_only) {
-            document.getElementById(element_id).style.display = "block";
-            document.getElementById(element_id).innerText = dashboard[dashboard_key];
+            if (!text_only) {
+                document.getElementById(element_id+"-section").style.display = "none";
+            }
         } else {
-            console.log(2)
-            document.getElementById(element_id+"-section").style.display = "block";
+            var suffix = text_only ? "" : "-section";
+            document.getElementById(element_id+suffix).style.display = "block";
             document.getElementById(element_id).innerText = dashboard[dashboard_key];
         }
     }
 
-    //setOrHide("gym-name2",          "organization_name",        true)
-    //setOrHide("gym-name3",          "organization_name",        true)
-    //setOrHide("gym-location3",      "location_name",            true)
-    //setOrHide("gym-location2",      "location_name",            true)
+    setOrHide("gym-name2",          "organization_name",        true)
+    setOrHide("gym-name3",          "organization_name",        true)
+    setOrHide("gym-location3",      "location_name",            true)
+    setOrHide("gym-location2",      "location_name",            true)
     setOrHide("gym-phone-number",   "formatted_phone_number",   false)
     setOrHide("gym-email",          "email",                    false)
     setOrHide("gym-link-website",   "website",                  false)
