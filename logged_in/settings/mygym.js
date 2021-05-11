@@ -142,15 +142,15 @@ for (const raw_dow of DaysOfWeek) {
         document.getElementById("gym-edit-hours-" + dow + "-close").disabled = this.checked;
     });
     document.getElementById("gym-edit-hours-" + dow + "-open").addEventListener("change", function() {
-        var have_hours =
-            (document.getElementById("gym-edit-hours-" + dow + "-open" === "") &&
+        var have_hours = \
+            (document.getElementById("gym-edit-hours-" + dow + "-open" === "") && \
             (document.getElementById("gym-edit-hours-" + dow + "-close" === "");
         document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
         document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
     });
     document.getElementById("gym-edit-hours-" + dow + "-close").addEventListener("change", function() {
-        var have_hours =
-            (document.getElementById("gym-edit-hours-" + dow + "-open" === "") &&
+        var have_hours = \
+            (document.getElementById("gym-edit-hours-" + dow + "-open" === "") && \
             (document.getElementById("gym-edit-hours-" + dow + "-close" === "");
         document.getElementById("24h-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
         document.getElementById("closed-" + dow + "-gym-edit-checkbox").disabled = !have_hours;
