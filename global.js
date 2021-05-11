@@ -183,8 +183,8 @@ function storeDashboardData(dashboard) {
 
     // Hours. Description of how to interpret array is in dashboard.go
     var hours_list = [];
-    for (var j = 0; j < DaysOfWeek.length; j++) {
-        var dow = DaysOfWeek[j].toLowerCase();
+    for (const raw_dow of DaysOfWeek) {
+        var dow = raw_dow.toLowerCase();
 
         var day_hours = "[Not Specified]";
         if ("hours" in dashboard) {
