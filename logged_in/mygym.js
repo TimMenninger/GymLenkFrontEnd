@@ -14,14 +14,17 @@ $(document).ready(function() {
     console.log(dashboard)
     function setOrHide(element_id, dashboard_key, text_only) {
         console.log(dashboard_key)
+        console.log(dashboard_key in dashboard)
         console.log(dashboard[dashboard_key])
         console.log(dashboard[dashboard_key] === "")
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
+            console.log(1)
             document.getElementById(element_id).style.display = "none";
         } else if (text_only) {
             document.getElementById(element_id).style.display = "block";
             document.getElementById(element_id).innerText = dashboard[dashboard_key];
         } else {
+            console.log(2)
             document.getElementById(element_id+"-section").style.display = "block";
             document.getElementById(element_id).innerText = dashboard[dashboard_key];
         }
