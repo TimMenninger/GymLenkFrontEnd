@@ -15,6 +15,7 @@ $(document).ready(function() {
     function setOrHide(element_id, dashboard_key, text_only) {
         console.log(dashboard_key)
         console.log(dashboard[dashboard_key])
+        console.log(dashboard[dashboard_key] === "")
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
         } else if (text_only) {
