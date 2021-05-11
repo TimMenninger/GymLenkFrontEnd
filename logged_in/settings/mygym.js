@@ -176,8 +176,8 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     for (const raw_dow of DaysOfWeek) {
         var dow        = raw_dow.toLowerCase();
 
-        var is_24h     = document.getElementById("24h-" + dow + "-gym-checkbox").checked;
-        var is_closed  = document.getElementById("closed-" + dow + "-gym-checkbox").checked;
+        var is_24h     = document.getElementById("24h-" + dow + "-gym-edit-checkbox").checked;
+        var is_closed  = document.getElementById("closed-" + dow + "-gym-edit-checkbox").checked;
         var open_time  = document.getElementById("gym-edit-hours-" + dow + "-open").value;
         var close_time = document.getElementById("gym-edit-hours-" + dow + "-close").value;
 
