@@ -214,7 +214,7 @@ function storeDashboardData(dashboard) {
                 }
             }
         }
-        hours_list.push(dow + ": " + day_hours);
+        hours_list.push(raw_dow + ": " + day_hours);
     }
     dashboard["formatted_hours"] = hours_list.join("\n");
 
