@@ -32,7 +32,7 @@ $(document).ready(function() {
             }
 
             // Otherwise display the email with stars blocking most letters
-            document.getElementById("gym-email-newpw").innerText = email;
+            document.getElementById("gym-email-newpw").innerText = data["email"];
         }
     }
 
