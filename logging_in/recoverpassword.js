@@ -100,7 +100,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
 
     // Send request
     request.send(JSON.stringify({
-        "key"      : password_key,
-        "password" : password
+        "password_key" : password_key,
+        "password"     : password
     }));
 });
