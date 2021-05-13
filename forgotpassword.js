@@ -7,7 +7,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     var request = new XMLHttpRequest();
 
     // Open a new connection, using the POST request on the URL endpoint
-    request.open("POST", backend_URL + BE_sign_in, true);
+    request.open("POST", backend_URL + BE_forgot_password, true);
     request.setRequestHeader("Content-Type", HDR_content_type_json);
     request.withCredentials = true;
     request.onreadystatechange = function () {
