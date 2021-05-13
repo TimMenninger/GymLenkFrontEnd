@@ -30,6 +30,9 @@ $(document).ready(function() {
                 window.location.replace(FE_forgot_password);
                 return;
             }
+
+            // Otherwise display the email with stars blocking most letters
+            document.getElementById("gym-email-newpw").innerText = email;
         }
     }
 
@@ -37,14 +40,14 @@ $(document).ready(function() {
     request.send(null);
 });
 
-document.getElementById("gym-pwrecover-button").addEventListener("click", function() {
+document.getElementById("gym-newpw-button").addEventListener("click", function() {
     // Get the password key from the URL
     const urlParams = new URLSearchParams(window.location.search);
     var password_key = urlParams.get("key");
 
     // Get email and password
-    var password      = document.getElementById("gym-pwrecover-pw").value;
-    var conf_password = document.getElementById("gym-pwrecover-confirmpw").value;
+    var password      = document.getElementById("gym-newpw").value;
+    var conf_password = document.getElementById("gym-confirm-newpw").value;
 
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
@@ -73,7 +76,7 @@ document.getElementById("gym-pwrecover-button").addEventListener("click", functi
     var request = new XMLHttpRequest();
 
     // Open a new connection, using the POST request on the URL endpoint
-    request.open("POST", backend_URL + BE_sign_in, true);
+    request.open("POST", backend_URL + BE_change_forgotten_password, true);
     request.setRequestHeader("Content-Type", HDR_content_type_json);
     request.withCredentials = true;
     request.onreadystatechange = function () {
@@ -90,13 +93,14 @@ document.getElementById("gym-pwrecover-button").addEventListener("click", functi
                 return;
             }
 
-            alert("Password successfully changed")
+            alert("Password successfully changed");
+            window.location.assign(URL_log_in);
         }
     }
 
     // Send request
     request.send(JSON.stringify({
-        "email"    : email,
+        "key"      : password_key,
         "password" : password
     }));
 });
