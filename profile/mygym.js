@@ -4,7 +4,7 @@ $(document).ready(function() {
         clearState();
         window.location.replace(URL_log_in);
         return;
-    })
+    });
 
     // Get the dashboard items.  For some, we'll have to massage them so
     // they look how we want for displaying
@@ -68,4 +68,4 @@ $(document).ready(function() {
     showOrHide("gym-amenities-hot-tub",         "has_hot_tub");
     showOrHide("gym-amenities-sauna",           "has_sauna");
     showOrHide("gym-amenities-basketball",      "has_basketball");
-})
+});

@@ -4,12 +4,12 @@ $(document).ready(function() {
         clearState();
         window.location.replace(URL_log_in);
         return;
-    })
+    });
 
     // Set email address for acocunt email
     var email = localStorage.getItem("account_email");
     document.getElementById("gym-account-email").innerText = email;
-})
+});
 
 document.getElementById("update-pw-button").addEventListener("click", function() {
     // Send to backend the current password and the new one

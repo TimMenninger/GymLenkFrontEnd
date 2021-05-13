@@ -2,8 +2,8 @@ $(document).ready(function() {
     ifLoggedIn(function() {
         window.location.replace(URL_landing_after_login);
         return;
-    })
-}
+    });
+});
 
 document.getElementById("gym-pwrecover-button").addEventListener("click", function() {
     // Get the password key from the URL

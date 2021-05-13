@@ -4,7 +4,7 @@ $(document).ready(function() {
         clearState();
         window.location.replace(URL_log_in);
         return;
-    })
+    });
 
     var data = JSON.parse(localStorage.getItem("dashboard"));
 

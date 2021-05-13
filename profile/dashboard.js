@@ -17,4 +17,4 @@ $(document).ready(function() {
     } else {
         document.getElementById("gym-location").style.display = "none";
     }
-})
+});

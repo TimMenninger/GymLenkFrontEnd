@@ -4,5 +4,5 @@ $(document).ready(function() {
         clearState();
         window.location.replace(URL_log_in);
         return;
-    })
-})
+    });
+});
