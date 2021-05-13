@@ -1,4 +1,4 @@
-document.getElementById("gym-pwreset-button").addEventListener("submit", function() {
+document.getElementById("gym-pwreset-button").addEventListener("click", function() {
     // Get email
     var email = document.getElementById("gym-pwreset-email").value;
 
