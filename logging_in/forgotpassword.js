@@ -1,3 +1,10 @@
+$(document).ready(function() {
+    ifLoggedIn(function() {
+        window.location.replace(URL_landing_after_login);
+        return;
+    })
+}
+
 document.getElementById("gym-pwreset-button").addEventListener("click", function() {
     // Get email
     var email = document.getElementById("gym-pwreset-email").value;

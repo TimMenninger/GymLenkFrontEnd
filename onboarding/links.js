@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    // If logged in, don't allow onboarding
+    ifLoggedIn(function() {
+        window.location.replace(URL_landing_after_login);
+        return;
+    })
+
     // Don't do links until after about gym and amenities
     if (localStorage.getItem("onboarding_aboutyourgym") !== "done") {
         window.location.replace(URL_onboarding_aboutmygym);

@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    // If logged in, don't allow onboarding
+    ifLoggedIn(function() {
+        window.location.replace(URL_landing_after_login);
+        return;
+    })
+
     // Load the info that we have so far and replace items (if applicable)
     if (localStorage.getItem("onboard_info") !== null) {
         var data = JSON.parse(localStorage.getItem("onboard_info"));

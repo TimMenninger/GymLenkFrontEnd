@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    if (!checkLoggedIn()) {
-        // Sanity - if no dashboard items, clear everything else to start
-        // fresh
+    // If not logged in, go back to sign in
+    ifNotLoggedIn(function() {
         clearState();
+        window.location.replace(URL_log_in);
         return;
-    }
+    })
 
     var data = JSON.parse(localStorage.getItem("dashboard"));
 

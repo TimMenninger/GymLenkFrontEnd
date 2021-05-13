@@ -1,11 +1,10 @@
 $(document).ready(function() {
-    if (!checkLoggedIn()) {
-        // Sanity - if no dashboard items, clear everything else to start
-        // fresh
+    // If not logged in, go back to sign in
+    ifNotLoggedIn(function() {
         clearState();
-        console.log("Not logged in");
+        window.location.replace(URL_log_in);
         return;
-    }
+    })
 
     // Get the dashboard items.  For some, we'll have to massage them so
     // they look how we want for displaying

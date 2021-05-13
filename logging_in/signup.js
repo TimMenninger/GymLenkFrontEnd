@@ -1,3 +1,10 @@
+$(document).ready(function() {
+    ifLoggedIn(function() {
+        window.location.replace(URL_landing_after_login);
+        return;
+    })
+}
+
 document.getElementById("gym-sign-up-button").addEventListener("click", function() {
     // Get email and password
     var email         = document.getElementById("gym-sign-up-email").value;

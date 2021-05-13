@@ -28,12 +28,15 @@ const FE_onboarding_links = "/onboarding/links";
 const FE_onboarding_getstarted = "/onboarding/getstarted";
 const FE_login = "/login";
 const FE_forgot_password = "/forgot";
+const FE_recover_password = "/recover";
 
 // Request Headers
 const HDR_content_type_json = "application/json; charset=UTF-8";
 
 // Other URLs
 const URL_homepage = FE_dashboard;
+
+const URL_log_in = FE_login;
 
 const URL_landing_after_login = FE_mygym;
 const URL_landing_after_signup = FE_onboarding;
@@ -58,15 +61,25 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 
 function clearState() {
     localStorage.clear();
-    window.location.replace(URL_landing_after_logout);
 }
 
-function checkLoggedIn() {
+function ifLoggedIn(fxn_if_logged_in) {
+    checkLoggedIn_Internal(false, fxn_if_logged_in);
+}
+
+function ifNotLoggedIn(fxn_if_not_logged_in) {
+    checkLoggedIn_Internal(true, fxn_if_not_logged_in);
+}
+
+function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     // If no data, definitely not logged in
-    if ((localStorage.getItem("dashboard") === null)
-        || (localStorage.getItem("session_id") === null)
-        || (localStorage.getItem("logged_in") !== "true")) {
-        return false;
+    var have_logged_in_data =
+        ((localStorage.getItem("dashboard") === null)
+            || (localStorage.getItem("session_id") === null)
+            || (localStorage.getItem("logged_in") !== "true"));
+    if (expect_logged_in != have_logged_in_data) {
+        fxn_if_wrong_state();
+        return;
     }
 
     // Create a request variable and assign a new XMLHttpRequest object to
@@ -86,13 +99,15 @@ function checkLoggedIn() {
 
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
-            if ("success" in data && data["success"] && "authenticated" in data && data["authenticated"]) {
+            var backend_logged_in =
+                ("success" in data
+                    && data["success"]
+                    && "authenticated" in data
+                    && data["authenticated"]);
+            if (backend_logged_in != expect_logged_in) {
+                fxn_if_wrong_state();
                 return;
             }
-
-            // Not signed in, go to sign in page
-            clearState();
-            console.log(data["message"]);
         }
     }
 
