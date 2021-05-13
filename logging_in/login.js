@@ -3,7 +3,7 @@ $(document).ready(function() {
         window.location.replace(URL_landing_after_login);
         return;
     })
-}
+})
 
 document.getElementById("gym-login-button").addEventListener("click", function() {
     // Get email and password
