@@ -73,11 +73,11 @@ function ifNotLoggedIn(fxn_if_not_logged_in) {
 
 function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     // If no data, definitely not logged in
-    var have_logged_in_data =
+    var missing_logged_in_data =
         ((localStorage.getItem("dashboard") === null)
             || (localStorage.getItem("session_id") === null)
             || (localStorage.getItem("logged_in") !== "true"));
-    if (expect_logged_in != have_logged_in_data) {
+    if (expect_logged_in == missing_logged_in_data) {
         fxn_if_wrong_state();
         return;
     }
