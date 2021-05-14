@@ -24,23 +24,8 @@ document.getElementById("update-pw-button").addEventListener("click", function()
 
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(new_password, conf_new_password);
-    switch (pw_err) {
-    case PasswordError.SUCCESS:
-        break;
-    case PasswordError.MISMATCH:
-        alert("Passwords do not match");
-        return;
-    case PasswordError.TOO_SHORT:
-        alert("Password must be at least 8 characters");
-        return;
-    case PasswordError.NEEDS_LETTER:
-        alert("Password must have at least one letter");
-        return;
-    case PasswordError.NEEDS_NONLETTER:
-        alert("Password must have at least one number or special character");
-        return;
-    default:
-        alert("Error changing password");
+    if (pw_err != PasswordError.SUCCESS) {
+        alert(passwordErrorString(error));
         return;
     }
 

@@ -10,6 +10,16 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     var email    = document.getElementById("gym-login-email").value;
     var password = document.getElementById("gym-login-password").value;
 
+    // Validate
+    if (email === "") {
+        alert(loginErrorString(LoginError.EMAIL_EMPTY))
+        return
+    }
+    if (password === "") {
+        alert(loginErrorString(LoginError.PASSWORD_EMPTY))
+        return
+    }
+
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
     var request = new XMLHttpRequest();
@@ -28,7 +38,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                console.log(data["message"]);
+                alert(stringToLoginError(data["error"]));
                 return;
             }
 

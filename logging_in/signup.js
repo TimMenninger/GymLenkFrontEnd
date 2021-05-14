@@ -12,31 +12,19 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     var conf_password = document.getElementById("gym-sign-up-confirmpw").value;
     var terms_accepted= document.getElementById("sign-up-terms-checkbox").value;
 
-    // Must accept terms
+    // Validity
     if (!terms_accepted) {
-        alert("You must accept the terms and conditions to create an account");
+        alert(signupErrorString(SignupError.ACCEPT_TERMS));
+        return;
+    } else if (email === "") {
+        alert(signupErrorString(SignupError.EMAIL_EMPTY));
         return;
     }
 
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
-    switch (pw_err) {
-    case PasswordError.SUCCESS:
-        break;
-    case PasswordError.MISMATCH:
-        alert("Passwords do not match");
-        return;
-    case PasswordError.TOO_SHORT:
-        alert("Password must be at least 8 characters");
-        return;
-    case PasswordError.NEEDS_LETTER:
-        alert("Password must have at least one letter");
-        return;
-    case PasswordError.NEEDS_NONLETTER:
-        alert("Password must have at least one number or special character");
-        return;
-    default:
-        alert("Error changing password");
+    if (pw_err != PasswordError.SUCCESS) {
+        alert(passwordErrorString(pw_err));
         return;
     }
 
@@ -51,14 +39,14 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
             if (request.status != 200) {
-                console.log("Request failed");
+                alert(`Request failed with status ${request.status}`);
                 return;
             }
 
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                console.log(data["message"]);
+                alert(stringToSignupError(data["error"]));
                 return;
             }
 
