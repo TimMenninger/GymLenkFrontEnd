@@ -16,6 +16,8 @@ const BE_onboard = "/onboard";
 const BE_sign_in = "/sign-in";
 const BE_set_dashboard_info = "/set-dashboard-info";
 const BE_forgot_password = "/forgot-password";
+const BE_check_password_key = "/check-password-key";
+const BE_change_forgotten_password = "/change-forgotten-password";
 
 // Frontend Pages
 const FE_mygym = "/mygym";
@@ -28,7 +30,7 @@ const FE_onboarding_links = "/onboarding/links";
 const FE_onboarding_getstarted = "/onboarding/getstarted";
 const FE_login = "/login";
 const FE_forgot_password = "/forgot";
-const FE_recover_password = "/recover";
+const FE_recover_password = "/newpassword";
 
 // Request Headers
 const HDR_content_type_json = "application/json; charset=UTF-8";
