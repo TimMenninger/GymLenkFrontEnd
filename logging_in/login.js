@@ -18,11 +18,11 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
     // Validate
     if (email === "") {
-        alert(loginErrorString(LoginError.EMAIL_EMPTY))
+        //alert(loginErrorString(LoginError.EMAIL_EMPTY))
         return
     }
     if (password === "") {
-        alert(loginErrorString(LoginError.PASSWORD_EMPTY))
+        //alert(loginErrorString(LoginError.PASSWORD_EMPTY))
         return
     }
 
@@ -49,7 +49,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
                 console.log(data["message"]);
                 document.getElementById("gym-login-button").display = "block";
                 document.getElementById("login-loading-lottie").display = "none";
-                alert(stringToLoginError(data["error"]));
+                //alert(stringToLoginError(data["error"]));
                 return;
             }
 
