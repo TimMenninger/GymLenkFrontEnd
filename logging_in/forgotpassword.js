@@ -9,6 +9,12 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     // Get email
     var email = document.getElementById("gym-pwreset-email").value;
 
+    // Validity
+    if (email === "") {
+        alert(forgotPasswordErrorString(ForgotPasswordError.EMAIL_EMPTY));
+        return;
+    }
+
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
     var request = new XMLHttpRequest();
@@ -27,11 +33,11 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                console.log(data["message"]);
+                alert(stringToForgotPasswordError(data["error"]));
                 return;
             }
 
-            alert("Password link emailed")
+            alert(forgotPasswordErrorString(ForgotPasswordError.SUCCESS))
         }
     }
 

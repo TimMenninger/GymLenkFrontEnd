@@ -121,13 +121,6 @@ function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     return true;
 }
 
-const PasswordError = {
-    SUCCESS:            0,
-    MISMATCH:           1,
-    TOO_SHORT:          2,
-    NEEDS_LETTER:       3,
-    NEEDS_NONLETTER:    4,
-}
 function checkPasswordRequirements(new_pw, confirm_new_pw) {
     // Passwords must match first and foremost
     if (new_pw !== confirm_new_pw) {

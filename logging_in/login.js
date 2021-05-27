@@ -16,6 +16,16 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     var email    = document.getElementById("gym-login-email").value;
     var password = document.getElementById("gym-login-password").value;
 
+    // Validate
+    if (email === "") {
+        alert(loginErrorString(LoginError.EMAIL_EMPTY))
+        return
+    }
+    if (password === "") {
+        alert(loginErrorString(LoginError.PASSWORD_EMPTY))
+        return
+    }
+
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
     var request = new XMLHttpRequest();
@@ -39,6 +49,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
                 console.log(data["message"]);
                 document.getElementById("gym-login-button").display = "block";
                 document.getElementById("login-loading-lottie").display = "none";
+                alert(stringToLoginError(data["error"]));
                 return;
             }
 
