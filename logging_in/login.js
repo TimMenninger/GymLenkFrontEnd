@@ -28,6 +28,8 @@ document.getElementById("gym-login-button").addEventListener("click", function()
         if (request.readyState === 4) {
             if (request.status != 200) {
                 console.log("Request failed");
+                document.getElementById("gym-login-button").display = "block";
+                document.getElementById("login-loading-lottie").display = "none";
                 return;
             }
 
@@ -35,6 +37,8 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
                 console.log(data["message"]);
+                document.getElementById("gym-login-button").display = "block";
+                document.getElementById("login-loading-lottie").display = "none";
                 return;
             }
 
