@@ -70,6 +70,10 @@ document.getElementById("gym-login-button").addEventListener("click", function()
         }
     }
 
+    // Show loading animation
+    document.getElementById("gym-login-button").style.display = "none";
+    document.getElementById("login-loading-lottie").style.display = "block";
+
     // Send request
     request.send(JSON.stringify({
         "email"    : email,
