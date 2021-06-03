@@ -18,11 +18,11 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
     // Validate
     if (email === "") {
-        alert(loginErrorString(LoginError.EMAIL_EMPTY))
+        //alert(loginErrorString(LoginError.EMAIL_EMPTY))
         return
     }
     if (password === "") {
-        alert(loginErrorString(LoginError.PASSWORD_EMPTY))
+        //alert(loginErrorString(LoginError.PASSWORD_EMPTY))
         return
     }
 
@@ -38,6 +38,8 @@ document.getElementById("gym-login-button").addEventListener("click", function()
         if (request.readyState === 4) {
             if (request.status != 200) {
                 alert(`Request failed with status ${request.status}`);
+                document.getElementById("gym-login-button").style.display = "block";
+                document.getElementById("login-loading-lottie").style.display = "none";
                 return;
             }
 
@@ -45,6 +47,8 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
                 alert(loginErrorString(stringToLoginError(data["error"])));
+                document.getElementById("gym-login-button").style.display = "block";
+                document.getElementById("login-loading-lottie").style.display = "none";
                 return;
             }
 
@@ -64,6 +68,10 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             }
         }
     }
+
+    // Show loading animation
+    document.getElementById("gym-login-button").style.display = "none";
+    document.getElementById("login-loading-lottie").style.display = "block";
 
     // Send request
     request.send(JSON.stringify({
