@@ -36,20 +36,29 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
+            var error_type = LoginError.SUCCESS;
+            var data = "{}";
+
+            // Check error on response status
             if (request.status != 200) {
-                alert(`Request failed with status ${request.status}`);
-                document.getElementById("gym-login-button").style.display = "block";
-                document.getElementById("login-loading-lottie").style.display = "none";
-                return;
+                // Error message
+                console.log(`Request failed with status ${request.status}`);
+                error_type = LoginError.ERR_FAILURE;
+            }
+            // Begin accessing JSON data here
+            else if (!data["success"]) {
+                error_type = stringToLoginError(data["error"]);
             }
 
-            // Begin accessing JSON data here
-            var data = JSON.parse(request.responseText);
-            if (!data["success"]) {
-                alert(loginErrorString(stringToLoginError(data["error"])));
+            // Check for failure pulled from above
+            if (error_type != LoginError.SUCCESS) {
+                // Display error
+                document.getElementById("gym-login-error-div").style.display = "block";
+                document.getElementById("gym-login-error-div").innerText = loginErrorString(stringToLoginError(error_type));
+
+                // Spinner
                 document.getElementById("gym-login-button").style.display = "block";
                 document.getElementById("login-loading-lottie").style.display = "none";
-                return;
             }
 
             // Success - go to dashboard if the account is complete, or to
@@ -59,6 +68,9 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             // Store the session ID, which must be used with subsequent requests
             localStorage.setItem("session_id", data["session_id"]);
             localStorage.setItem("account_email", email);
+
+            // Remove any error message there was
+            document.getElementById("gym-login-error-div").style.display = "none";
 
             if ("dashboard" in data && "location_id" in data["dashboard"]) {
                 storeDashboardData(data["dashboard"]);
