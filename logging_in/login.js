@@ -26,6 +26,10 @@ document.getElementById("gym-login-button").addEventListener("click", function()
         return
     }
 
+    // If there was an error, don't display it anymore until if there's another
+    // error
+    document.getElementById("gym-login-error-div").style.display = "none";
+
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
     var request = new XMLHttpRequest();
