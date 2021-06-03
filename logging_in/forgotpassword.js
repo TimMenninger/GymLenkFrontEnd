@@ -26,14 +26,14 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
             if (request.status != 200) {
-                console.log("Request failed");
+                alert(`Request failed with status ${request.status}`);
                 return;
             }
 
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                alert(stringToForgotPasswordError(data["error"]));
+                alert(forgotPasswordErrorString(stringToForgotPasswordError(data["error"])));
                 return;
             }
 

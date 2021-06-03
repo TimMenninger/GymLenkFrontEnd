@@ -46,7 +46,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                alert(stringToSignupError(data["error"]));
+                alert(signupErrorString(stringToSignupError(data["error"])));
                 return;
             }
 

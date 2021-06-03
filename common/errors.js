@@ -262,7 +262,7 @@ function stringToRecoverPasswordError(error_string) {
 function recoverPasswordErrorString(error) {
     switch (error) {
     case RecoverPasswordError.SUCCESS:
-        return "Success";
+        return "Password successfully changed";
     case RecoverPasswordError.INVALID_EMAIL:
         return "Email is invalid";
     case INVALID_PASSWORD:

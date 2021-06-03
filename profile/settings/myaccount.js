@@ -42,7 +42,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
             document.getElementById("new-pw").value = "";
             document.getElementById("confirm-new-pw").value = "";
             if (request.status != 200) {
-                alert("Request failed");
+                alert(`Request failed with status ${request.status}`);
                 return;
             }
 
