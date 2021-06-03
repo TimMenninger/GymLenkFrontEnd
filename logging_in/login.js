@@ -57,7 +57,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             if (error_type != LoginError.SUCCESS) {
                 // Display error
                 document.getElementById("gym-login-error-div").style.display = "block";
-                document.getElementById("gym-login-error-div").innerText = loginErrorString(stringToLoginError(error_type));
+                document.getElementById("gym-login-error-div").innerText = loginErrorString(error_type);
 
                 // Spinner
                 document.getElementById("gym-login-button").style.display = "block";
