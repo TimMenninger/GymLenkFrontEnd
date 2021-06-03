@@ -46,8 +46,11 @@ document.getElementById("gym-login-button").addEventListener("click", function()
                 error_type = LoginError.ERR_FAILURE;
             }
             // Begin accessing JSON data here
-            else if (!data["success"]) {
-                error_type = stringToLoginError(data["error"]);
+            else {
+                data = JSON.parse(request.responseText);
+                if (!data["success"]) {
+                    error_type = stringToLoginError(data["error"]);
+                }
             }
 
             // Check for failure pulled from above
