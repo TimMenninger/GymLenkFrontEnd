@@ -62,6 +62,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
                 // Spinner
                 document.getElementById("gym-login-button").style.display = "block";
                 document.getElementById("login-loading-lottie").style.display = "none";
+                return
             }
 
             // Success - go to dashboard if the account is complete, or to
