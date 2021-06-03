@@ -163,9 +163,9 @@ function loginErrorString(error) {
         return "Success";
     case LoginError.INCORRECT_PASSWORD:
         return "Incorrect email/password combination";
-    case EMAIL_EMPTY:
+    case LoginError.EMAIL_EMPTY:
         return "Email is empty";
-    case PASSWORD_EMPTY:
+    case LoginError.PASSWORD_EMPTY:
         return "Password is empty";
     case LoginError.FAILURE:
     default:
