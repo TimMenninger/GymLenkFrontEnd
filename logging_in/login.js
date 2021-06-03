@@ -18,11 +18,11 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
     // Validate
     if (email === "") {
-        //alert(loginErrorString(LoginError.EMAIL_EMPTY))
+        alert(loginErrorString(LoginError.EMAIL_EMPTY))
         return
     }
     if (password === "") {
-        //alert(loginErrorString(LoginError.PASSWORD_EMPTY))
+        alert(loginErrorString(LoginError.PASSWORD_EMPTY))
         return
     }
 
@@ -46,6 +46,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
+                console.log(data["error"])
                 alert(loginErrorString(stringToLoginError(data["error"])));
                 document.getElementById("gym-login-button").style.display = "block";
                 document.getElementById("login-loading-lottie").style.display = "none";
