@@ -46,6 +46,12 @@ $(document).ready(function() {
     request.send(null);
 });
 
+$(document).keyup(function(event) {
+    if (event.which === 13) {
+        document.getElementById("gym-newpw-button").click()
+    }
+});
+
 document.getElementById("gym-newpw-button").addEventListener("click", function() {
     // Get the password key from the URL
     const urlParams = new URLSearchParams(window.location.search);
