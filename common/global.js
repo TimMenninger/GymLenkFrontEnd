@@ -76,8 +76,9 @@ function ifNotLoggedIn(fxn_if_not_logged_in) {
 function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     // If no data, definitely not logged in
     var missing_logged_in_data =
-        ((localStorage.getItem("dashboard") === null)
-            || (localStorage.getItem("session_id") === null)
+        ((localStorage.getItem("session_id") === null)
+            || (localStorage.getItem("account_email") === null)
+            || (localStorage.getItem("account_id") === null)
             || (localStorage.getItem("logged_in") !== "true"));
     if (expect_logged_in == missing_logged_in_data) {
         fxn_if_wrong_state();
@@ -108,6 +109,10 @@ function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
                     && data["authenticated"]);
             if (backend_logged_in != expect_logged_in) {
                 fxn_if_wrong_state();
+                return;
+            } else if (backend_logged_in && (localStorage.getItem("dashboard") === null)) {
+                // If here, we're logged in, but are missing some info
+                window.location.replace(URL_landing_after_signup);
                 return;
             }
         }
