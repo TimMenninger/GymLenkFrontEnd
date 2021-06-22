@@ -20,19 +20,23 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
 
     // Validity
     if (!terms_accepted) {
-        alert(signupErrorString(SignupError.ACCEPT_TERMS));
+        showSignupError(SignupError.ACCEPT_TERMS);
         return;
     } else if (email === "") {
-        alert(signupErrorString(SignupError.EMAIL_EMPTY));
+        showSignupError(SignupError.EMAIL_EMPTY);
         return;
     }
 
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
     if (pw_err != PasswordError.SUCCESS) {
-        alert(passwordErrorString(pw_err));
+        showError(signupErrorElement, passwordErrorString(pw_err));
         return;
     }
+
+    // If there was an error, don't display it anymore until if there's another
+    // error
+    hideSignupError();
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
@@ -44,21 +48,34 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
+            var error_type = SignupError.SUCCESS;
+            var data = "{}";
+
             if (request.status != 200) {
-                alert(`Request failed with status ${request.status}`);
-                return;
+                console.log(`Request failed with status ${request.status}`);
+                error_type = SignupError.FAILURE;
+            }
+            // Begin accessign JSON
+            else {
+                data = JSON.parse(request.responseText);
+                if (!data["success"]) {
+                    error_type = stringToSignupError(data["error"]);
+                }
             }
 
-            // Begin accessing JSON data here
-            var data = JSON.parse(request.responseText);
-            if (!data["success"]) {
-                alert(signupErrorString(stringToSignupError(data["error"])));
+            // Check for failure
+            if (error_type != SignupError.SUCCESS) {
+                // Display error
+                showSignupError(error_type);
 
                 // Spinner
                 document.getElementById("gym-sign-up-button").style.display = "block";
                 document.getElementById("signup-loading-lottie").style.display = "none";
                 return;
             }
+
+            // Remove any error message there was
+            hideSignupError();
 
             // Success - now signed in even if we haven't done onboarding yet
             localStorage.setItem("logged_in", "true");

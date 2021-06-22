@@ -18,17 +18,17 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
     // Validate
     if (email === "") {
-        alert(loginErrorString(LoginError.EMAIL_EMPTY))
+        showLoginError(LoginError.EMAIL_EMPTY);
         return
     }
     if (password === "") {
-        alert(loginErrorString(LoginError.PASSWORD_EMPTY))
+        showLoginError(LoginError.PASSWORD_EMPTY);
         return
     }
 
     // If there was an error, don't display it anymore until if there's another
     // error
-    document.getElementById("gym-login-error-div").style.display = "none";
+    hideLoginError();
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
@@ -47,7 +47,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             if (request.status != 200) {
                 // Error message
                 console.log(`Request failed with status ${request.status}`);
-                error_type = LoginError.ERR_FAILURE;
+                error_type = LoginError.FAILURE;
             }
             // Begin accessing JSON data here
             else {
@@ -60,8 +60,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             // Check for failure pulled from above
             if (error_type != LoginError.SUCCESS) {
                 // Display error
-                document.getElementById("gym-login-error-div").style.display = "block";
-                document.getElementById("gym-login-error-div").innerText = loginErrorString(error_type);
+                showLoginError(error_type);
 
                 // Spinner
                 document.getElementById("gym-login-button").style.display = "block";
@@ -78,7 +77,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             localStorage.setItem("account_email", email);
 
             // Remove any error message there was
-            document.getElementById("gym-login-error-div").style.display = "none";
+            hideLoginError();
 
             if ("dashboard" in data && "location_id" in data["dashboard"]) {
                 storeDashboardData(data["dashboard"]);

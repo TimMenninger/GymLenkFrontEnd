@@ -1,5 +1,24 @@
 /*******************************************************************************
  *
+ * C O M M O N
+ *
+ */
+
+const signupErrorElement = "gym-sign-up-error-div";
+const loginErrorElement  = "gym-login-error-div";
+
+function showError(element_name, error_desc) {
+    document.getElementById(element_name).style.display = "block";
+    document.getElementById(element_name).innerText = error_desc;
+}
+function hideError(element_name) {
+    document.getElementById(element_name).style.display = "none";
+}
+
+
+
+/*******************************************************************************
+ *
  * P A S S W O R D   E R R O R S
  *
  */
@@ -123,6 +142,12 @@ function signupErrorString(error) {
         return "Error signing up";
     }
 }
+function showSignupError(error) {
+    showError(signupErrorElement, signupErrorString(error));
+}
+function hideSignupError() {
+    hideError(signupErrorElement);
+}
 
 
 
@@ -171,6 +196,12 @@ function loginErrorString(error) {
     default:
         return "Error logging in";
     }
+}
+function showLoginError(error) {
+    showError(loginErrorElement, loginErrorString(error));
+}
+function hideLoginError() {
+    hideError(loginErrorElement);
 }
 
 
