@@ -1,7 +1,9 @@
 $(document).ready(function() {
     // If logged in, don't allow onboarding
     ifLoggedIn(function() {
-        window.location.replace(URL_landing_after_login);
+        if (onboarded()) {
+            window.location.replace(URL_landing_after_login);
+        }
         return;
     })
 
