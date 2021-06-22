@@ -53,6 +53,10 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
                 alert(signupErrorString(stringToSignupError(data["error"])));
+
+                // Spinner
+                document.getElementById("gym-sign-up-button").style.display = "block";
+                document.getElementById("signup-loading-lottie").style.display = "none";
                 return;
             }
 
@@ -68,6 +72,10 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             window.location.replace(URL_landing_after_signup);
         }
     }
+
+    // Show loading animation
+    document.getElementById("gym-sign-up-button").style.display = "none";
+    document.getElementById("signup-loading-lottie").style.display = "block";
 
     // Send request
     request.send(JSON.stringify({
