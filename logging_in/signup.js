@@ -16,7 +16,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     var email         = document.getElementById("gym-sign-up-email").value;
     var password      = document.getElementById("gym-sign-up-pw").value;
     var conf_password = document.getElementById("gym-sign-up-confirmpw").value;
-    var terms_accepted= document.getElementById("sign-up-terms-checkbox").value;
+    var terms_accepted= document.getElementById("sign-up-terms-checkbox").checked;
 
     // Validity
     if (!terms_accepted) {
