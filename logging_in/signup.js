@@ -5,6 +5,12 @@ $(document).ready(function() {
     });
 });
 
+$(document).keyup(function(event) {
+    if (event.which === 13) {
+        document.getElementById("gym-sign-up-button").click();
+    }
+});
+
 document.getElementById("gym-sign-up-button").addEventListener("click", function() {
     // Get email and password
     var email         = document.getElementById("gym-sign-up-email").value;
