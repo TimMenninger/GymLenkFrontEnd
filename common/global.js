@@ -78,8 +78,6 @@ function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     var missing_logged_in_data =
         ((localStorage.getItem("session_id") === null)
             || (localStorage.getItem("dashboard") === null)
-            || (localStorage.getItem("account_email") === null)
-            || (localStorage.getItem("account_id") === null)
             || (localStorage.getItem("logged_in") !== "true"));
     if (expect_logged_in == missing_logged_in_data) {
         fxn_if_wrong_state();
