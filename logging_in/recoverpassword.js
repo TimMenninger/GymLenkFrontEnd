@@ -95,12 +95,20 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
 
             if (error_type != RecoverPasswordError.SUCCESS) {
                 showRecoverPasswordError(error_type);
+
+                // Spinner
+                document.getElementById("gym-newpw-button").style.display = "block";
+                document.getElementById("newpw-loading-lottie").style.display = "none";
                 return;
             }
 
             window.location.assign(URL_log_in);
         }
     }
+
+    // Show loading animation
+    document.getElementById("gym-newpw-button").style.display = "none";
+    document.getElementById("newpw-loading-lottie").style.display = "block";
 
     // Send request
     request.send(JSON.stringify({
