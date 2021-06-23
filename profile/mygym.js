@@ -67,7 +67,7 @@ $(document).ready(function() {
 
     // The website specifically must also set href.  If it's hidden, this will
     // have no noticeable effect
-    document.getElementById("website-section").href = dashboard[dashboard_key]
+    document.getElementById("website-section").href = dashboard["website-fixed"]
 
     function showOrHide(element_id, dashboard_key) {
         document.getElementById(element_id).href = dashboard[dashboard_key]
