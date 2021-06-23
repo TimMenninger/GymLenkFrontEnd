@@ -15,7 +15,7 @@ $(document).ready(function() {
     dashboard["facebook-fixed"]     = "https://www.facebook.com/" + dashboard["facebook"];
     dashboard["twitter-fixed"]      = "https://www.twitter.com/" + dashboard["twitter"];
     dashboard["instagram-fixed"]    = "https://www.instagram.com/" + dashboard["instagram"];
-    dashboard["linkedin-fixed"]     = "https://www.linkedin.com/in/" + dashboard["linkedin"];
+    dashboard["linkedin-fixed"]     = "https://www.linkedin.com/company/" + dashboard["linkedin"];
     dashboard["tiktok-fixed"]       = "https://www.tiktok.com/@" + dashboard["tiktok"];
     dashboard["yelp-fixed"]         = "https://www.yelp.com/biz/" + dashboard["yelp"];
 
@@ -40,8 +40,6 @@ $(document).ready(function() {
     if (dashboard["yelp"] === "") {
         dashboard["yelp-fixed"] = "";
     }
-
-    console.log(dashboard)
 
     function setOrHide(element_id, dashboard_key, text_only) {
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
