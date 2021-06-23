@@ -65,10 +65,6 @@ $(document).ready(function() {
     setOrHide("gym-address",        "formatted_address",        false)
     setOrHide("gym-hours",          "formatted_hours",          false)
 
-    // The website specifically must also set href.  If it's hidden, this will
-    // have no noticeable effect
-    document.getElementById("website-section").href = dashboard["website-fixed"]
-
     function showOrHide(element_id, dashboard_key) {
         document.getElementById(element_id).href = dashboard[dashboard_key]
         if (dashboard[dashboard_key] === "" || dashboard[dashboard_key] === false) {
@@ -78,6 +74,7 @@ $(document).ready(function() {
         }
     }
 
+    showOrHide("gym-link-website",  "website-fixed");
     showOrHide("gym-link-fb",       "facebook-fixed");
     showOrHide("gym-link-twitter",  "twitter-fixed");
     showOrHide("gym-link-ig",       "instagram-fixed");
