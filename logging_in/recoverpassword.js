@@ -6,8 +6,8 @@ $(document).ready(function() {
 
     // Get the password key from the URL so we can check that it exists and is
     // not expired
-    const urlParams = new URLSearchParams(window.location.search);
-    var password_key = urlParams.get("key");
+    const url_params = new URLSearchParams(window.location.search);
+    var password_key = url_params.get("key");
 
     if (password_key === "") {
         alert(recoverPasswordErrorString(RecoverPasswordError.INVALID_KEY));
@@ -54,8 +54,8 @@ $(document).keyup(function(event) {
 
 document.getElementById("gym-newpw-button").addEventListener("click", function() {
     // Get the password key from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    var password_key = urlParams.get("key");
+    const url_params = new URLSearchParams(window.location.search);
+    var password_key = url_params.get("key");
 
     // Get email and password
     var password      = document.getElementById("gym-newpw").value;
