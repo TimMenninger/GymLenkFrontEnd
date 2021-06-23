@@ -41,6 +41,8 @@ $(document).ready(function() {
         dashboard["yelp-fixed"] = "";
     }
 
+    console.log(dashboard)
+
     function setOrHide(element_id, dashboard_key, text_only) {
         if (dashboard_key in dashboard && dashboard[dashboard_key] === "") {
             document.getElementById(element_id).style.display = "none";
