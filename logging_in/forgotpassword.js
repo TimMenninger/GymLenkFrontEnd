@@ -17,9 +17,12 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
 
     // Validity
     if (email === "") {
-        alert(forgotPasswordErrorString(ForgotPasswordError.EMAIL_EMPTY));
+        showForgotPasswordError(ForgotPasswordError.EMAIL_EMPTY);
         return;
     }
+
+    // Hide error if there was one before
+    hideForgotPasswordError();
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
@@ -31,19 +34,28 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
+            var error_type = ForgotPasswordError.SUCCESS;
+            var data = "{}";
+
             if (request.status != 200) {
-                alert(`Request failed with status ${request.status}`);
-                return;
+                console.log(`Request failed with status ${request.status}`);
+                error_type = ForgotPasswordError.FAILURE;
+            }
+            // Begin accessing JSON data here
+            else {
+                data = JSON.parse(request.responseText);
+                if (!data["success"]) {
+                    error_type = stringToForgotPasswordError(data["error"]);
+                }
             }
 
             // Begin accessing JSON data here
-            var data = JSON.parse(request.responseText);
-            if (!data["success"]) {
-                alert(forgotPasswordErrorString(stringToForgotPasswordError(data["error"])));
+            if (error_type != ForgotPasswordError.SUCCESS) {
+                showForgotPasswordError(error_type);
                 return;
             }
 
-            alert(forgotPasswordErrorString(ForgotPasswordError.SUCCESS))
+            showForgotPasswordSuccess();
         }
     }
 

@@ -4,8 +4,12 @@
  *
  */
 
-const signupErrorElement = "gym-sign-up-error-div";
-const loginErrorElement  = "gym-login-error-div";
+const forgotPasswordSuccessElement  = "gym-pwreset-success-div";
+
+const signupErrorElement            = "gym-sign-up-error-div";
+const loginErrorElement             = "gym-login-error-div";
+const forgotPasswordErrorElement    = "gym-pwreset-error-div";
+const recoverPasswordErrorElement   = "gym-newpw-error-div";
 
 function showError(element_name, error_desc) {
     document.getElementById(element_name).style.display = "block";
@@ -252,6 +256,18 @@ function forgotPasswordErrorString(error) {
         return "Error getting password link";
     }
 }
+function showForgotPasswordError(error) {
+    showError(forgotPasswordErrorElement, forgotPasswordErrorString(error));
+    hideError(forgotPasswordSuccessElement);
+}
+function showForgotPasswordSuccess(error) {
+    showError(forgotPasswordSuccessElement, forgotPasswordErrorString(ForgotPasswordError.SUCCESS));
+    hideError(forgotPasswordErrorElement);
+}
+function hideForgotPasswordError() {
+    hideError(forgotPasswordErrorElement);
+    hideError(forgotPasswordSuccessElement);
+}
 
 
 
@@ -308,5 +324,11 @@ function recoverPasswordErrorString(error) {
     default:
         return "Error getting password link";
     }
+}
+function showRecoverPasswordError(error) {
+    showError(recoverPasswordErrorElement, recoverPasswordErrorString(error));
+}
+function hideRecoverPasswordError() {
+    hideError(recoverPasswordErrorElement);
 }
 

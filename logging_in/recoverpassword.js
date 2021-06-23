@@ -64,7 +64,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
     if (pw_err != PasswordError.SUCCESS) {
-        alert(passwordErrorString(pw_err));
+        showError(recoverPasswordErrorElement, passwordErrorString(pw_err));
         return;
     }
 
@@ -78,19 +78,26 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
+            var error_type = RecoverPasswordError.SUCCESS;
+            var data = "{}";
+
             if (request.status != 200) {
-                alert(`Request failed with status ${request.status}`);
-                return;
+                console.log(`Request failed with status ${request.status}`);
+                error_type = RecoverPasswordError.FAILURE;
             }
-
             // Begin accessing JSON data here
-            var data = JSON.parse(request.responseText);
-            if (!data["success"]) {
-                alert(recoverPasswordErrorString(stringToRecoverPasswordError(data["error"])));
+            else {
+                data = JSON.parse(request.responseText);
+                if (!data["success"]) {
+                    error_type = stringToRecoverPasswordError(data["error"]);
+                }
+            }
+
+            if (error_type != RecoverPasswordError.SUCCESS) {
+                showRecoverPasswordError(error_type);
                 return;
             }
 
-            alert(recoverPasswordErrorString(RecoverPasswordError.SUCCESS));
             window.location.assign(URL_log_in);
         }
     }
