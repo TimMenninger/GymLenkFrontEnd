@@ -9,14 +9,14 @@ $(document).ready(function() {
     var data = JSON.parse(localStorage.getItem("dashboard"));
 
     // Get gym info
-    document.getElementById("gym-edit-name").value = data["organization_name"];
-    document.getElementById("gym-edit-location").value = data["location_name"];
-    document.getElementById("gym-edit-address").value = data["physical_address"]["line1"];
-    document.getElementById("gym-edit-address2").value = data["physical_address"]["line2"];
-    document.getElementById("gym-edit-zip").value = data["physical_address"]["zip"];
-    document.getElementById("gym-edit-phone").value = data["formatted_phone_number"];
-    document.getElementById("gym-edit-email").value = data["email"];
-    document.getElementById("gym-edit-description").value = data["description"];
+    document.getElementById("gym-edit-name").value          = data["organization_name"];
+    document.getElementById("gym-edit-location").value      = data["location_name"];
+    document.getElementById("gym-edit-address").value       = data["physical_address"]["line1"];
+    document.getElementById("gym-edit-address2").value      = data["physical_address"]["line2"];
+    document.getElementById("gym-edit-zip").value           = data["physical_address"]["zip"];
+    document.getElementById("gym-edit-phone").value         = data["formatted_phone_number"];
+    document.getElementById("gym-edit-email").value         = data["email"];
+    document.getElementById("gym-edit-description").value   = data["description"];
 
     for (const raw_dow of DaysOfWeek) {
         var dow = raw_dow.toLowerCase();
