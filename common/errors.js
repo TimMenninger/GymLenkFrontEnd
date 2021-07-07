@@ -376,11 +376,11 @@ function changePasswordErrorString(error) {
         return "Password successfully changed";
     case ChangePasswordError.INVALID_EMAIL:
         return "Email is invalid";
-    case INVALID_PASSWORD:
+    case ChangePasswordError.INVALID_PASSWORD:
         return "New password is invalid";
-    case INCORRECT_PASSWORD:
+    case ChangePasswordError.INCORRECT_PASSWORD:
         return "Current password is incorrect";
-    case PASSWORD_EMPTY:
+    case ChangePasswordError.PASSWORD_EMPTY:
         return "Current password is empty";
     case ChangePasswordError.FAILURE:
     default:
