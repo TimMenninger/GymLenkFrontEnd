@@ -1,38 +1,37 @@
+/**
+ * ADDING ERRORS
+ *      Adding an error type:
+ *          - Put a row in the ErrorInfo
+ *          - Put an entry in getErrorInfo function
+ *          - Create the error type below, e.g. const NewError = {}
+ *          - Implement a function stringToNewError
+ *      Adding to existing error
+ *          - Add to ExistingError enum
+ *          - Add to stringToExistingError function
+ */
+
+const ErrorBandWidth = 1000;
+const ErrorInfo = {
+    UnknownError:           { "success": -1,                "errorElement": null,                       "successElement": null                          },
+    PasswordError:          { "success": ErrorBandWidth*1,  "errorElement": null,                       "successElement": null                          },
+    SignupError:            { "success": ErrorBandWidth*2,  "errorElement": "gym-sign-up-error-div",    "successElement": null                          },
+    LoginError:             { "success": ErrorBandWidth*3,  "errorElement": "gym-login-error-div",      "successElement": null                          },
+    ForgotPasswordError:    { "success": ErrorBandWidth*4,  "errorElement": "gym-pwreset-error-div",    "successElement": "gym-pwreset-success-div"     },
+    RecoverPasswordError:   { "success": ErrorBandWidth*5,  "errorElement": "gym-newpw-error-div",      "successElement": null                          },
+    ChangePasswordError:    { "success": ErrorBandWidth*6,  "errorElement": "gym-update-pw-error-div",  "successElement": "gym-update-pw-success-div"   },
+}
+
 /*******************************************************************************
  *
  * C O M M O N
  *
  */
 
-const ErrorBaseStep = 1000;
-const ErrorInfo = {
-    UnknownError:           { "success": -1,                "errorElement": null,                       "successElement": null                          },
-    PasswordError:          { "success": ErrorBaseStep*1,   "errorElement": null,                       "successElement": null                          },
-    SignupError:            { "success": ErrorBaseStep*2,   "errorElement": "gym-sign-up-error-div",    "successElement": null                          },
-    LoginError:             { "success": ErrorBaseStep*3,   "errorElement": "gym-login-error-div",      "successElement": null                          },
-    ForgotPasswordError:    { "success": ErrorBaseStep*4,   "errorElement": "gym-pwreset-error-div",    "successElement": "gym-pwreset-success-div"     },
-    RecoverPasswordError:   { "success": ErrorBaseStep*5,   "errorElement": "gym-newpw-error-div",      "successElement": null                          },
-    ChangePasswordError:    { "success": ErrorBaseStep*6,   "errorElement": "gym-update-pw-error-div",  "successElement": "gym-update-pw-success-div"   },
-}
-
 function getErrorInfo(error) {
-    if (error >= ErrorInfo.PasswordError.success && error < (ErrorInfo.PasswordError.success + ErrorBaseStep)) {
-        return ErrorInfo.PasswordError;
-    }
-    if (error >= ErrorInfo.SignupError.success && error < (ErrorInfo.SignupError.success + ErrorBaseStep)) {
-        return ErrorInfo.SignupError;
-    }
-    if (error >= ErrorInfo.LoginError.success && error < (ErrorInfo.LoginError.success + ErrorBaseStep)) {
-        return ErrorInfo.LoginError;
-    }
-    if (error >= ErrorInfo.ForgotPasswordError.success && error < (ErrorInfo.ForgotPasswordError.success + ErrorBaseStep)) {
-        return ErrorInfo.ForgotPasswordError;
-    }
-    if (error >= ErrorInfo.RecoverPasswordError.success && error < (ErrorInfo.RecoverPasswordError.success + ErrorBaseStep)) {
-        return ErrorInfo.RecoverPasswordError;
-    }
-    if (error >= ErrorInfo.ChangePasswordError.success && error < (ErrorInfo.ChangePasswordError.success + ErrorBaseStep)) {
-        return ErrorInfo.ChangePasswordError;
+    for (error_type in ErrorInfo) {
+        if (error >= ErrorInfo[error_type].success && error < (ErrorInfo[error_type].success + ErrorBandWidth)) {
+            return error_type;
+        }
     }
     return ErrorInfo.UnknownError;
 }
