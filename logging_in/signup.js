@@ -18,6 +18,10 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     var conf_password = document.getElementById("gym-sign-up-confirmpw").value;
     var terms_accepted= document.getElementById("sign-up-terms-checkbox").checked;
 
+    // If there was an error, don't display it anymore until if there's another
+    // error
+    hideSignupError();
+
     // Validity
     if (!terms_accepted) {
         showSignupError(SignupError.ACCEPT_TERMS);
@@ -33,10 +37,6 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
         showPasswordError(signupErrorElement, passwordErrorString(pw_err));
         return;
     }
-
-    // If there was an error, don't display it anymore until if there's another
-    // error
-    hideSignupError();
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.

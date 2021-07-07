@@ -5,12 +5,13 @@
  */
 
 const forgotPasswordSuccessElement  = "gym-pwreset-success-div";
+const changePasswordSuccessElement  = "gym-update-pw-success-div";
 
 const signupErrorElement            = "gym-sign-up-error-div";
 const loginErrorElement             = "gym-login-error-div";
 const forgotPasswordErrorElement    = "gym-pwreset-error-div";
 const recoverPasswordErrorElement   = "gym-newpw-error-div";
-const changePasswordErrorElement    = "TODO";
+const changePasswordErrorElement    = "gym-update-pw-error-div";
 
 function showError(element_name, error_desc) {
     document.getElementById(element_name).style.display = "block";
@@ -388,8 +389,14 @@ function recoverPasswordErrorString(error) {
 }
 function showChangePasswordError(error) {
     showError(changePasswordErrorElement, changePasswordErrorString(error));
+    hideError(changePasswordSuccessElement);
+}
+function showChangePasswordSuccess(error) {
+    showError(changePasswordSuccessElement, changePasswordErrorString(error));
+    hideError(changePasswordErrorElement);
 }
 function hideChangePasswordError() {
+    hideError(changePasswordSuccessElement);
     hideError(changePasswordErrorElement);
 }
 
