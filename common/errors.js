@@ -43,10 +43,11 @@ function showError(error) {
 }
 function showSuccess(error_info) {
     hideErrors();
-    showErrorElement(error_info.successElement, error_info.success);
+    showErrorElement(error_info.successElement, errorString(error_info.success));
 }
 function showErrorElement(element_name, error_desc) {
     var elem = document.getElementById(element_name);
+    alert(error_desc)
     if (elem !== null) {
         elem.style.display = "block";
         elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
