@@ -64,7 +64,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
     if (pw_err != PasswordError.SUCCESS) {
-        showPasswordError(recoverPasswordErrorElement, passwordErrorString(pw_err));
+        showPasswordError(ErrorInfo.RecoverPasswordError, pw_err);
         return;
     }
 
@@ -94,7 +94,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
             }
 
             if (error_type != RecoverPasswordError.SUCCESS) {
-                showRecoverPasswordError(error_type);
+                showError(error_type);
 
                 // Spinner
                 document.getElementById("gym-newpw-button").style.display = "block";

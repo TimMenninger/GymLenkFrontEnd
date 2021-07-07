@@ -17,7 +17,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
 
     // Validity
     if (email === "") {
-        showForgotPasswordError(ForgotPasswordError.EMAIL_EMPTY);
+        showError(ForgotPasswordError.EMAIL_EMPTY);
         return;
     }
 
@@ -51,7 +51,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
 
             // Begin accessing JSON data here
             if (error_type != ForgotPasswordError.SUCCESS) {
-                showForgotPasswordError(error_type);
+                showError(error_type);
 
                 // Spinner
                 document.getElementById("gym-pwreset-button").style.display = "block";

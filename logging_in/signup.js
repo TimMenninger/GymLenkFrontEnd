@@ -24,17 +24,17 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
 
     // Validity
     if (!terms_accepted) {
-        showSignupError(SignupError.ACCEPT_TERMS);
+        showError(SignupError.ACCEPT_TERMS);
         return;
     } else if (email === "") {
-        showSignupError(SignupError.EMAIL_EMPTY);
+        showError(SignupError.EMAIL_EMPTY);
         return;
     }
 
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
     if (pw_err != PasswordError.SUCCESS) {
-        showPasswordError(signupErrorElement, passwordErrorString(pw_err));
+        showPasswordError(ErrorInfo.SignupError, pw_err);
         return;
     }
 
@@ -66,7 +66,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             // Check for failure
             if (error_type != SignupError.SUCCESS) {
                 // Display error
-                showSignupError(error_type);
+                showError(error_type);
 
                 // Spinner
                 document.getElementById("gym-sign-up-button").style.display = "block";

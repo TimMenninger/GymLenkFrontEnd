@@ -4,21 +4,66 @@
  *
  */
 
-const forgotPasswordSuccessElement  = "gym-pwreset-success-div";
-const changePasswordSuccessElement  = "gym-update-pw-success-div";
-
-const signupErrorElement            = "gym-sign-up-error-div";
-const loginErrorElement             = "gym-login-error-div";
-const forgotPasswordErrorElement    = "gym-pwreset-error-div";
-const recoverPasswordErrorElement   = "gym-newpw-error-div";
-const changePasswordErrorElement    = "gym-update-pw-error-div";
-
-function showError(element_name, error_desc) {
-    document.getElementById(element_name).style.display = "block";
-    document.getElementById(element_name).innerText = error_desc;
+const ErrorBaseStep = 1000;
+const ErrorInfo = {
+    UnknownError:           { "base": -1,               "success": -1,                              "errorElement": null,                       "successElement": null                          },
+    PasswordError:          { "base": ErrorBaseStep*1,  "success": PasswordError.SUCCESS,           "errorElement": null,                       "successElement": null                          },
+    SignupError:            { "base": ErrorBaseStep*2,  "success": SignupError.SUCCESS,             "errorElement": "gym-sign-up-error-div",    "successElement": null                          },
+    LoginError:             { "base": ErrorBaseStep*3,  "success": LoginError.SUCCESS,              "errorElement": "gym-login-error-div",      "successElement": null                          },
+    ForgotPasswordError:    { "base": ErrorBaseStep*4,  "success": ForgotPasswordError.SUCCESS,     "errorElement": "gym-pwreset-error-div",    "successElement": "gym-pwreset-success-div"     },
+    RecoverPasswordError:   { "base": ErrorBaseStep*5,  "success": RecoverPasswordError.SUCCESS,    "errorElement": "gym-newpw-error-div",      "successElement": null                          },
+    ChangePasswordError:    { "base": ErrorBaseStep*6,  "success": ChangePasswordError.SUCCESS,     "errorElement": "gym-update-pw-error-div",  "successElement": "gym-update-pw-success-div"   },
 }
-function hideError(element_name) {
-    document.getElementById(element_name).style.display = "none";
+
+function getErrorInfo(error) {
+    if (error >= ErrorInfo.PasswordError && error < (ErrorInfo.PasswordError + ErrorInfoStep)) {
+        return ErrorInfo.PasswordError;
+    }
+    if (error >= ErrorInfo.SignupError && error < (ErrorInfo.SignupError + ErrorInfoStep)) {
+        return ErrorInfo.SignupError;
+    }
+    if (error >= ErrorInfo.LoginError && error < (ErrorInfo.LoginError + ErrorInfoStep)) {
+        return ErrorInfo.LoginError;
+    }
+    if (error >= ErrorInfo.ForgotPasswordError && error < (ErrorInfo.ForgotPasswordError + ErrorInfoStep)) {
+        return ErrorInfo.ForgotPasswordError;
+    }
+    if (error >= ErrorInfo.RecoverPasswordError && error < (ErrorInfo.RecoverPasswordError + ErrorInfoStep)) {
+        return ErrorInfo.RecoverPasswordError;
+    }
+    if (error >= ErrorInfo.ChangePasswordError && error < (ErrorInfo.ChangePasswordError + ErrorInfoStep)) {
+        return ErrorInfo.ChangePasswordError;
+    }
+    return ErrorInfo.UnknownError;
+}
+
+function showError(error) {
+    hideErrors();
+    showErrorElement(getErrorInfo(error).errorElement, errorString(error));
+}
+function showSuccess(error_info) {
+    hideErrors();
+    showErrorElement(error_info.successElement, error_info.base);
+}
+function showErrorElement(element_name, error_desc) {
+    var elem = document.getElementById(element_name);
+    if (elem !== null) {
+        elem.style.display = "block";
+        elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
+    }
+}
+function hideErrors(element_name) {
+    for (error in ErrorInfo) {
+        var error_elem = document.getElementById(ErrorInfo[error].errorElement);
+        if (error_elem !== null) {
+            error_elem.style.display = "none";
+        }
+
+        var success_elem = document.getElementById(ErrorInfo[error].successElement);
+        if (success_elem !== null) {
+            success_elem.style.display = "none";
+        }
+    }
 }
 
 
@@ -30,14 +75,14 @@ function hideError(element_name) {
  */
 
 const PasswordError = {
-    FAILURE:             -1,
-    SUCCESS:              0,
-    MISMATCH:             1,
-    TOO_SHORT:            2,
-    NEEDS_LETTER:         3,
-    NEEDS_NONLETTER:      4,
-    PASSWORD_EMPTY:       5,
-    CONF_PASSWORD_EMPTY:  6,
+    FAILURE:             -ErrorBase.PasswordError,
+    SUCCESS:              ErrorBase.PasswordError + 0,
+    MISMATCH:             ErrorBase.PasswordError + 1,
+    TOO_SHORT:            ErrorBase.PasswordError + 2,
+    NEEDS_LETTER:         ErrorBase.PasswordError + 3,
+    NEEDS_NONLETTER:      ErrorBase.PasswordError + 4,
+    PASSWORD_EMPTY:       ErrorBase.PasswordError + 5,
+    CONF_PASSWORD_EMPTY:  ErrorBase.PasswordError + 6,
 }
 function stringToPasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -66,29 +111,8 @@ function stringToPasswordError(error_string) {
     }
     return PasswordError.FAILURE;
 }
-function passwordErrorString(error) {
-    switch (error) {
-    case PasswordError.SUCCESS:
-        return "Success";
-    case PasswordError.MISMATCH:
-        return "Passwords do not match";
-    case PasswordError.TOO_SHORT:
-        return "Password must be at least 8 characters";
-    case PasswordError.NEEDS_LETTER:
-        return "Password must have at least one letter";
-    case PasswordError.NEEDS_NONLETTER:
-        return "Password must have at least one number or special character";
-    case PasswordError.PASSWORD_EMPTY:
-        return "Password field is empty";
-    case PasswordError.CONF_PASSWORD_EMPTY:
-        return "Confirm password field is empty";
-    case PasswordError.FAILURE:
-    default:
-        return "Error changing password";
-    }
-}
-function showPasswordError(element_name, error_desc) {
-    showError(element_name, error_desc);
+function showPasswordError(error_type, password_error) {
+    showErrorElement(error_type.errorElement, errorString(password_error));
 }
 
 
@@ -100,13 +124,13 @@ function showPasswordError(element_name, error_desc) {
  */
 
 const SignupError = {
-    FAILURE:             -1,
-    SUCCESS:              0,
-    INVALID_EMAIL:        1,
-    INVALID_PASSWORD:     2,
-    ACCEPT_TERMS:         3,
-    EMAIL_EMPTY:          4,
-    EMAIL_EXISTS:         5,
+    FAILURE:             -ErrorBase.SignupError,
+    SUCCESS:              ErrorBase.SignupError + 0,
+    INVALID_EMAIL:        ErrorBase.SignupError + 1,
+    INVALID_PASSWORD:     ErrorBase.SignupError + 2,
+    ACCEPT_TERMS:         ErrorBase.SignupError + 3,
+    EMAIL_EMPTY:          ErrorBase.SignupError + 4,
+    EMAIL_EXISTS:         ErrorBase.SignupError + 5,
 }
 function stringToSignupError(error_string) {
     if (error_string === "FAILURE") {
@@ -132,31 +156,6 @@ function stringToSignupError(error_string) {
     }
     return SignupError.FAILURE;
 }
-function signupErrorString(error) {
-    switch (error) {
-    case SignupError.SUCCESS:
-        return "Success";
-    case SignupError.INVALID_EMAIL:
-        return "Email address is invalid";
-    case SignupError.INVALID_PASSWORD:
-        return "Password did not meet security criteria";
-    case SignupError.ACCEPT_TERMS:
-        return "Please accept the terms & conditions";
-    case SignupError.EMAIL_EMPTY:
-        return "Email address is empty";
-    case SignupError.EMAIL_EXISTS:
-        return "Email address already exists";
-    case SignupError.FAILURE:
-    default:
-        return "Error signing up";
-    }
-}
-function showSignupError(error) {
-    showError(signupErrorElement, signupErrorString(error));
-}
-function hideSignupError() {
-    hideError(signupErrorElement);
-}
 
 
 
@@ -167,11 +166,11 @@ function hideSignupError() {
  */
 
 const LoginError = {
-    FAILURE:             -1,
-    SUCCESS:              0,
-    INCORRECT_PASSWORD:   1,
-    EMAIL_EMPTY:          2,
-    PASSWORD_EMPTY:       3,
+    FAILURE:             -ErrorBase.LoginError,
+    SUCCESS:              ErrorBase.LoginError + 0,
+    INCORRECT_PASSWORD:   ErrorBase.LoginError + 1,
+    EMAIL_EMPTY:          ErrorBase.LoginError + 2,
+    PASSWORD_EMPTY:       ErrorBase.LoginError + 3,
 }
 function stringToLoginError(error_string) {
     if (error_string === "FAILURE") {
@@ -191,27 +190,6 @@ function stringToLoginError(error_string) {
     }
     return LoginError.FAILURE;
 }
-function loginErrorString(error) {
-    switch (error) {
-    case LoginError.SUCCESS:
-        return "Success";
-    case LoginError.INCORRECT_PASSWORD:
-        return "Incorrect email/password combination";
-    case LoginError.EMAIL_EMPTY:
-        return "Email is empty";
-    case LoginError.PASSWORD_EMPTY:
-        return "Password is empty";
-    case LoginError.FAILURE:
-    default:
-        return "Error logging in";
-    }
-}
-function showLoginError(error) {
-    showError(loginErrorElement, loginErrorString(error));
-}
-function hideLoginError() {
-    hideError(loginErrorElement);
-}
 
 
 
@@ -222,11 +200,11 @@ function hideLoginError() {
  */
 
 const ForgotPasswordError = {
-    FAILURE:             -1,
-    SUCCESS:              0,
-    INVALID_EMAIL:        1,
-    EMAIL_NOT_FOUND:      2,
-    EMAIL_EMPTY:          3,
+    FAILURE:             -ErrorBase.ForgotPasswordError,
+    SUCCESS:              ErrorBase.ForgotPasswordError + 0,
+    INVALID_EMAIL:        ErrorBase.ForgotPasswordError + 1,
+    EMAIL_NOT_FOUND:      ErrorBase.ForgotPasswordError + 2,
+    EMAIL_EMPTY:          ErrorBase.ForgotPasswordError + 3,
 }
 function stringToForgotPasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -246,33 +224,6 @@ function stringToForgotPasswordError(error_string) {
     }
     return ForgotPasswordError.FAILURE;
 }
-function forgotPasswordErrorString(error) {
-    switch (error) {
-    case ForgotPasswordError.SUCCESS:
-        return "Password link emailed";
-    case ForgotPasswordError.INVALID_EMAIL:
-        return "Email was invalid";
-    case ForgotPasswordError.EMAIL_NOT_FOUND:
-        return "No account found for that email";
-    case ForgotPasswordError.EMAIL_EMPTY:
-        return "Please enter an email";
-    case ForgotPasswordError.FAILURE:
-    default:
-        return "Error getting password link";
-    }
-}
-function showForgotPasswordError(error) {
-    showError(forgotPasswordErrorElement, forgotPasswordErrorString(error));
-    hideError(forgotPasswordSuccessElement);
-}
-function showForgotPasswordSuccess(error) {
-    showError(forgotPasswordSuccessElement, forgotPasswordErrorString(ForgotPasswordError.SUCCESS));
-    hideError(forgotPasswordErrorElement);
-}
-function hideForgotPasswordError() {
-    hideError(forgotPasswordErrorElement);
-    hideError(forgotPasswordSuccessElement);
-}
 
 
 
@@ -283,12 +234,12 @@ function hideForgotPasswordError() {
  */
 
 const RecoverPasswordError = {
-    FAILURE:             -1,
-    SUCCESS:              0,
-    INVALID_PASSWORD:     1,
-    KEY_EXPIRED:          2,
-    INVALID_KEY:          3,
-    EMAIL_NOT_FOUND:      4,
+    FAILURE:             -ErrorBase.RecoverPasswordError,
+    SUCCESS:              ErrorBase.RecoverPasswordError + 0,
+    INVALID_PASSWORD:     ErrorBase.RecoverPasswordError + 1,
+    KEY_EXPIRED:          ErrorBase.RecoverPasswordError + 2,
+    INVALID_KEY:          ErrorBase.RecoverPasswordError + 3,
+    EMAIL_NOT_FOUND:      ErrorBase.RecoverPasswordError + 4,
 }
 function stringToRecoverPasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -311,31 +262,6 @@ function stringToRecoverPasswordError(error_string) {
     }
     return RecoverPasswordError.FAILURE;
 }
-function recoverPasswordErrorString(error) {
-    switch (error) {
-    case RecoverPasswordError.SUCCESS:
-        return "Password successfully changed";
-    case RecoverPasswordError.INVALID_EMAIL:
-        return "Email is invalid";
-    case INVALID_PASSWORD:
-        return "New password is invalid";
-    case KEY_EXPIRED:
-        return "This key has expired";
-    case INVALID_KEY:
-        return "This is not a valid key";
-    case EMAIL_NOT_FOUND:
-        return "There was no account found for this email";
-    case RecoverPasswordError.FAILURE:
-    default:
-        return "Error changing forgotten password";
-    }
-}
-function showRecoverPasswordError(error) {
-    showError(recoverPasswordErrorElement, recoverPasswordErrorString(error));
-}
-function hideRecoverPasswordError() {
-    hideError(recoverPasswordErrorElement);
-}
 
 
 
@@ -346,11 +272,11 @@ function hideRecoverPasswordError() {
  */
 
 const ChangePasswordError = {
-    FAILURE:             -1,
-    SUCCESS:              0,
-    INVALID_PASSWORD:     1,
-    INCORRECT_PASSWORD:   2,
-    PASSWORD_EMPTY:       3,
+    FAILURE:             -ErrorBase.ChangePasswordError,
+    SUCCESS:              ErrorBase.ChangePasswordError + 0,
+    INVALID_PASSWORD:     ErrorBase.ChangePasswordError + 1,
+    INCORRECT_PASSWORD:   ErrorBase.ChangePasswordError + 2,
+    PASSWORD_EMPTY:       ErrorBase.ChangePasswordError + 3,
 }
 function stringToChangePasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -370,8 +296,105 @@ function stringToChangePasswordError(error_string) {
     }
     return ChangePasswordError.FAILURE;
 }
-function changePasswordErrorString(error) {
+
+
+
+/*******************************************************************************
+ *
+ * U T I L I T I E S
+ *
+ */
+
+function errorString(error) {
     switch (error) {
+
+    //
+    // PasswordError
+    //
+    case PasswordError.SUCCESS:
+        return "Success";
+    case PasswordError.MISMATCH:
+        return "Passwords do not match";
+    case PasswordError.TOO_SHORT:
+        return "Password must be at least 8 characters";
+    case PasswordError.NEEDS_LETTER:
+        return "Password must have at least one letter";
+    case PasswordError.NEEDS_NONLETTER:
+        return "Password must have at least one number or special character";
+    case PasswordError.PASSWORD_EMPTY:
+        return "Password field is empty";
+    case PasswordError.CONF_PASSWORD_EMPTY:
+        return "Confirm password field is empty";
+    case PasswordError.FAILURE:
+        return "Error changing password";
+
+    //
+    // SignupError
+    //
+    case SignupError.SUCCESS:
+        return "Success";
+    case SignupError.INVALID_EMAIL:
+        return "Email address is invalid";
+    case SignupError.INVALID_PASSWORD:
+        return "Password did not meet security criteria";
+    case SignupError.ACCEPT_TERMS:
+        return "Please accept the terms & conditions";
+    case SignupError.EMAIL_EMPTY:
+        return "Email address is empty";
+    case SignupError.EMAIL_EXISTS:
+        return "Email address already exists";
+    case SignupError.FAILURE:
+        return "Error signing up";
+
+    //
+    // LoginError
+    //
+    case LoginError.SUCCESS:
+        return "Success";
+    case LoginError.INCORRECT_PASSWORD:
+        return "Incorrect email/password combination";
+    case LoginError.EMAIL_EMPTY:
+        return "Email is empty";
+    case LoginError.PASSWORD_EMPTY:
+        return "Password is empty";
+    case LoginError.FAILURE:
+        return "Error logging in";
+
+    //
+    // ForgotPasswordError
+    //
+    case ForgotPasswordError.SUCCESS:
+        return "Password link emailed";
+    case ForgotPasswordError.INVALID_EMAIL:
+        return "Email was invalid";
+    case ForgotPasswordError.EMAIL_NOT_FOUND:
+        return "No account found for that email";
+    case ForgotPasswordError.EMAIL_EMPTY:
+        return "Please enter an email";
+    case ForgotPasswordError.FAILURE:
+        return "Error getting password link";
+
+    //
+    // RecoverPasswordError
+    //
+    case RecoverPasswordError.SUCCESS:
+        return "Password successfully changed";
+    case RecoverPasswordError.INVALID_EMAIL:
+        return "Email is invalid";
+    case INVALID_PASSWORD:
+        return "New password is invalid";
+    case KEY_EXPIRED:
+        return "This key has expired";
+    case INVALID_KEY:
+        return "This is not a valid key";
+    case EMAIL_NOT_FOUND:
+        return "There was no account found for this email";
+    case RecoverPasswordError.FAILURE:
+        return "Error changing forgotten password";
+
+    //
+    // ChangePasswordError
+    //
     case ChangePasswordError.SUCCESS:
         return "Password successfully changed";
     case ChangePasswordError.INVALID_EMAIL:
@@ -383,20 +406,14 @@ function changePasswordErrorString(error) {
     case ChangePasswordError.PASSWORD_EMPTY:
         return "Current password is empty";
     case ChangePasswordError.FAILURE:
-    default:
         return "Error changing password";
+
+    //
+    // default
+    //
+    default:
+        console.log("Unknown error:");
+        console.log(error);
+        return "Unknown error";
     }
 }
-function showChangePasswordError(error) {
-    showError(changePasswordErrorElement, changePasswordErrorString(error));
-    hideError(changePasswordSuccessElement);
-}
-function showChangePasswordSuccess(error) {
-    showError(changePasswordSuccessElement, changePasswordErrorString(error));
-    hideError(changePasswordErrorElement);
-}
-function hideChangePasswordError() {
-    hideError(changePasswordSuccessElement);
-    hideError(changePasswordErrorElement);
-}
-

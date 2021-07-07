@@ -18,11 +18,11 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
     // Validate
     if (email === "") {
-        showLoginError(LoginError.EMAIL_EMPTY);
+        showError(LoginError.EMAIL_EMPTY);
         return;
     }
     if (password === "") {
-        showLoginError(LoginError.PASSWORD_EMPTY);
+        showError(LoginError.PASSWORD_EMPTY);
         return;
     }
 
@@ -60,7 +60,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             // Check for failure pulled from above
             if (error_type != LoginError.SUCCESS) {
                 // Display error
-                showLoginError(error_type);
+                showError(error_type);
 
                 // Spinner
                 document.getElementById("gym-login-button").style.display = "block";
