@@ -6,13 +6,13 @@
 
 const ErrorBaseStep = 1000;
 const ErrorInfo = {
-    UnknownError:           { "base": -1,               "success": -1,                              "errorElement": null,                       "successElement": null                          },
-    PasswordError:          { "base": ErrorBaseStep*1,  "success": PasswordError.SUCCESS,           "errorElement": null,                       "successElement": null                          },
-    SignupError:            { "base": ErrorBaseStep*2,  "success": SignupError.SUCCESS,             "errorElement": "gym-sign-up-error-div",    "successElement": null                          },
-    LoginError:             { "base": ErrorBaseStep*3,  "success": LoginError.SUCCESS,              "errorElement": "gym-login-error-div",      "successElement": null                          },
-    ForgotPasswordError:    { "base": ErrorBaseStep*4,  "success": ForgotPasswordError.SUCCESS,     "errorElement": "gym-pwreset-error-div",    "successElement": "gym-pwreset-success-div"     },
-    RecoverPasswordError:   { "base": ErrorBaseStep*5,  "success": RecoverPasswordError.SUCCESS,    "errorElement": "gym-newpw-error-div",      "successElement": null                          },
-    ChangePasswordError:    { "base": ErrorBaseStep*6,  "success": ChangePasswordError.SUCCESS,     "errorElement": "gym-update-pw-error-div",  "successElement": "gym-update-pw-success-div"   },
+    UnknownError:           { "success": -1,                "errorElement": null,                       "successElement": null                          },
+    PasswordError:          { "success": ErrorBaseStep*1,   "errorElement": null,                       "successElement": null                          },
+    SignupError:            { "success": ErrorBaseStep*2,   "errorElement": "gym-sign-up-error-div",    "successElement": null                          },
+    LoginError:             { "success": ErrorBaseStep*3,   "errorElement": "gym-login-error-div",      "successElement": null                          },
+    ForgotPasswordError:    { "success": ErrorBaseStep*4,   "errorElement": "gym-pwreset-error-div",    "successElement": "gym-pwreset-success-div"     },
+    RecoverPasswordError:   { "success": ErrorBaseStep*5,   "errorElement": "gym-newpw-error-div",      "successElement": null                          },
+    ChangePasswordError:    { "success": ErrorBaseStep*6,   "errorElement": "gym-update-pw-error-div",  "successElement": "gym-update-pw-success-div"   },
 }
 
 function getErrorInfo(error) {
@@ -43,7 +43,7 @@ function showError(error) {
 }
 function showSuccess(error_info) {
     hideErrors();
-    showErrorElement(error_info.successElement, error_info.base);
+    showErrorElement(error_info.successElement, error_info.success);
 }
 function showErrorElement(element_name, error_desc) {
     var elem = document.getElementById(element_name);
@@ -75,14 +75,14 @@ function hideErrors(element_name) {
  */
 
 const PasswordError = {
-    FAILURE:             -ErrorBase.PasswordError,
-    SUCCESS:              ErrorBase.PasswordError + 0,
-    MISMATCH:             ErrorBase.PasswordError + 1,
-    TOO_SHORT:            ErrorBase.PasswordError + 2,
-    NEEDS_LETTER:         ErrorBase.PasswordError + 3,
-    NEEDS_NONLETTER:      ErrorBase.PasswordError + 4,
-    PASSWORD_EMPTY:       ErrorBase.PasswordError + 5,
-    CONF_PASSWORD_EMPTY:  ErrorBase.PasswordError + 6,
+    FAILURE:             -ErrorInfo.PasswordError.success,
+    SUCCESS:              ErrorInfo.PasswordError.success + 0,
+    MISMATCH:             ErrorInfo.PasswordError.success + 1,
+    TOO_SHORT:            ErrorInfo.PasswordError.success + 2,
+    NEEDS_LETTER:         ErrorInfo.PasswordError.success + 3,
+    NEEDS_NONLETTER:      ErrorInfo.PasswordError.success + 4,
+    PASSWORD_EMPTY:       ErrorInfo.PasswordError.success + 5,
+    CONF_PASSWORD_EMPTY:  ErrorInfo.PasswordError.success + 6,
 }
 function stringToPasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -124,13 +124,13 @@ function showPasswordError(error_type, password_error) {
  */
 
 const SignupError = {
-    FAILURE:             -ErrorBase.SignupError,
-    SUCCESS:              ErrorBase.SignupError + 0,
-    INVALID_EMAIL:        ErrorBase.SignupError + 1,
-    INVALID_PASSWORD:     ErrorBase.SignupError + 2,
-    ACCEPT_TERMS:         ErrorBase.SignupError + 3,
-    EMAIL_EMPTY:          ErrorBase.SignupError + 4,
-    EMAIL_EXISTS:         ErrorBase.SignupError + 5,
+    FAILURE:             -ErrorInfo.SignupError.success,
+    SUCCESS:              ErrorInfo.SignupError.success + 0,
+    INVALID_EMAIL:        ErrorInfo.SignupError.success + 1,
+    INVALID_PASSWORD:     ErrorInfo.SignupError.success + 2,
+    ACCEPT_TERMS:         ErrorInfo.SignupError.success + 3,
+    EMAIL_EMPTY:          ErrorInfo.SignupError.success + 4,
+    EMAIL_EXISTS:         ErrorInfo.SignupError.success + 5,
 }
 function stringToSignupError(error_string) {
     if (error_string === "FAILURE") {
@@ -166,11 +166,11 @@ function stringToSignupError(error_string) {
  */
 
 const LoginError = {
-    FAILURE:             -ErrorBase.LoginError,
-    SUCCESS:              ErrorBase.LoginError + 0,
-    INCORRECT_PASSWORD:   ErrorBase.LoginError + 1,
-    EMAIL_EMPTY:          ErrorBase.LoginError + 2,
-    PASSWORD_EMPTY:       ErrorBase.LoginError + 3,
+    FAILURE:             -ErrorInfo.LoginError.success,
+    SUCCESS:              ErrorInfo.LoginError.success + 0,
+    INCORRECT_PASSWORD:   ErrorInfo.LoginError.success + 1,
+    EMAIL_EMPTY:          ErrorInfo.LoginError.success + 2,
+    PASSWORD_EMPTY:       ErrorInfo.LoginError.success + 3,
 }
 function stringToLoginError(error_string) {
     if (error_string === "FAILURE") {
@@ -200,11 +200,11 @@ function stringToLoginError(error_string) {
  */
 
 const ForgotPasswordError = {
-    FAILURE:             -ErrorBase.ForgotPasswordError,
-    SUCCESS:              ErrorBase.ForgotPasswordError + 0,
-    INVALID_EMAIL:        ErrorBase.ForgotPasswordError + 1,
-    EMAIL_NOT_FOUND:      ErrorBase.ForgotPasswordError + 2,
-    EMAIL_EMPTY:          ErrorBase.ForgotPasswordError + 3,
+    FAILURE:             -ErrorInfo.ForgotPasswordError.success,
+    SUCCESS:              ErrorInfo.ForgotPasswordError.success + 0,
+    INVALID_EMAIL:        ErrorInfo.ForgotPasswordError.success + 1,
+    EMAIL_NOT_FOUND:      ErrorInfo.ForgotPasswordError.success + 2,
+    EMAIL_EMPTY:          ErrorInfo.ForgotPasswordError.success + 3,
 }
 function stringToForgotPasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -234,12 +234,12 @@ function stringToForgotPasswordError(error_string) {
  */
 
 const RecoverPasswordError = {
-    FAILURE:             -ErrorBase.RecoverPasswordError,
-    SUCCESS:              ErrorBase.RecoverPasswordError + 0,
-    INVALID_PASSWORD:     ErrorBase.RecoverPasswordError + 1,
-    KEY_EXPIRED:          ErrorBase.RecoverPasswordError + 2,
-    INVALID_KEY:          ErrorBase.RecoverPasswordError + 3,
-    EMAIL_NOT_FOUND:      ErrorBase.RecoverPasswordError + 4,
+    FAILURE:             -ErrorInfo.RecoverPasswordError.success,
+    SUCCESS:              ErrorInfo.RecoverPasswordError.success + 0,
+    INVALID_PASSWORD:     ErrorInfo.RecoverPasswordError.success + 1,
+    KEY_EXPIRED:          ErrorInfo.RecoverPasswordError.success + 2,
+    INVALID_KEY:          ErrorInfo.RecoverPasswordError.success + 3,
+    EMAIL_NOT_FOUND:      ErrorInfo.RecoverPasswordError.success + 4,
 }
 function stringToRecoverPasswordError(error_string) {
     if (error_string === "FAILURE") {
@@ -272,11 +272,11 @@ function stringToRecoverPasswordError(error_string) {
  */
 
 const ChangePasswordError = {
-    FAILURE:             -ErrorBase.ChangePasswordError,
-    SUCCESS:              ErrorBase.ChangePasswordError + 0,
-    INVALID_PASSWORD:     ErrorBase.ChangePasswordError + 1,
-    INCORRECT_PASSWORD:   ErrorBase.ChangePasswordError + 2,
-    PASSWORD_EMPTY:       ErrorBase.ChangePasswordError + 3,
+    FAILURE:             -ErrorInfo.ChangePasswordError.success,
+    SUCCESS:              ErrorInfo.ChangePasswordError.success + 0,
+    INVALID_PASSWORD:     ErrorInfo.ChangePasswordError.success + 1,
+    INCORRECT_PASSWORD:   ErrorInfo.ChangePasswordError.success + 2,
+    PASSWORD_EMPTY:       ErrorInfo.ChangePasswordError.success + 3,
 }
 function stringToChangePasswordError(error_string) {
     if (error_string === "FAILURE") {
