@@ -47,7 +47,8 @@ function showSuccess(error_info) {
 }
 function showErrorElement(element_name, error_desc) {
     var elem = document.getElementById(element_name);
-    alert(error_desc)
+    console.log(element_name)
+    console.log(elem)
     if (elem !== null) {
         elem.style.display = "block";
         elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
