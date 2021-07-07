@@ -226,6 +226,10 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
+            // Spinner
+            document.getElementById("save-changes-my-gym-button").style.display = "block";
+            document.getElementById("save-changes-my-gym-loading-lottie").style.display = "none";
+
             if (request.status != 200) {
                 console.log("Request failed");
                 return;
@@ -243,6 +247,10 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
             alert("Update successful");
         }
     }
+
+    // Remove submit button in favor of a lottie
+    document.getElementById("save-changes-my-gym-button").style.display = "none";
+    document.getElementById("save-changes-my-gym-loading-lottie").style.display = "block";
 
     // Send request
     request.send(JSON.stringify(data));
