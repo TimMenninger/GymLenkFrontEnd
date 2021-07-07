@@ -370,7 +370,7 @@ function stringToChangePasswordError(error_string) {
     }
     return ChangePasswordError.FAILURE;
 }
-function recoverPasswordErrorString(error) {
+function changePasswordErrorString(error) {
     switch (error) {
     case ChangePasswordError.SUCCESS:
         return "Password successfully changed";
