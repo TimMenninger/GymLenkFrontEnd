@@ -60,7 +60,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
             }
 
             document.getElementById("pwreset-loading-lottie").style.display = "none";
-            showForgotPasswordSuccess();
+            showSuccess(ErrorInfo.ForgotPasswordError);
         }
     }
 

@@ -82,7 +82,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
             document.getElementById("confirm-new-pw").value = "";
 
             // Remove any error message there was
-            showChangePasswordSuccess();
+            showSuccess(ErrorInfo.ChangePasswordError);
 
             // Done changing password
             alert("Password successfully changed")
