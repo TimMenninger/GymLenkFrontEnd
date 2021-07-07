@@ -16,22 +16,22 @@ const ErrorInfo = {
 }
 
 function getErrorInfo(error) {
-    if (error >= ErrorInfo.PasswordError.success && error < (ErrorInfo.PasswordError.success + ErrorInfoStep)) {
+    if (error >= ErrorInfo.PasswordError.success && error < (ErrorInfo.PasswordError.success + ErrorBaseStep)) {
         return ErrorInfo.PasswordError;
     }
-    if (error >= ErrorInfo.SignupError.success && error < (ErrorInfo.SignupError.success + ErrorInfoStep)) {
+    if (error >= ErrorInfo.SignupError.success && error < (ErrorInfo.SignupError.success + ErrorBaseStep)) {
         return ErrorInfo.SignupError;
     }
-    if (error >= ErrorInfo.LoginError.success && error < (ErrorInfo.LoginError.success + ErrorInfoStep)) {
+    if (error >= ErrorInfo.LoginError.success && error < (ErrorInfo.LoginError.success + ErrorBaseStep)) {
         return ErrorInfo.LoginError;
     }
-    if (error >= ErrorInfo.ForgotPasswordError.success && error < (ErrorInfo.ForgotPasswordError.success + ErrorInfoStep)) {
+    if (error >= ErrorInfo.ForgotPasswordError.success && error < (ErrorInfo.ForgotPasswordError.success + ErrorBaseStep)) {
         return ErrorInfo.ForgotPasswordError;
     }
-    if (error >= ErrorInfo.RecoverPasswordError.success && error < (ErrorInfo.RecoverPasswordError.success + ErrorInfoStep)) {
+    if (error >= ErrorInfo.RecoverPasswordError.success && error < (ErrorInfo.RecoverPasswordError.success + ErrorBaseStep)) {
         return ErrorInfo.RecoverPasswordError;
     }
-    if (error >= ErrorInfo.ChangePasswordError.success && error < (ErrorInfo.ChangePasswordError.success + ErrorInfoStep)) {
+    if (error >= ErrorInfo.ChangePasswordError.success && error < (ErrorInfo.ChangePasswordError.success + ErrorBaseStep)) {
         return ErrorInfo.ChangePasswordError;
     }
     return ErrorInfo.UnknownError;
