@@ -23,9 +23,13 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     };
 
     // New password and confirmation must match
+    if (current_password === "") {
+        showChangePasswordError(ChangePassword.PASSWORD_EMPTY);
+        return;
+    }
     var pw_err = checkPasswordRequirements(new_password, conf_new_password);
     if (pw_err != PasswordError.SUCCESS) {
-        alert(passwordErrorString(error));
+        showPasswordError(changePasswordErrorElement, passwordErrorString(pw_err));
         return;
     }
 
@@ -39,25 +43,52 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            document.getElementById("new-pw").value = "";
-            document.getElementById("confirm-new-pw").value = "";
+            var error_type = ChangePasswordError.SUCCESS;
+            var data = "{}";
+
+            // Check error on response status
             if (request.status != 200) {
-                alert(`Request failed with status ${request.status}`);
+                // Error message
+                console.log(`Request failed with status ${request.status}`);
+                error_type = ChangePasswordError.FAILURE;
+            }
+            // Begin accessing JSON data here
+            else {
+                data = JSON.parse(request.responseText);
+                if (!data["success"]) {
+                    error_type = stringToChangePasswordError(data["error"]);
+                }
+            }
+
+            // Replace the password button and remove the lottie, regardless of
+            // success/failure
+            document.getElementById("update-pw-button").style.display = "block";
+            document.getElementById("TODO").style.display = "none";
+
+            // Check for failure pulled from above
+            if (error_type != ChangePasswordError.SUCCESS) {
+                // Display error
+                showChangePasswordError(error_type);
                 return;
             }
 
-            // Begin accessing JSON data here
-            var data = JSON.parse(request.responseText);
-            if (!data["success"]) {
-                alert(data["message"]);
-                return;
-            }
+            // Clear text on success, but not on error since they might want to
+            // keep their entries there
+            document.getElementById("current-pw").value = "";
+            document.getElementById("new-pw").value = "";
+            document.getElementById("confirm-new-pw").value = "";
+
+            // Remove any error message there was
+            hideChangePasswordError();
 
             // Done changing password
             alert("Password successfully changed")
-            document.getElementById("current-pw").value = "";
         }
     }
+
+    // Remove submit button in favor of a lottie
+    document.getElementById("update-pw-button").style.display = "none";
+    document.getElementById("TODO").style.display = "block";
 
     // Send request
     request.send(JSON.stringify(data));

@@ -10,6 +10,7 @@ const signupErrorElement            = "gym-sign-up-error-div";
 const loginErrorElement             = "gym-login-error-div";
 const forgotPasswordErrorElement    = "gym-pwreset-error-div";
 const recoverPasswordErrorElement   = "gym-newpw-error-div";
+const changePasswordErrorElement    = "TODO";
 
 function showError(element_name, error_desc) {
     document.getElementById(element_name).style.display = "block";
@@ -84,6 +85,9 @@ function passwordErrorString(error) {
     default:
         return "Error changing password";
     }
+}
+function showPasswordError(element_name, error_desc) {
+    showError(element_name, error_desc);
 }
 
 
@@ -322,7 +326,7 @@ function recoverPasswordErrorString(error) {
         return "There was no account found for this email";
     case RecoverPasswordError.FAILURE:
     default:
-        return "Error getting password link";
+        return "Error changing forgotten password";
     }
 }
 function showRecoverPasswordError(error) {
@@ -330,5 +334,62 @@ function showRecoverPasswordError(error) {
 }
 function hideRecoverPasswordError() {
     hideError(recoverPasswordErrorElement);
+}
+
+
+
+/*******************************************************************************
+ *
+ * C H A N G E   P A S S W O R D   E R R O R S
+ *
+ */
+
+const ChangePasswordError = {
+    FAILURE:             -1,
+    SUCCESS:              0,
+    INVALID_PASSWORD:     1,
+    INCORRECT_PASSWORD:   2,
+    PASSWORD_EMPTY:       3,
+}
+function stringToChangePasswordError(error_string) {
+    if (error_string === "FAILURE") {
+        return ChangePasswordError.FAILURE;
+    }
+    if (error_string === "SUCCESS") {
+        return ChangePasswordError.SUCCESS;
+    }
+    if (error_string == "INVALID_PASSWORD") {
+        return ChangePasswordError.INVALID_PASSWORD;
+    }
+    if (error_string == "INCORRECT_PASSWORD") {
+        return ChangePasswordError.INCORRECT_PASSWORD;
+    }
+    if (error_string == "PASSWORD_EMPTY") {
+        return ChangePasswordError.PASSWORD_EMPTY;
+    }
+    return ChangePasswordError.FAILURE;
+}
+function recoverPasswordErrorString(error) {
+    switch (error) {
+    case ChangePasswordError.SUCCESS:
+        return "Password successfully changed";
+    case ChangePasswordError.INVALID_EMAIL:
+        return "Email is invalid";
+    case INVALID_PASSWORD:
+        return "New password is invalid";
+    case INCORRECT_PASSWORD:
+        return "Current password is incorrect";
+    case PASSWORD_EMPTY:
+        return "Current password is empty";
+    case ChangePasswordError.FAILURE:
+    default:
+        return "Error changing password";
+    }
+}
+function showChangePasswordError(error) {
+    showError(changePasswordErrorElement, changePasswordErrorString(error));
+}
+function hideChangePasswordError() {
+    hideError(changePasswordErrorElement);
 }
 

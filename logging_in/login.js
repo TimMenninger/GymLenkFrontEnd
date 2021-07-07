@@ -19,11 +19,11 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     // Validate
     if (email === "") {
         showLoginError(LoginError.EMAIL_EMPTY);
-        return
+        return;
     }
     if (password === "") {
         showLoginError(LoginError.PASSWORD_EMPTY);
-        return
+        return;
     }
 
     // If there was an error, don't display it anymore until if there's another
@@ -65,7 +65,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
                 // Spinner
                 document.getElementById("gym-login-button").style.display = "block";
                 document.getElementById("login-loading-lottie").style.display = "none";
-                return
+                return;
             }
 
             // Success - go to dashboard if the account is complete, or to

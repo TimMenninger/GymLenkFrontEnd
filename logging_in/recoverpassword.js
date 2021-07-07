@@ -64,7 +64,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
     if (pw_err != PasswordError.SUCCESS) {
-        showError(recoverPasswordErrorElement, passwordErrorString(pw_err));
+        showPasswordError(recoverPasswordErrorElement, passwordErrorString(pw_err));
         return;
     }
 

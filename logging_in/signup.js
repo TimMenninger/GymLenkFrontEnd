@@ -30,7 +30,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     // New password and confirmation must match
     var pw_err = checkPasswordRequirements(password, conf_password);
     if (pw_err != PasswordError.SUCCESS) {
-        showError(signupErrorElement, passwordErrorString(pw_err));
+        showPasswordError(signupErrorElement, passwordErrorString(pw_err));
         return;
     }
 
