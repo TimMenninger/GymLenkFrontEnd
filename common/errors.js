@@ -30,7 +30,7 @@ const ErrorInfo = {
 function getErrorInfo(error) {
     for (error_type in ErrorInfo) {
         if (error >= ErrorInfo[error_type].success && error < (ErrorInfo[error_type].success + ErrorBandWidth)) {
-            return error_type;
+            return ErrorInfo[error_type];
         }
     }
     return ErrorInfo.UnknownError;
