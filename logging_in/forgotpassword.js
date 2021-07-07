@@ -22,7 +22,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     }
 
     // Hide error if there was one before
-    hideForgotPasswordError();
+    hideErrors();
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.

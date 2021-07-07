@@ -28,7 +28,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
     // If there was an error, don't display it anymore until if there's another
     // error
-    hideLoginError();
+    hideErrors();
 
     // Create a request variable and assign a new XMLHttpRequest object to
     // it.
@@ -77,7 +77,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
             localStorage.setItem("account_email", email);
 
             // Remove any error message there was
-            hideLoginError();
+            hideErrors();
 
             if ("dashboard" in data && "location_id" in data["dashboard"]) {
                 storeDashboardData(data["dashboard"]);

@@ -20,7 +20,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
 
     // If there was an error, don't display it anymore until if there's another
     // error
-    hideSignupError();
+    hideErrors();
 
     // Validity
     if (!terms_accepted) {
@@ -75,7 +75,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             }
 
             // Remove any error message there was
-            hideSignupError();
+            hideErrors();
 
             // Success - now signed in even if we haven't done onboarding yet
             localStorage.setItem("logged_in", "true");

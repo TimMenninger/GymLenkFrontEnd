@@ -23,7 +23,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     };
 
     // Hide any previous error/success message before the next attempt
-    hideChangePasswordError();
+    hideErrors();
 
     // New password and confirmation must match
     if (current_password === "") {
