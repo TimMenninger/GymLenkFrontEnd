@@ -27,7 +27,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
 
     // New password and confirmation must match
     if (current_password === "") {
-        showError(ChangePassword.PASSWORD_EMPTY);
+        showError(ErrorInfo.ChangePasswordError.PASSWORD_EMPTY);
         return;
     }
     var pw_err = checkPasswordRequirements(new_password, conf_new_password);
