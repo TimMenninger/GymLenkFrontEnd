@@ -35,7 +35,7 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
             else {
                 data = JSON.parse(request.responseText);
                 if (!data["success"]) {
-                    error_type = stringToCheckInError(data["error"]);
+                    error_type = stringToError(CheckInError, data["error"]);
                 }
             }
 

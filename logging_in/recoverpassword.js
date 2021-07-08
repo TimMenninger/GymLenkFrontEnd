@@ -32,7 +32,7 @@ $(document).ready(function() {
             // Begin accessing JSON data here
             var data = JSON.parse(request.responseText);
             if (!data["success"]) {
-                alert(recoverPasswordErrorString(stringToRecoverPasswordError(data["error"])));
+                alert(errorString(stringToError(RecoverPasswordError, data["error"])));
                 window.location.replace(FE_forgot_password);
                 return;
             }
@@ -89,7 +89,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
             else {
                 data = JSON.parse(request.responseText);
                 if (!data["success"]) {
-                    error_type = stringToRecoverPasswordError(data["error"]);
+                    error_type = stringToError(RecoverPasswordError, data["error"]);
                 }
             }
 

@@ -27,7 +27,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
 
     // New password and confirmation must match
     if (current_password === "") {
-        showError(ErrorInfo.ChangePasswordError.PASSWORD_EMPTY);
+        showError(ChangePasswordError.PASSWORD_EMPTY);
         return;
     }
     var pw_err = checkPasswordRequirements(new_password, conf_new_password);
@@ -59,7 +59,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
             else {
                 data = JSON.parse(request.responseText);
                 if (!data["success"]) {
-                    error_type = stringToChangePasswordError(data["error"]);
+                    error_type = stringToError(ChangePasswordError, data["error"]);
                 }
             }
 

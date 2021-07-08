@@ -59,7 +59,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
             else {
                 data = JSON.parse(request.responseText);
                 if (!data["success"]) {
-                    error_type = stringToSignupError(data["error"]);
+                    error_type = stringToError(SignupError, data["error"]);
                 }
             }
 

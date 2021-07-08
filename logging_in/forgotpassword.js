@@ -45,7 +45,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
             else {
                 data = JSON.parse(request.responseText);
                 if (!data["success"]) {
-                    error_type = stringToForgotPasswordError(data["error"]);
+                    error_type = stringToError(ForgotPasswordError, data["error"]);
                 }
             }
 

@@ -65,6 +65,15 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 // ERRORS
 //
 
+function stringToError(error_type, error_str) {
+    for (error in error_type) {
+        if (error == error_str) {
+            return error_type[error];
+        }
+    }
+    return -1;
+}
+
 function getErrorInfo(error) {
     for (error_type in ErrorInfo) {
         if (error >= ErrorInfo[error_type].success && error < (ErrorInfo[error_type].success + ErrorBandWidth)) {
@@ -77,6 +86,10 @@ function getErrorInfo(error) {
 function showError(error) {
     hideErrors();
     showErrorElement(getErrorInfo(error).errorElement, errorString(error));
+}
+
+function showPasswordError(error_type, password_error) {
+    showErrorElement(error_type.errorElement, errorString(password_error));
 }
 
 function showSuccess(error_info) {

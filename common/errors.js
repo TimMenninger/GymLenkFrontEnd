@@ -4,10 +4,8 @@
  *          - Put a row in the ErrorInfo
  *          - Put entries into errorString function
  *          - Create the error type below, e.g. const NewError = {}
- *          - Implement a function stringToNewError
  *      Adding to existing error
  *          - Add to ExistingError enum
- *          - Add to stringToExistingError function
  */
 
 const ErrorBandWidth = 1000;
@@ -40,36 +38,6 @@ const PasswordError = {
     PASSWORD_EMPTY:       ErrorInfo.PasswordError.success + 5,
     CONF_PASSWORD_EMPTY:  ErrorInfo.PasswordError.success + 6,
 }
-function stringToPasswordError(error_string) {
-    if (error_string === "FAILURE") {
-        return PasswordError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return PasswordError.SUCCESS;
-    }
-    if (error_string === "MISMATCH") {
-        return PasswordError.MISMATCH;
-    }
-    if (error_string === "TOO_SHORT") {
-        return PasswordError.TOO_SHORT;
-    }
-    if (error_string === "NEEDS_LETTER") {
-        return PasswordError.NEEDS_LETTER;
-    }
-    if (error_string === "NEEDS_NONLETTER") {
-        return PasswordError.NEEDS_NONLETTER;
-    }
-    if (error_string === "PASSWORD_EMPTY") {
-        return PasswordError.PASSWORD_EMPTY;
-    }
-    if (error_string === "CONF_PASSWORD_EMPTY") {
-        return PasswordError.CONF_PASSWORD_EMPTY;
-    }
-    return PasswordError.FAILURE;
-}
-function showPasswordError(error_type, password_error) {
-    showErrorElement(error_type.errorElement, errorString(password_error));
-}
 
 
 
@@ -88,30 +56,6 @@ const SignupError = {
     EMAIL_EMPTY:          ErrorInfo.SignupError.success + 4,
     EMAIL_EXISTS:         ErrorInfo.SignupError.success + 5,
 }
-function stringToSignupError(error_string) {
-    if (error_string === "FAILURE") {
-        return SignupError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return SignupError.SUCCESS;
-    }
-    if (error_string === "INVALID_EMAIL") {
-        return SignupError.INVALID_EMAIL;
-    }
-    if (error_string === "INVALID_PASSWORD") {
-        return PasswordError.INVALID_PASSWORD;
-    }
-    if (error_string === "ACCEPT_TERMS") {
-        return SignupError.ACCEPT_TERMS;
-    }
-    if (error_string === "EMAIL_EMPTY") {
-        return SignupError.EMAIL_EMPTY;
-    }
-    if (error_string === "EMAIL_EXISTS") {
-        return SignupError.EMAIL_EXISTS;
-    }
-    return SignupError.FAILURE;
-}
 
 
 
@@ -128,24 +72,6 @@ const LoginError = {
     EMAIL_EMPTY:          ErrorInfo.LoginError.success + 2,
     PASSWORD_EMPTY:       ErrorInfo.LoginError.success + 3,
 }
-function stringToLoginError(error_string) {
-    if (error_string === "FAILURE") {
-        return LoginError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return LoginError.SUCCESS;
-    }
-    if (error_string === "INCORRECT_PASSWORD") {
-        return LoginError.INCORRECT_PASSWORD;
-    }
-    if (error_string == "EMAIL_EMPTY") {
-        return RecoverPasswordError.EMAIL_EMPTY;
-    }
-    if (error_string == "PASSWORD_EMPTY") {
-        return RecoverPasswordError.PASSWORD_EMPTY;
-    }
-    return LoginError.FAILURE;
-}
 
 
 
@@ -161,24 +87,6 @@ const ForgotPasswordError = {
     INVALID_EMAIL:        ErrorInfo.ForgotPasswordError.success + 1,
     EMAIL_NOT_FOUND:      ErrorInfo.ForgotPasswordError.success + 2,
     EMAIL_EMPTY:          ErrorInfo.ForgotPasswordError.success + 3,
-}
-function stringToForgotPasswordError(error_string) {
-    if (error_string === "FAILURE") {
-        return ForgotPasswordError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return ForgotPasswordError.SUCCESS;
-    }
-    if (error_string === "INVALID_EMAIL") {
-        return ForgotPasswordError.INVALID_EMAIL;
-    }
-    if (error_string === "EMAIL_NOT_FOUND") {
-        return ForgotPasswordError.EMAIL_NOT_FOUND;
-    }
-    if (error_string === "EMAIL_EMPTY") {
-        return PasswordError.EMAIL_EMPTY;
-    }
-    return ForgotPasswordError.FAILURE;
 }
 
 
@@ -197,27 +105,6 @@ const RecoverPasswordError = {
     INVALID_KEY:          ErrorInfo.RecoverPasswordError.success + 3,
     EMAIL_NOT_FOUND:      ErrorInfo.RecoverPasswordError.success + 4,
 }
-function stringToRecoverPasswordError(error_string) {
-    if (error_string === "FAILURE") {
-        return RecoverPasswordError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return RecoverPasswordError.SUCCESS;
-    }
-    if (error_string == "INVALID_PASSWORD") {
-        return RecoverPasswordError.INVALID_PASSWORD;
-    }
-    if (error_string == "KEY_EXPIRED") {
-        return RecoverPasswordError.KEY_EXPIRED;
-    }
-    if (error_string == "INVALID_KEY") {
-        return RecoverPasswordError.INVALID_KEY;
-    }
-    if (error_string == "EMAIL_NOT_FOUND") {
-        return RecoverPasswordError.EMAIL_NOT_FOUND;
-    }
-    return RecoverPasswordError.FAILURE;
-}
 
 
 
@@ -233,24 +120,6 @@ const ChangePasswordError = {
     INVALID_PASSWORD:     ErrorInfo.ChangePasswordError.success + 1,
     INCORRECT_PASSWORD:   ErrorInfo.ChangePasswordError.success + 2,
     PASSWORD_EMPTY:       ErrorInfo.ChangePasswordError.success + 3,
-}
-function stringToChangePasswordError(error_string) {
-    if (error_string === "FAILURE") {
-        return ChangePasswordError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return ChangePasswordError.SUCCESS;
-    }
-    if (error_string == "INVALID_PASSWORD") {
-        return ChangePasswordError.INVALID_PASSWORD;
-    }
-    if (error_string == "INCORRECT_PASSWORD") {
-        return ChangePasswordError.INCORRECT_PASSWORD;
-    }
-    if (error_string == "PASSWORD_EMPTY") {
-        return ChangePasswordError.PASSWORD_EMPTY;
-    }
-    return ChangePasswordError.FAILURE;
 }
 
 
@@ -268,27 +137,6 @@ const CheckInError = {
     LOC_NOT_FOUND:        ErrorInfo.CheckInError.success + 2,
     TOO_CLOSE_TO_GYM:     ErrorInfo.CheckInError.success + 3,
     TOO_CLOSE_TO_HOME:    ErrorInfo.CheckInError.success + 4,
-}
-function stringToCheckInError(error_string) {
-    if (error_string === "FAILURE") {
-        return CheckInError.FAILURE;
-    }
-    if (error_string === "SUCCESS") {
-        return CheckInError.SUCCESS;
-    }
-    if (error_string == "PHONE_NOT_FOUND") {
-        return CheckInError.PHONE_NOT_FOUND;
-    }
-    if (error_string == "LOC_NOT_FOUND") {
-        return CheckInError.LOC_NOT_FOUND;
-    }
-    if (error_string == "TOO_CLOSE_TO_GYM") {
-        return CheckInError.TOO_CLOSE_TO_GYM;
-    }
-    if (error_string == "TOO_CLOSE_TO_HOME") {
-        return CheckInError.TOO_CLOSE_TO_HOME;
-    }
-    return CheckInError.FAILURE;
 }
 
 
