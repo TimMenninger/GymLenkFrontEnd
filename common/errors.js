@@ -223,13 +223,13 @@ function errorString(error) {
         return "Password successfully changed";
     case RecoverPasswordError.INVALID_EMAIL:
         return "Email is invalid";
-    case INVALID_PASSWORD:
+    case RecoverPasswordError.INVALID_PASSWORD:
         return "New password is invalid";
-    case KEY_EXPIRED:
+    case RecoverPasswordError.KEY_EXPIRED:
         return "This key has expired";
-    case INVALID_KEY:
+    case RecoverPasswordError.INVALID_KEY:
         return "This is not a valid key";
-    case EMAIL_NOT_FOUND:
+    case RecoverPasswordError.EMAIL_NOT_FOUND:
         return "There was no account found for this email";
     case RecoverPasswordError.FAILURE:
         return "Error changing forgotten password";
