@@ -66,8 +66,10 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 //
 
 function stringToError(error_type, error_str) {
+    console.log(error_str)
     for (error in error_type) {
-        if (error == error_str) {
+        console.log(error)
+        if (error === error_str) {
             return error_type[error];
         }
     }
@@ -175,7 +177,7 @@ function parseResponse(request, error_type, submit_type) {
     showSubmitButton(submit_type);
 
     // Check for failure pulled from above
-    if (error != error_type.SUCCESS) {
+    if (error !== error_type.SUCCESS) {
         // Display error
         showError(error);
         showSubmitButton(submit_type);
