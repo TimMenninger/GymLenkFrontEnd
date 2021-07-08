@@ -17,6 +17,7 @@ $(document).ready(function() {
     document.getElementById("gym-edit-phone").value         = data["formatted_phone_number"];
     document.getElementById("gym-edit-email").value         = data["email"];
     document.getElementById("gym-edit-description").value   = data["description"];
+    document.getElementById("gym-entry-instructions").value = data["entry_info"];
 
     for (const raw_dow of DaysOfWeek) {
         var dow = raw_dow.toLowerCase();
@@ -159,6 +160,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     data["email"]               = document.getElementById("gym-edit-email").value;
     data["description"]         = document.getElementById("gym-edit-description").value;
     data["hours"]               = {};
+    data["entry_info"]          = document.getElementById("gym-entry-instructions").value;
 
     // Gym hours
     for (const raw_dow of DaysOfWeek) {
