@@ -66,11 +66,9 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 //
 
 function stringToError(error_type, error_str) {
-    console.log(error_str)
-    for (error in error_type) {
-        console.log(error)
+    for (error in error_type.Errors) {
         if (error === error_str) {
-            return error_type[error];
+            return error_type.Errors[error];
         }
     }
     return -1;
