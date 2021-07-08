@@ -40,7 +40,9 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var { data, error } = parseResponse(request, ErrorInfo.LoginError, SubmitButton.LogIn);
+            let { data, error } = parseResponse(request, ErrorInfo.LoginError, SubmitButton.LogIn);
+            console.log(data)
+            console.log(error)
 
             if (error === LoginError.SUCCESS) {
                 // Success - go to dashboard if the account is complete, or to

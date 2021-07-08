@@ -185,6 +185,8 @@ function parseResponse(request, error_type, submit_type) {
         showSuccess(error_type);
     }
 
+    console.log(data)
+    console.log(error)
     return { data, error };
 }
 
