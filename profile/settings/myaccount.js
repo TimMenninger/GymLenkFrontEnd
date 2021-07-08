@@ -46,45 +46,16 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var error_type = ChangePasswordError.SUCCESS;
-            var data = "{}";
-
-            // Check error on response status
-            if (request.status != 200) {
-                // Error message
-                console.log(`Request failed with status ${request.status}`);
-                error_type = ChangePasswordError.FAILURE;
-            }
-            // Begin accessing JSON data here
-            else {
-                data = JSON.parse(request.responseText);
-                if (!data["success"]) {
-                    error_type = stringToError(ChangePasswordError, data["error"]);
-                }
-            }
-
-            // Replace the password button and remove the lottie, regardless of
-            // success/failure
-            showSubmitButton(SubmitButton.SaveAccountSettings);
+            let { _, error } = parseResponse(ErrorInfo.ChangePasswordError, SubmitButton.SaveAccountSettings);
 
             // Check for failure pulled from above
-            if (error_type != ChangePasswordError.SUCCESS) {
-                // Display error
-                showError(error_type);
-                return;
+            if (error === ChangePasswordError.SUCCESS) {
+                // Clear text on success, but not on error since they might want
+                // to keep their entries there
+                document.getElementById("current-pw").value = "";
+                document.getElementById("new-pw").value = "";
+                document.getElementById("confirm-new-pw").value = "";
             }
-
-            // Clear text on success, but not on error since they might want to
-            // keep their entries there
-            document.getElementById("current-pw").value = "";
-            document.getElementById("new-pw").value = "";
-            document.getElementById("confirm-new-pw").value = "";
-
-            // Remove any error message there was
-            showSuccess(ErrorInfo.ChangePasswordError);
-
-            // Done changing password
-            alert("Password successfully changed")
         }
     }
 

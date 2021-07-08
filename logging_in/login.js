@@ -40,46 +40,24 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var error_type = LoginError.SUCCESS;
-            var data = "{}";
+            let { data, error } = parseResponse(ErrorInfo.LoginError, SubmitButton.LogIn);
 
-            // Check error on response status
-            if (request.status != 200) {
-                // Error message
-                console.log(`Request failed with status ${request.status}`);
-                error_type = LoginError.FAILURE;
-            }
-            // Begin accessing JSON data here
-            else {
-                data = JSON.parse(request.responseText);
-                if (!data["success"]) {
-                    error_type = stringToError(LoginError, data["error"]);
+            if (error_type === LoginError.SUCCESS) {
+                // Success - go to dashboard if the account is complete, or to
+                // onboarding if they must still set things up
+                localStorage.setItem("logged_in", "true");
+
+                // Store the session ID, which must be used with subsequent
+                // requests
+                localStorage.setItem("session_id", data["session_id"]);
+                localStorage.setItem("account_email", email);
+
+                if ("dashboard" in data && "location_id" in data["dashboard"]) {
+                    storeDashboardData(data["dashboard"]);
+                    window.location.replace(URL_landing_after_login);
+                } else {
+                    window.location.replace(URL_landing_after_signup);
                 }
-            }
-
-            // Check for failure pulled from above
-            if (error_type != LoginError.SUCCESS) {
-                showError(error_type);
-                showSubmitButton(SubmitButton.LogIn);
-                return;
-            }
-
-            // Success - go to dashboard if the account is complete, or to
-            // onboarding if they must still set things up
-            localStorage.setItem("logged_in", "true");
-
-            // Store the session ID, which must be used with subsequent requests
-            localStorage.setItem("session_id", data["session_id"]);
-            localStorage.setItem("account_email", email);
-
-            // Remove any error message there was
-            hideErrors();
-
-            if ("dashboard" in data && "location_id" in data["dashboard"]) {
-                storeDashboardData(data["dashboard"]);
-                window.location.replace(URL_landing_after_login);
-            } else {
-                window.location.replace(URL_landing_after_signup);
             }
         }
     }

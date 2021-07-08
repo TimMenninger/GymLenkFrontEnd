@@ -48,44 +48,22 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var error_type = SignupError.SUCCESS;
-            var data = "{}";
+            let { data, error } = parseResponse(ErrorInfo.SignupError, SubmitButton.SignUp);
 
-            if (request.status != 200) {
-                console.log(`Request failed with status ${request.status}`);
-                error_type = SignupError.FAILURE;
+            if (error === SignupError.SUCCESS) {
+                // Success - now signed in even if we haven't done onboarding
+                // yet
+                localStorage.setItem("logged_in", "true");
+
+                // Store the session ID, which must be used with subsequent
+                // requests
+                localStorage.setItem("session_id", data["session_id"]);
+                localStorage.setItem("account_email", email);
+
+                // Success
+                localStorage.setItem("account_id", data["account_id"]);
+                window.location.replace(URL_landing_after_signup);
             }
-            // Begin accessign JSON
-            else {
-                data = JSON.parse(request.responseText);
-                if (!data["success"]) {
-                    error_type = stringToError(SignupError, data["error"]);
-                }
-            }
-
-            // Check for failure
-            if (error_type != SignupError.SUCCESS) {
-                // Display error
-                showError(error_type);
-
-                // Spinner
-                showSubmitButton(SubmitButton.SignUp);
-                return;
-            }
-
-            // Remove any error message there was
-            hideErrors();
-
-            // Success - now signed in even if we haven't done onboarding yet
-            localStorage.setItem("logged_in", "true");
-
-            // Store the session ID, which must be used with subsequent requests
-            localStorage.setItem("session_id", data["session_id"]);
-            localStorage.setItem("account_email", email);
-
-            // Success
-            localStorage.setItem("account_id", data["account_id"]);
-            window.location.replace(URL_landing_after_signup);
         }
     }
 

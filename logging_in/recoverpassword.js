@@ -78,28 +78,11 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var error_type = RecoverPasswordError.SUCCESS;
-            var data = "{}";
+            let { _, error } = parseResponse(ErrorInfo.RecoverPasswordError, SubmitButton.RecoverPassword);
 
-            if (request.status != 200) {
-                console.log(`Request failed with status ${request.status}`);
-                error_type = RecoverPasswordError.FAILURE;
+            if (error_type === RecoverPasswordError.SUCCESS) {
+                window.location.assign(URL_log_in);
             }
-            // Begin accessing JSON data here
-            else {
-                data = JSON.parse(request.responseText);
-                if (!data["success"]) {
-                    error_type = stringToError(RecoverPasswordError, data["error"]);
-                }
-            }
-
-            if (error_type != RecoverPasswordError.SUCCESS) {
-                showError(error_type);
-                showSubmitButton(SubmitButton.RecoverPassword)
-                return;
-            }
-
-            window.location.assign(URL_log_in);
         }
     }
 

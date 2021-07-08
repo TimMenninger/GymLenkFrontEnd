@@ -22,41 +22,14 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var error_type = CheckInError.SUCCESS;
-            var data = "{}";
+            let { _, error } = parseResponse(ErrorInfo.CheckInError, SubmitButton.CheckIn);
 
-            // Check error on response status
-            if (request.status != 200) {
-                // Error message
-                console.log(`Request failed with status ${request.status}`);
-                error_type = CheckInError.FAILURE;
+            if (error_type === CheckInError.SUCCESS) {
+                // Clear text on success, but not on error since they might want
+                // to keep their entries there
+                document.getElementById("user-beta-phone").value = "";
+                document.getElementById("user-beta-gym-dropdown").selectedIndex = 0;
             }
-            // Begin accessing JSON data here
-            else {
-                data = JSON.parse(request.responseText);
-                if (!data["success"]) {
-                    error_type = stringToError(CheckInError, data["error"]);
-                }
-            }
-
-            // Replace the confirm button and remove the lottie, regardless of
-            // success/failure
-            showSubmitButton(SubmitButton.CheckIn);
-
-            // Check for failure pulled from above
-            if (error_type != CheckInError.SUCCESS) {
-                // Display error
-                showError(error_type);
-                return;
-            }
-
-            // Clear text on success, but not on error since they might want to
-            // keep their entries there
-            document.getElementById("user-beta-phone").value = "";
-            document.getElementById("user-beta-gym-dropdown").selectedIndex = 0;
-
-            // Remove any error message there was
-            showSuccess(ErrorInfo.CheckInError);
         }
     }
 

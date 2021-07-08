@@ -76,7 +76,7 @@ function stringToError(error_type, error_str) {
 
 function getErrorInfo(error) {
     for (error_type in ErrorInfo) {
-        if (error >= ErrorInfo[error_type].success && error < (ErrorInfo[error_type].success + ErrorBandWidth)) {
+        if (error >= ErrorInfo[error_type].base && error < (ErrorInfo[error_type].base + ErrorBandWidth)) {
             return ErrorInfo[error_type];
         }
     }
@@ -94,7 +94,7 @@ function showPasswordError(error_type, password_error) {
 
 function showSuccess(error_info) {
     hideErrors();
-    showErrorElement(error_info.successElement, errorString(error_info.success));
+    showErrorElement(error_info.successElement, errorString(error_info.Errors.SUCCESS));
 }
 
 function showErrorElement(element_name, error_desc) {
@@ -124,14 +124,14 @@ function hideErrors(element_name) {
 //
 
 const SubmitButton = {
-    UnknownSubmitButton:        { "submit": null,                           "lottie": null                                  },
-    SaveAccountSettings:        { "submit": "update-pw-button",             "lottie": "updatepw-loading-lottie"             },
-    SaveGymInfo:                { "submit": "save-changes-my-gym-button",   "lottie": "save-changes-my-gym-loading-lottie"  },
-    SignUp:                     { "submit": "gym-sign-up-button",           "lottie": "signup-loading-lottie"               },
-    RecoverPassword:            { "submit": "gym-newpw-button",             "lottie": "newpw-loading-lottie"                },
-    LogIn:                      { "submit": "gym-login-button",             "lottie": "login-loading-lottie"                },
-    ForgotPassword:             { "submit": "gym-pwreset-button",           "lottie": "pwreset-loading-lottie"              },
-    CheckIn:                    { "submit": "user-beta-confirm-button",     "lottie": "user-beta-loading-lottie"            },
+    UnknownSubmitButton:        { submit: null,                             lottie: null                                    },
+    SaveAccountSettings:        { submit: "update-pw-button",               lottie: "updatepw-loading-lottie"               },
+    SaveGymInfo:                { submit: "save-changes-my-gym-button",     lottie: "save-changes-my-gym-loading-lottie"    },
+    SignUp:                     { submit: "gym-sign-up-button",             lottie: "signup-loading-lottie"                 },
+    RecoverPassword:            { submit: "gym-newpw-button",               lottie: "newpw-loading-lottie"                  },
+    LogIn:                      { submit: "gym-login-button",               lottie: "login-loading-lottie"                  },
+    ForgotPassword:             { submit: "gym-pwreset-button",             lottie: "pwreset-loading-lottie"                },
+    CheckIn:                    { submit: "user-beta-confirm-button",       lottie: "user-beta-loading-lottie"              },
 };
 
 function showSubmitButton(submit_type) {
@@ -146,6 +146,46 @@ function showLoadingLottie(submit_type) {
     var lottie = document.getElementById(submit_type.lottie);
     button.style.display = "none";
     lottie.style.display = "block";
+}
+
+//
+// REQUESTS
+//
+
+function parseResponse(error_type, submit_type) {
+    var error = error_type.SUCCESS;
+    var data = null;
+
+    // Check error on response status
+    if (request.status != 200) {
+        // Error message
+        console.log(`Request failed with status ${request.status}`);
+        error = error_type.FAILURE;
+    }
+    // Begin accessing JSON data here
+    else {
+        data = JSON.parse(request.responseText);
+        if (!data["success"]) {
+            error = stringToError(error_type, data["error"]);
+        }
+    }
+
+    // Replace the submit button and remove the lottie, regardless of
+    // success/failure
+    showSubmitButton(submit_type);
+
+    // Check for failure pulled from above
+    if (error != error_type.SUCCESS) {
+        // Display error
+        showError(error);
+        showSubmitButton(submit_type);
+    }
+    // Remove any error message there was and show success (if applicable)
+    else {
+        showSuccess(error_type);
+    }
+
+    return { data, error };
 }
 
 //

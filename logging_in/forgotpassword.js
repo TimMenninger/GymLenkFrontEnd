@@ -34,30 +34,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            var error_type = ForgotPasswordError.SUCCESS;
-            var data = "{}";
-
-            if (request.status != 200) {
-                console.log(`Request failed with status ${request.status}`);
-                error_type = ForgotPasswordError.FAILURE;
-            }
-            // Begin accessing JSON data here
-            else {
-                data = JSON.parse(request.responseText);
-                if (!data["success"]) {
-                    error_type = stringToError(ForgotPasswordError, data["error"]);
-                }
-            }
-
-            // Begin accessing JSON data here
-            if (error_type != ForgotPasswordError.SUCCESS) {
-                showError(error_type);
-                showSubmitButton(SubmitButton.ForgotPassword);
-                return;
-            }
-
-            document.getElementById("pwreset-loading-lottie").style.display = "none";
-            showSuccess(ErrorInfo.ForgotPasswordError);
+            parseResponse(ErrorInfo.ForgotPasswordError, SubmitButton.ForgotPassword);
         }
     }
 

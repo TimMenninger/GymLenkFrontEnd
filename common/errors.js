@@ -10,14 +10,14 @@
 
 const ErrorBandWidth = 1000;
 const ErrorInfo = {
-    UnknownError:           { "success": -1,                "errorElement": null,                           "successElement": null                              },
-    PasswordError:          { "success": ErrorBandWidth*1,  "errorElement": null,                           "successElement": null                              },
-    SignupError:            { "success": ErrorBandWidth*2,  "errorElement": "gym-sign-up-error-div",        "successElement": null                              },
-    LoginError:             { "success": ErrorBandWidth*3,  "errorElement": "gym-login-error-div",          "successElement": null                              },
-    ForgotPasswordError:    { "success": ErrorBandWidth*4,  "errorElement": "gym-pwreset-error-div",        "successElement": "gym-pwreset-success-div"         },
-    RecoverPasswordError:   { "success": ErrorBandWidth*5,  "errorElement": "gym-newpw-error-div",          "successElement": null                              },
-    ChangePasswordError:    { "success": ErrorBandWidth*6,  "errorElement": "gym-update-pw-error-div",      "successElement": "gym-update-pw-success-div"       },
-    CheckInError:           { "success": ErrorBandWidth*7,  "errorElement": "user-beta-confirm-error-div",  "successElement": "user-beta-confirm-success-div"   },
+    UnknownError:           { base: -1,                 errorElement: null,                             "successElement": null                              },
+    PasswordError:          { base: ErrorBandWidth*1,   errorElement: null,                             "successElement": null                              },
+    SignupError:            { base: ErrorBandWidth*2,   errorElement: "gym-sign-up-error-div",          "successElement": null                              },
+    LoginError:             { base: ErrorBandWidth*3,   errorElement: "gym-login-error-div",            "successElement": null                              },
+    ForgotPasswordError:    { base: ErrorBandWidth*4,   errorElement: "gym-pwreset-error-div",          "successElement": "gym-pwreset-success-div"         },
+    RecoverPasswordError:   { base: ErrorBandWidth*5,   errorElement: "gym-newpw-error-div",            "successElement": null                              },
+    ChangePasswordError:    { base: ErrorBandWidth*6,   errorElement: "gym-update-pw-error-div",        "successElement": "gym-update-pw-success-div"       },
+    CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error-div",    "successElement": "user-beta-confirm-success-div"   },
 }
 
 
@@ -28,15 +28,15 @@ const ErrorInfo = {
  *
  */
 
-const PasswordError = {
-    FAILURE:             -ErrorInfo.PasswordError.success,
-    SUCCESS:              ErrorInfo.PasswordError.success + 0,
-    MISMATCH:             ErrorInfo.PasswordError.success + 1,
-    TOO_SHORT:            ErrorInfo.PasswordError.success + 2,
-    NEEDS_LETTER:         ErrorInfo.PasswordError.success + 3,
-    NEEDS_NONLETTER:      ErrorInfo.PasswordError.success + 4,
-    PASSWORD_EMPTY:       ErrorInfo.PasswordError.success + 5,
-    CONF_PASSWORD_EMPTY:  ErrorInfo.PasswordError.success + 6,
+const PasswordError = ErrorInfo.PasswordError.Errors = {
+    FAILURE:             -ErrorInfo.PasswordError.base,
+    SUCCESS:              ErrorInfo.PasswordError.base + 0,
+    MISMATCH:             ErrorInfo.PasswordError.base + 1,
+    TOO_SHORT:            ErrorInfo.PasswordError.base + 2,
+    NEEDS_LETTER:         ErrorInfo.PasswordError.base + 3,
+    NEEDS_NONLETTER:      ErrorInfo.PasswordError.base + 4,
+    PASSWORD_EMPTY:       ErrorInfo.PasswordError.base + 5,
+    CONF_PASSWORD_EMPTY:  ErrorInfo.PasswordError.base + 6,
 }
 
 
@@ -47,14 +47,14 @@ const PasswordError = {
  *
  */
 
-const SignupError = {
-    FAILURE:             -ErrorInfo.SignupError.success,
-    SUCCESS:              ErrorInfo.SignupError.success + 0,
-    INVALID_EMAIL:        ErrorInfo.SignupError.success + 1,
-    INVALID_PASSWORD:     ErrorInfo.SignupError.success + 2,
-    ACCEPT_TERMS:         ErrorInfo.SignupError.success + 3,
-    EMAIL_EMPTY:          ErrorInfo.SignupError.success + 4,
-    EMAIL_EXISTS:         ErrorInfo.SignupError.success + 5,
+const SignupError = ErrorInfo.SignupError.Errors = {
+    FAILURE:             -ErrorInfo.SignupError.base,
+    SUCCESS:              ErrorInfo.SignupError.base + 0,
+    INVALID_EMAIL:        ErrorInfo.SignupError.base + 1,
+    INVALID_PASSWORD:     ErrorInfo.SignupError.base + 2,
+    ACCEPT_TERMS:         ErrorInfo.SignupError.base + 3,
+    EMAIL_EMPTY:          ErrorInfo.SignupError.base + 4,
+    EMAIL_EXISTS:         ErrorInfo.SignupError.base + 5,
 }
 
 
@@ -65,12 +65,12 @@ const SignupError = {
  *
  */
 
-const LoginError = {
-    FAILURE:             -ErrorInfo.LoginError.success,
-    SUCCESS:              ErrorInfo.LoginError.success + 0,
-    INCORRECT_PASSWORD:   ErrorInfo.LoginError.success + 1,
-    EMAIL_EMPTY:          ErrorInfo.LoginError.success + 2,
-    PASSWORD_EMPTY:       ErrorInfo.LoginError.success + 3,
+const LoginError = ErrorInfo.LoginError.Errors = {
+    FAILURE:             -ErrorInfo.LoginError.base,
+    SUCCESS:              ErrorInfo.LoginError.base + 0,
+    INCORRECT_PASSWORD:   ErrorInfo.LoginError.base + 1,
+    EMAIL_EMPTY:          ErrorInfo.LoginError.base + 2,
+    PASSWORD_EMPTY:       ErrorInfo.LoginError.base + 3,
 }
 
 
@@ -81,12 +81,12 @@ const LoginError = {
  *
  */
 
-const ForgotPasswordError = {
-    FAILURE:             -ErrorInfo.ForgotPasswordError.success,
-    SUCCESS:              ErrorInfo.ForgotPasswordError.success + 0,
-    INVALID_EMAIL:        ErrorInfo.ForgotPasswordError.success + 1,
-    EMAIL_NOT_FOUND:      ErrorInfo.ForgotPasswordError.success + 2,
-    EMAIL_EMPTY:          ErrorInfo.ForgotPasswordError.success + 3,
+const ForgotPasswordError = ErrorInfo.ForgotPasswordError.Errors = {
+    FAILURE:             -ErrorInfo.ForgotPasswordError.base,
+    SUCCESS:              ErrorInfo.ForgotPasswordError.base + 0,
+    INVALID_EMAIL:        ErrorInfo.ForgotPasswordError.base + 1,
+    EMAIL_NOT_FOUND:      ErrorInfo.ForgotPasswordError.base + 2,
+    EMAIL_EMPTY:          ErrorInfo.ForgotPasswordError.base + 3,
 }
 
 
@@ -97,13 +97,13 @@ const ForgotPasswordError = {
  *
  */
 
-const RecoverPasswordError = {
-    FAILURE:             -ErrorInfo.RecoverPasswordError.success,
-    SUCCESS:              ErrorInfo.RecoverPasswordError.success + 0,
-    INVALID_PASSWORD:     ErrorInfo.RecoverPasswordError.success + 1,
-    KEY_EXPIRED:          ErrorInfo.RecoverPasswordError.success + 2,
-    INVALID_KEY:          ErrorInfo.RecoverPasswordError.success + 3,
-    EMAIL_NOT_FOUND:      ErrorInfo.RecoverPasswordError.success + 4,
+const RecoverPasswordError = ErrorInfo.RecoverPasswordError.Errors = {
+    FAILURE:             -ErrorInfo.RecoverPasswordError.base,
+    SUCCESS:              ErrorInfo.RecoverPasswordError.base + 0,
+    INVALID_PASSWORD:     ErrorInfo.RecoverPasswordError.base + 1,
+    KEY_EXPIRED:          ErrorInfo.RecoverPasswordError.base + 2,
+    INVALID_KEY:          ErrorInfo.RecoverPasswordError.base + 3,
+    EMAIL_NOT_FOUND:      ErrorInfo.RecoverPasswordError.base + 4,
 }
 
 
@@ -114,12 +114,12 @@ const RecoverPasswordError = {
  *
  */
 
-const ChangePasswordError = {
-    FAILURE:             -ErrorInfo.ChangePasswordError.success,
-    SUCCESS:              ErrorInfo.ChangePasswordError.success + 0,
-    INVALID_PASSWORD:     ErrorInfo.ChangePasswordError.success + 1,
-    INCORRECT_PASSWORD:   ErrorInfo.ChangePasswordError.success + 2,
-    PASSWORD_EMPTY:       ErrorInfo.ChangePasswordError.success + 3,
+const ChangePasswordError = ErrorInfo.ChangePasswordError.Errors = {
+    FAILURE:             -ErrorInfo.ChangePasswordError.base,
+    SUCCESS:              ErrorInfo.ChangePasswordError.base + 0,
+    INVALID_PASSWORD:     ErrorInfo.ChangePasswordError.base + 1,
+    INCORRECT_PASSWORD:   ErrorInfo.ChangePasswordError.base + 2,
+    PASSWORD_EMPTY:       ErrorInfo.ChangePasswordError.base + 3,
 }
 
 
@@ -130,13 +130,13 @@ const ChangePasswordError = {
  *
  */
 
-const CheckInError = {
-    FAILURE:             -ErrorInfo.CheckInError.success,
-    SUCCESS:              ErrorInfo.CheckInError.success + 0,
-    PHONE_NOT_FOUND:      ErrorInfo.CheckInError.success + 1,
-    LOC_NOT_FOUND:        ErrorInfo.CheckInError.success + 2,
-    TOO_CLOSE_TO_GYM:     ErrorInfo.CheckInError.success + 3,
-    TOO_CLOSE_TO_HOME:    ErrorInfo.CheckInError.success + 4,
+const CheckInError = ErrorInfo.CheckInError.Errors = {
+    FAILURE:             -ErrorInfo.CheckInError.base,
+    SUCCESS:              ErrorInfo.CheckInError.base + 0,
+    PHONE_NOT_FOUND:      ErrorInfo.CheckInError.base + 1,
+    LOC_NOT_FOUND:        ErrorInfo.CheckInError.base + 2,
+    TOO_CLOSE_TO_GYM:     ErrorInfo.CheckInError.base + 3,
+    TOO_CLOSE_TO_HOME:    ErrorInfo.CheckInError.base + 4,
 }
 
 
