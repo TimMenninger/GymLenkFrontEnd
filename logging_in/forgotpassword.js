@@ -34,7 +34,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            parseResponse(ErrorInfo.ForgotPasswordError, SubmitButton.ForgotPassword);
+            parseResponse(request, ErrorInfo.ForgotPasswordError, SubmitButton.ForgotPassword);
         }
     }
 

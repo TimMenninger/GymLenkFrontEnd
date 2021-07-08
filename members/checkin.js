@@ -22,7 +22,7 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            let { _, error } = parseResponse(ErrorInfo.CheckInError, SubmitButton.CheckIn);
+            let { _, error } = parseResponse(request, ErrorInfo.CheckInError, SubmitButton.CheckIn);
 
             if (error_type === CheckInError.SUCCESS) {
                 // Clear text on success, but not on error since they might want

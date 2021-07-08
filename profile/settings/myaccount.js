@@ -46,7 +46,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            let { _, error } = parseResponse(ErrorInfo.ChangePasswordError, SubmitButton.SaveAccountSettings);
+            let { _, error } = parseResponse(request, ErrorInfo.ChangePasswordError, SubmitButton.SaveAccountSettings);
 
             // Check for failure pulled from above
             if (error === ChangePasswordError.SUCCESS) {

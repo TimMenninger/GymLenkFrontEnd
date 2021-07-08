@@ -152,7 +152,7 @@ function showLoadingLottie(submit_type) {
 // REQUESTS
 //
 
-function parseResponse(error_type, submit_type) {
+function parseResponse(request, error_type, submit_type) {
     var error = error_type.SUCCESS;
     var data = null;
 

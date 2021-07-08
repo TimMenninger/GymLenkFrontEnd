@@ -48,7 +48,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            let { data, error } = parseResponse(ErrorInfo.SignupError, SubmitButton.SignUp);
+            let { data, error } = parseResponse(request, ErrorInfo.SignupError, SubmitButton.SignUp);
 
             if (error === SignupError.SUCCESS) {
                 // Success - now signed in even if we haven't done onboarding
