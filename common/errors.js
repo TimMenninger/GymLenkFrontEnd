@@ -22,50 +22,6 @@ const ErrorInfo = {
     CheckInError:           { "success": ErrorBandWidth*7,  "errorElement": "user-beta-confirm-error-div",  "successElement": "user-beta-confirm-success-div"   },
 }
 
-/*******************************************************************************
- *
- * C O M M O N
- *
- */
-
-function getErrorInfo(error) {
-    for (error_type in ErrorInfo) {
-        if (error >= ErrorInfo[error_type].success && error < (ErrorInfo[error_type].success + ErrorBandWidth)) {
-            return ErrorInfo[error_type];
-        }
-    }
-    return ErrorInfo.UnknownError;
-}
-
-function showError(error) {
-    hideErrors();
-    showErrorElement(getErrorInfo(error).errorElement, errorString(error));
-}
-function showSuccess(error_info) {
-    hideErrors();
-    showErrorElement(error_info.successElement, errorString(error_info.success));
-}
-function showErrorElement(element_name, error_desc) {
-    var elem = document.getElementById(element_name);
-    if (elem !== null) {
-        elem.style.display = "block";
-        elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
-    }
-}
-function hideErrors(element_name) {
-    for (error in ErrorInfo) {
-        var error_elem = document.getElementById(ErrorInfo[error].errorElement);
-        if (error_elem !== null) {
-            error_elem.style.display = "none";
-        }
-
-        var success_elem = document.getElementById(ErrorInfo[error].successElement);
-        if (success_elem !== null) {
-            success_elem.style.display = "none";
-        }
-    }
-}
-
 
 
 /*******************************************************************************
@@ -449,8 +405,6 @@ function errorString(error) {
     //
     // CheckInError
     //
-    case CheckInError.FAILURE:
-        return "Failed to check user in";
     case CheckInError.SUCCESS:
         return "A text has been sent with further instructions";
     case CheckInError.PHONE_NOT_FOUND:
@@ -461,6 +415,8 @@ function errorString(error) {
         return "You cannot use this gym because it is too close to your home gym";
     case CheckInError.TOO_CLOSE_TO_HOME:
         return "You cannot use this gym because it is too close to your home";
+    case CheckInError.FAILURE:
+        return "Failed to check in";
 
     //
     // default

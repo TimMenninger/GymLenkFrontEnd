@@ -61,6 +61,84 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 // COMMON
 //
 
+//
+// ERRORS
+//
+
+function getErrorInfo(error) {
+    for (error_type in ErrorInfo) {
+        if (error >= ErrorInfo[error_type].success && error < (ErrorInfo[error_type].success + ErrorBandWidth)) {
+            return ErrorInfo[error_type];
+        }
+    }
+    return ErrorInfo.UnknownError;
+}
+
+function showError(error) {
+    hideErrors();
+    showErrorElement(getErrorInfo(error).errorElement, errorString(error));
+}
+
+function showSuccess(error_info) {
+    hideErrors();
+    showErrorElement(error_info.successElement, errorString(error_info.success));
+}
+
+function showErrorElement(element_name, error_desc) {
+    var elem = document.getElementById(element_name);
+    if (elem !== null) {
+        elem.style.display = "block";
+        elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
+    }
+}
+
+function hideErrors(element_name) {
+    for (error in ErrorInfo) {
+        var error_elem = document.getElementById(ErrorInfo[error].errorElement);
+        if (error_elem !== null) {
+            error_elem.style.display = "none";
+        }
+
+        var success_elem = document.getElementById(ErrorInfo[error].successElement);
+        if (success_elem !== null) {
+            success_elem.style.display = "none";
+        }
+    }
+}
+
+//
+// SUBMIT BUTTON
+//
+
+const SubmitButton = {
+    UnknownSubmitButton:        { "submit": null,                           "lottie": null                                  },
+    SaveAccountSettings:        { "submit": "update-pw-button",             "lottie": "updatepw-loading-lottie"             },
+    SaveGymInfo:                { "submit": "save-changes-my-gym-button",   "lottie": "save-changes-my-gym-loading-lottie"  },
+    SignUp:                     { "submit": "gym-sign-up-button",           "lottie": "signup-loading-lottie"               },
+    RecoverPassword:            { "submit": "gym-newpw-button",             "lottie": "newpw-loading-lottie"                },
+    LogIn:                      { "submit": "gym-login-button",             "lottie": "login-loading-lottie"                },
+    ForgotPassword:             { "submit": "gym-pwreset-button",           "lottie": "pwreset-loading-lottie"              },
+    CheckIn:                    { "submit": "user-beta-confirm-button",     "lottie": "user-beta-loading-lottie"            },
+};
+
+function showSubmitButton(submit_type) {
+    var button = document.getElementById(submit_type.submit);
+    var lottie = document.getElementById(submit_type.lottie);
+    button.style.display = "block";
+    lottie.style.display = "none";
+}
+
+function showLoadingLottie(submit_type) {
+    var button = document.getElementById(submit_type.submit);
+    var lottie = document.getElementById(submit_type.lottie);
+    button.style.display = "none";
+    lottie.style.display = "block";
+}
+
+//
+// CHECK LOGGED IN/OUT
+//
+
 function clearState() {
     localStorage.clear();
 }
@@ -125,6 +203,10 @@ function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     return true;
 }
 
+//
+// PASSWORD REQUIREMENTS
+//
+
 function checkPasswordRequirements(new_pw, confirm_new_pw) {
     // Passwords must match first and foremost
     if (new_pw !== confirm_new_pw) {
@@ -147,6 +229,10 @@ function checkPasswordRequirements(new_pw, confirm_new_pw) {
 
     return PasswordError.SUCCESS;
 }
+
+//
+// DASHBOARD
+//
 
 function storeDashboardData(dashboard) {
     // Format phone number

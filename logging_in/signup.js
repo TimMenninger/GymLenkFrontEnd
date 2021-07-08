@@ -69,8 +69,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
                 showError(error_type);
 
                 // Spinner
-                document.getElementById("gym-sign-up-button").style.display = "block";
-                document.getElementById("signup-loading-lottie").style.display = "none";
+                showSubmitButton(SubmitButton.SignUp);
                 return;
             }
 
@@ -91,8 +90,7 @@ document.getElementById("gym-sign-up-button").addEventListener("click", function
     }
 
     // Show loading animation
-    document.getElementById("gym-sign-up-button").style.display = "none";
-    document.getElementById("signup-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.SignUp);
 
     // Send request
     request.send(JSON.stringify({

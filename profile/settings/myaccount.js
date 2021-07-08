@@ -65,8 +65,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
 
             // Replace the password button and remove the lottie, regardless of
             // success/failure
-            document.getElementById("update-pw-button").style.display = "block";
-            document.getElementById("updatepw-loading-lottie").style.display = "none";
+            showSubmitButton(SubmitButton.SaveAccountSettings);
 
             // Check for failure pulled from above
             if (error_type != ChangePasswordError.SUCCESS) {
@@ -90,8 +89,7 @@ document.getElementById("update-pw-button").addEventListener("click", function()
     }
 
     // Remove submit button in favor of a lottie
-    document.getElementById("update-pw-button").style.display = "none";
-    document.getElementById("updatepw-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.SaveAccountSettings);
 
     // Send request
     request.send(JSON.stringify(data));

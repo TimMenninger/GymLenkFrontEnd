@@ -227,8 +227,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
             // Spinner
-            document.getElementById("save-changes-my-gym-button").style.display = "block";
-            document.getElementById("save-changes-my-gym-loading-lottie").style.display = "none";
+            showSubmitButton(SubmitButton.SaveGymInfo);
 
             if (request.status != 200) {
                 console.log("Request failed");
@@ -249,8 +248,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     }
 
     // Remove submit button in favor of a lottie
-    document.getElementById("save-changes-my-gym-button").style.display = "none";
-    document.getElementById("save-changes-my-gym-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.SaveGymInfo);
 
     // Send request
     request.send(JSON.stringify(data));

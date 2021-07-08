@@ -95,10 +95,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
 
             if (error_type != RecoverPasswordError.SUCCESS) {
                 showError(error_type);
-
-                // Spinner
-                document.getElementById("gym-newpw-button").style.display = "block";
-                document.getElementById("newpw-loading-lottie").style.display = "none";
+                showSubmitButton(SubmitButton.RecoverPassword)
                 return;
             }
 
@@ -107,8 +104,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
     }
 
     // Show loading animation
-    document.getElementById("gym-newpw-button").style.display = "none";
-    document.getElementById("newpw-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.RecoverPassword)
 
     // Send request
     request.send(JSON.stringify({

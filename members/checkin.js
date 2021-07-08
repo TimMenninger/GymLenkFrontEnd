@@ -41,8 +41,7 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
 
             // Replace the confirm button and remove the lottie, regardless of
             // success/failure
-            document.getElementById("user-beta-confirm-button").style.display = "block";
-            document.getElementById("user-beta-loading-lottie").style.display = "none";
+            showSubmitButton(SubmitButton.CheckIn);
 
             // Check for failure pulled from above
             if (error_type != CheckInError.SUCCESS) {
@@ -62,8 +61,7 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
     }
 
     // Remove submit button in favor of a lottie
-    document.getElementById("user-beta-confirm-button").style.display = "none";
-    document.getElementById("user-beta-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.CheckIn);
 
     // Send request
     request.send(JSON.stringify(data));

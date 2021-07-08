@@ -52,10 +52,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
             // Begin accessing JSON data here
             if (error_type != ForgotPasswordError.SUCCESS) {
                 showError(error_type);
-
-                // Spinner
-                document.getElementById("gym-pwreset-button").style.display = "block";
-                document.getElementById("pwreset-loading-lottie").style.display = "none";
+                showSubmitButton(SubmitButton.ForgotPassword);
                 return;
             }
 
@@ -65,8 +62,7 @@ document.getElementById("gym-pwreset-button").addEventListener("click", function
     }
 
     // Show loading animation
-    document.getElementById("gym-pwreset-button").style.display = "none";
-    document.getElementById("pwreset-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.ForgotPassword);
 
     // Send request
     request.send(JSON.stringify({

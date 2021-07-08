@@ -59,12 +59,8 @@ document.getElementById("gym-login-button").addEventListener("click", function()
 
             // Check for failure pulled from above
             if (error_type != LoginError.SUCCESS) {
-                // Display error
                 showError(error_type);
-
-                // Spinner
-                document.getElementById("gym-login-button").style.display = "block";
-                document.getElementById("login-loading-lottie").style.display = "none";
+                showSubmitButton(SubmitButton.LogIn);
                 return;
             }
 
@@ -89,8 +85,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
     }
 
     // Show loading animation
-    document.getElementById("gym-login-button").style.display = "none";
-    document.getElementById("login-loading-lottie").style.display = "block";
+    showLoadingLottie(SubmitButton.LogIn);
 
     // Send request
     request.send(JSON.stringify({
