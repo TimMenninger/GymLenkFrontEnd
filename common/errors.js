@@ -2,7 +2,7 @@
  * ADDING ERRORS
  *      Adding an error type:
  *          - Put a row in the ErrorInfo
- *          - Put an entry in getErrorInfo function
+ *          - Put entries into errorString function
  *          - Create the error type below, e.g. const NewError = {}
  *          - Implement a function stringToNewError
  *      Adding to existing error
@@ -12,13 +12,14 @@
 
 const ErrorBandWidth = 1000;
 const ErrorInfo = {
-    UnknownError:           { "success": -1,                "errorElement": null,                       "successElement": null                          },
-    PasswordError:          { "success": ErrorBandWidth*1,  "errorElement": null,                       "successElement": null                          },
-    SignupError:            { "success": ErrorBandWidth*2,  "errorElement": "gym-sign-up-error-div",    "successElement": null                          },
-    LoginError:             { "success": ErrorBandWidth*3,  "errorElement": "gym-login-error-div",      "successElement": null                          },
-    ForgotPasswordError:    { "success": ErrorBandWidth*4,  "errorElement": "gym-pwreset-error-div",    "successElement": "gym-pwreset-success-div"     },
-    RecoverPasswordError:   { "success": ErrorBandWidth*5,  "errorElement": "gym-newpw-error-div",      "successElement": null                          },
-    ChangePasswordError:    { "success": ErrorBandWidth*6,  "errorElement": "gym-update-pw-error-div",  "successElement": "gym-update-pw-success-div"   },
+    UnknownError:           { "success": -1,                "errorElement": null,                           "successElement": null                              },
+    PasswordError:          { "success": ErrorBandWidth*1,  "errorElement": null,                           "successElement": null                              },
+    SignupError:            { "success": ErrorBandWidth*2,  "errorElement": "gym-sign-up-error-div",        "successElement": null                              },
+    LoginError:             { "success": ErrorBandWidth*3,  "errorElement": "gym-login-error-div",          "successElement": null                              },
+    ForgotPasswordError:    { "success": ErrorBandWidth*4,  "errorElement": "gym-pwreset-error-div",        "successElement": "gym-pwreset-success-div"         },
+    RecoverPasswordError:   { "success": ErrorBandWidth*5,  "errorElement": "gym-newpw-error-div",          "successElement": null                              },
+    ChangePasswordError:    { "success": ErrorBandWidth*6,  "errorElement": "gym-update-pw-error-div",      "successElement": "gym-update-pw-success-div"       },
+    CheckInError:           { "success": ErrorBandWidth*7,  "errorElement": "user-beta-confirm-error-div",  "successElement": "user-beta-confirm-success-div"   },
 }
 
 /*******************************************************************************
@@ -300,6 +301,44 @@ function stringToChangePasswordError(error_string) {
 
 /*******************************************************************************
  *
+ * M E M B E R   C H E C K   I N   E R R O R S
+ *
+ */
+
+const CheckInError = {
+    FAILURE:             -ErrorInfo.CheckInError.success,
+    SUCCESS:              ErrorInfo.CheckInError.success + 0,
+    PHONE_NOT_FOUND:      ErrorInfo.CheckInError.success + 1,
+    LOC_NOT_FOUND:        ErrorInfo.CheckInError.success + 2,
+    TOO_CLOSE_TO_GYM:     ErrorInfo.CheckInError.success + 3,
+    TOO_CLOSE_TO_HOME:    ErrorInfo.CheckInError.success + 4,
+}
+function stringToCheckInError(error_string) {
+    if (error_string === "FAILURE") {
+        return CheckInError.FAILURE;
+    }
+    if (error_string === "SUCCESS") {
+        return CheckInError.SUCCESS;
+    }
+    if (error_string == "PHONE_NOT_FOUND") {
+        return CheckInError.PHONE_NOT_FOUND;
+    }
+    if (error_string == "LOC_NOT_FOUND") {
+        return CheckInError.LOC_NOT_FOUND;
+    }
+    if (error_string == "TOO_CLOSE_TO_GYM") {
+        return CheckInError.TOO_CLOSE_TO_GYM;
+    }
+    if (error_string == "TOO_CLOSE_TO_HOME") {
+        return CheckInError.TOO_CLOSE_TO_HOME;
+    }
+    return CheckInError.FAILURE;
+}
+
+
+
+/*******************************************************************************
+ *
  * U T I L I T I E S
  *
  */
@@ -406,6 +445,22 @@ function errorString(error) {
         return "Current password is empty";
     case ChangePasswordError.FAILURE:
         return "Error changing password";
+
+    //
+    // CheckInError
+    //
+    case CheckInError.FAILURE:
+        return "Failed to check user in";
+    case CheckInError.SUCCESS:
+        return "A text has been sent with further instructions";
+    case CheckInError.PHONE_NOT_FOUND:
+        return "This phone number was not found";
+    case CheckInError.LOC_NOT_FOUND:
+        return "This gym was not found";
+    case CheckInError.TOO_CLOSE_TO_GYM:
+        return "You cannot use this gym because it is too close to your home gym";
+    case CheckInError.TOO_CLOSE_TO_HOME:
+        return "You cannot use this gym because it is too close to your home";
 
     //
     // default
