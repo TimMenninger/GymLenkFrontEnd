@@ -10,14 +10,15 @@
 
 const ErrorBandWidth = 1000;
 const ErrorInfo = {
-    UnknownError:           { base: -1,                 errorElement: null,                             "successElement": null                              },
-    PasswordError:          { base: ErrorBandWidth*1,   errorElement: null,                             "successElement": null                              },
-    SignupError:            { base: ErrorBandWidth*2,   errorElement: "gym-sign-up-error-div",          "successElement": null                              },
-    LoginError:             { base: ErrorBandWidth*3,   errorElement: "gym-login-error-div",            "successElement": null                              },
-    ForgotPasswordError:    { base: ErrorBandWidth*4,   errorElement: "gym-pwreset-error-div",          "successElement": "gym-pwreset-success-div"         },
-    RecoverPasswordError:   { base: ErrorBandWidth*5,   errorElement: "gym-newpw-error-div",            "successElement": null                              },
-    ChangePasswordError:    { base: ErrorBandWidth*6,   errorElement: "gym-update-pw-error-div",        "successElement": "gym-update-pw-success-div"       },
-    CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error-div",    "successElement": "user-beta-confirm-success-div"   },
+    UnknownError:           { base: -1,                 errorElement: null,                             successElement: null                                },
+    PasswordError:          { base: ErrorBandWidth*1,   errorElement: null,                             successElement: null                                },
+    SignupError:            { base: ErrorBandWidth*2,   errorElement: "gym-sign-up-error-div",          successElement: null                                },
+    LoginError:             { base: ErrorBandWidth*3,   errorElement: "gym-login-error-div",            successElement: null                                },
+    ForgotPasswordError:    { base: ErrorBandWidth*4,   errorElement: "gym-pwreset-error-div",          successElement: "gym-pwreset-success-div"           },
+    RecoverPasswordError:   { base: ErrorBandWidth*5,   errorElement: "gym-newpw-error-div",            successElement: null                                },
+    ChangePasswordError:    { base: ErrorBandWidth*6,   errorElement: "gym-update-pw-error-div",        successElement: "gym-update-pw-success-div"         },
+    CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error-div",    successElement: "user-beta-confirm-success-div"     },
+    LocationSettingsError:  { base: ErrorBandWidth*8,   errorElement: "my-gym-edit-error-div",          successElement: "my-gym-edit-success-div"           },
 }
 
 
@@ -137,6 +138,19 @@ const CheckInError = ErrorInfo.CheckInError.Errors = {
     LOC_NOT_FOUND:        ErrorInfo.CheckInError.base + 2,
     TOO_CLOSE_TO_GYM:     ErrorInfo.CheckInError.base + 3,
     TOO_CLOSE_TO_HOME:    ErrorInfo.CheckInError.base + 4,
+}
+
+
+
+/*******************************************************************************
+ *
+ * L O C A T I O N   S E T T I N G S   E R R O R S
+ *
+ */
+
+const LocationSettingsError = ErrorInfo.LocationSettingsError.Errors = {
+    FAILURE:             -ErrorInfo.LocationSettingsError.base,
+    SUCCESS:              ErrorInfo.LocationSettingsError.base + 0,
 }
 
 
@@ -265,6 +279,14 @@ function errorString(error) {
         return "You cannot use this gym because it is too close to your home";
     case CheckInError.FAILURE:
         return "Failed to check in";
+
+    //
+    // LocationSettingsError
+    //
+    case LocationSettingsError.SUCCESS:
+        return "Successfully saved settings";
+    case LocationSettingsError.FAILURE:
+        return "Failed to save settings";
 
     //
     // default

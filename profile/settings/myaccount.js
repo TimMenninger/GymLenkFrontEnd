@@ -48,7 +48,6 @@ document.getElementById("update-pw-button").addEventListener("click", function()
         if (request.readyState === 4) {
             let { _, error } = parseResponse(request, ErrorInfo.ChangePasswordError, SubmitButton.SaveAccountSettings);
 
-            // Check for failure pulled from above
             if (error === ChangePasswordError.SUCCESS) {
                 // Clear text on success, but not on error since they might want
                 // to keep their entries there

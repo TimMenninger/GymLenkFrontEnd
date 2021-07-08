@@ -126,7 +126,7 @@ function hideErrors(element_name) {
 const SubmitButton = {
     UnknownSubmitButton:        { submit: null,                             lottie: null                                    },
     SaveAccountSettings:        { submit: "update-pw-button",               lottie: "updatepw-loading-lottie"               },
-    SaveGymInfo:                { submit: "save-changes-my-gym-button",     lottie: "save-changes-my-gym-loading-lottie"    },
+    SaveLocationInfo:           { submit: "save-changes-my-gym-button",     lottie: "save-changes-my-gym-loading-lottie"    },
     SignUp:                     { submit: "gym-sign-up-button",             lottie: "signup-loading-lottie"                 },
     RecoverPassword:            { submit: "gym-newpw-button",               lottie: "newpw-loading-lottie"                  },
     LogIn:                      { submit: "gym-login-button",               lottie: "login-loading-lottie"                  },

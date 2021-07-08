@@ -228,29 +228,17 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
     request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            // Spinner
-            showSubmitButton(SubmitButton.SaveGymInfo);
+            let { data, error } = parseResponse(request, ErrorInfo.LocationSettingsError, SubmitButton.SaveLocationInfo);
 
-            if (request.status != 200) {
-                console.log("Request failed");
-                return;
+            if (error === LocationSettingsError.SUCCESS) {
+                // Done Editing
+                storeDashboardData(data["dashboard"]);
             }
-
-            // Begin accessing JSON data here
-            var data = JSON.parse(request.responseText);
-            if (!data["success"]) {
-                console.log(data["message"]);
-                return;
-            }
-
-            // Done Editing
-            storeDashboardData(data["dashboard"]);
-            alert("Update successful");
         }
     }
 
     // Remove submit button in favor of a lottie
-    showLoadingLottie(SubmitButton.SaveGymInfo);
+    showLoadingLottie(SubmitButton.SaveLocationInfo);
 
     // Send request
     request.send(JSON.stringify(data));
