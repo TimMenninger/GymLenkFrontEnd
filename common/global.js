@@ -153,23 +153,20 @@ function showLoadingLottie(submit_type) {
 //
 
 function parseResponse(request, error_type, submit_type) {
-    var error = error_type.SUCCESS;
+    var error = error_type.Errors.SUCCESS;
     var data = null;
-    console.log(error)
 
     // Check error on response status
     if (request.status != 200) {
         // Error message
         console.log(`Request failed with status ${request.status}`);
-        error = error_type.FAILURE;
-        console.log(error)
+        error = error_type.Errors.FAILURE;
     }
     // Begin accessing JSON data here
     else {
         data = JSON.parse(request.responseText);
         if (!data["success"]) {
-            error = stringToError(error_type, data["error"]);
-            console.log(error)
+            error = stringToError(error_type.Errors, data["error"]);
         }
     }
 
@@ -178,7 +175,7 @@ function parseResponse(request, error_type, submit_type) {
     showSubmitButton(submit_type);
 
     // Check for failure pulled from above
-    if (error !== error_type.SUCCESS) {
+    if (error !== error_type.Errors.SUCCESS) {
         // Display error
         showError(error);
         showSubmitButton(submit_type);
@@ -187,8 +184,6 @@ function parseResponse(request, error_type, submit_type) {
     else {
         showSuccess(error_type);
     }
-    console.log(error)
-    console.log("-----");
 
     return { data, error };
 }
