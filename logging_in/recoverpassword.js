@@ -80,7 +80,7 @@ document.getElementById("gym-newpw-button").addEventListener("click", function()
         if (request.readyState === 4) {
             let { _, error } = parseResponse(request, ErrorInfo.RecoverPasswordError, SubmitButton.RecoverPassword);
 
-            if (error_type === RecoverPasswordError.SUCCESS) {
+            if (error === RecoverPasswordError.SUCCESS) {
                 window.location.assign(URL_log_in);
             }
         }

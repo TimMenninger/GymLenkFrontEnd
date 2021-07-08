@@ -24,7 +24,7 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
         if (request.readyState === 4) {
             let { _, error } = parseResponse(request, ErrorInfo.CheckInError, SubmitButton.CheckIn);
 
-            if (error_type === CheckInError.SUCCESS) {
+            if (error === CheckInError.SUCCESS) {
                 // Clear text on success, but not on error since they might want
                 // to keep their entries there
                 document.getElementById("user-beta-phone").value = "";

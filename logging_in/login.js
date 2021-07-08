@@ -42,7 +42,7 @@ document.getElementById("gym-login-button").addEventListener("click", function()
         if (request.readyState === 4) {
             let { data, error } = parseResponse(request, ErrorInfo.LoginError, SubmitButton.LogIn);
 
-            if (error_type === LoginError.SUCCESS) {
+            if (error === LoginError.SUCCESS) {
                 // Success - go to dashboard if the account is complete, or to
                 // onboarding if they must still set things up
                 localStorage.setItem("logged_in", "true");
