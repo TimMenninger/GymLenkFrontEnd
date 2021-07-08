@@ -148,6 +148,7 @@ const CheckInError = ErrorInfo.CheckInError.Errors = {
  */
 
 function errorString(error) {
+    console.log(error)
     switch (error) {
 
     //
