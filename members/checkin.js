@@ -1,3 +1,9 @@
+$(document).keyup(function(event) {
+    if (event.which === 13) {
+        document.getElementById("user-beta-confirm-button").click()
+    }
+});
+
 document.getElementById("user-beta-confirm-button").addEventListener("click", function() {
     // The chosen gym
     var loc_id = parseInt(document.getElementById("user-beta-gym-dropdown").value, 10);
@@ -17,7 +23,7 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
     var request = new XMLHttpRequest();
 
     // Open a new connection, using the POST request on the URL endpoint
-    request.open("POST", backend_URL + BE_change_password, true);
+    request.open("POST", backend_URL + BE_check_in, true);
     request.setRequestHeader("Content-Type", HDR_content_type_json);
     request.withCredentials = true;
     request.onreadystatechange = function () {

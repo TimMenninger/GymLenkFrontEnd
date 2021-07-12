@@ -18,6 +18,7 @@ const BE_set_dashboard_info = "/set-dashboard-info";
 const BE_forgot_password = "/forgot-password";
 const BE_check_password_key = "/check-password-key";
 const BE_change_forgotten_password = "/change-forgotten-password";
+const BE_check_in = "/validate-member";
 
 // Frontend Pages
 const FE_mygym = "/mygym";
