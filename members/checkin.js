@@ -37,5 +37,8 @@ document.getElementById("user-beta-confirm-button").addEventListener("click", fu
     showLoadingLottie(SubmitButton.CheckIn);
 
     // Send request
-    request.send(JSON.stringify(data));
+    request.send(JSON.stringify({
+        "location_id"   : loc_id,
+        "phone_number"  : phone
+    }));
 });
