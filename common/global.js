@@ -171,7 +171,7 @@ function parseResponse(request, error_type, submit_type) {
     else {
         data = JSON.parse(request.responseText);
         if (!data["success"]) {
-            error = stringToError(error_type.Errors, data["error"]);
+            error = stringToError(error_type, data["error"]);
         }
     }
 
