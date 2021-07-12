@@ -67,11 +67,14 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 //
 
 function stringToError(error_type, error_str) {
+    console.log(error_str)
     for (error in error_type.Errors) {
+        console.log(error)
         if (error === error_str) {
             return error_type.Errors[error];
         }
     }
+    console.log("NOT FOUND")
     return -1;
 }
 
@@ -167,7 +170,6 @@ function parseResponse(request, error_type, submit_type) {
     else {
         data = JSON.parse(request.responseText);
         if (!data["success"]) {
-            console.log(data["error"])
             error = stringToError(error_type.Errors, data["error"]);
         }
     }

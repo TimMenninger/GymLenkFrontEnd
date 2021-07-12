@@ -162,7 +162,6 @@ const LocationSettingsError = ErrorInfo.LocationSettingsError.Errors = {
  */
 
 function errorString(error) {
-    console.log(error)
     switch (error) {
 
     //
