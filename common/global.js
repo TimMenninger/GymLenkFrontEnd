@@ -104,8 +104,8 @@ function showErrorElement(element_name_base, error_desc) {
         div_elem.style.display = "block";
     }
 
-    var div_elem = document.getElementById(element_name_base + "-text");
-    if (div_elem !== null) {
+    var text_elem = document.getElementById(element_name_base + "-text");
+    if (text_elem !== null) {
         text_elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
     }
 }
