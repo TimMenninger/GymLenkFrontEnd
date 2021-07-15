@@ -98,22 +98,26 @@ function showSuccess(error_info) {
     showErrorElement(error_info.successElement, errorString(error_info.Errors.SUCCESS));
 }
 
-function showErrorElement(element_name, error_desc) {
-    var elem = document.getElementById(element_name);
-    if (elem !== null) {
-        elem.style.display = "block";
-        elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
+function showErrorElement(element_name_base, error_desc) {
+    var div_elem = document.getElementById(element_name_base + "-div");
+    if (div_elem !== null) {
+        div_elem.style.display = "block";
+    }
+
+    var div_elem = document.getElementById(element_name_base + "-text");
+    if (div_elem !== null) {
+        text_elem.innerText = (error_desc !== null) ? error_desc : "Unknown error";
     }
 }
 
-function hideErrors(element_name) {
+function hideErrors() {
     for (error in ErrorInfo) {
-        var error_elem = document.getElementById(ErrorInfo[error].errorElement);
+        var error_elem = document.getElementById(ErrorInfo[error].errorElement + "-div");
         if (error_elem !== null) {
             error_elem.style.display = "none";
         }
 
-        var success_elem = document.getElementById(ErrorInfo[error].successElement);
+        var success_elem = document.getElementById(ErrorInfo[error].successElement + "-div");
         if (success_elem !== null) {
             success_elem.style.display = "none";
         }
