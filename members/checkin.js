@@ -18,7 +18,7 @@ $(document).ready(function() {
                 }
 
                 var select = document.getElementById("user-beta-gym-dropdown");
-                data.forEach(function (loc) {
+                data["locations"].forEach(function (loc) {
                     var option = document.createElement("option");
                     option.text = loc.name;
                     option.value = loc.id;
