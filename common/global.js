@@ -19,6 +19,7 @@ const BE_forgot_password = "/forgot-password";
 const BE_check_password_key = "/check-password-key";
 const BE_change_forgotten_password = "/change-forgotten-password";
 const BE_check_in = "/validate-member";
+const BE_enroll_member = "/begin-membership";
 
 // Frontend Pages
 const FE_mygym = "/mygym";
@@ -137,6 +138,7 @@ const SubmitButton = {
     LogIn:                      { submit: "gym-login-button",               lottie: "login-loading-lottie"                  },
     ForgotPassword:             { submit: "gym-pwreset-button",             lottie: "pwreset-loading-lottie"                },
     CheckIn:                    { submit: "user-beta-confirm-button",       lottie: "user-beta-loading-lottie"              },
+    EnrollMember:               { submit: "new-member-sign-up-button",      lottie: "new-member-loading-lottie"             },
 };
 
 function showSubmitButton(submit_type) {

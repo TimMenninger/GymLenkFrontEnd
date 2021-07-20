@@ -19,6 +19,7 @@ const ErrorInfo = {
     ChangePasswordError:    { base: ErrorBandWidth*6,   errorElement: "gym-update-pw-error",        successElement: "gym-update-pw-success"         },
     CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error",    successElement: "user-beta-confirm-success"     },
     LocationSettingsError:  { base: ErrorBandWidth*8,   errorElement: "my-gym-edit-error",          successElement: "my-gym-edit-success"           },
+    EnrollMemberError:      { base: ErrorBandWidth*9,   errorElement: "new-member-error",           successElement: "new-member-success"            },
 }
 
 
@@ -157,6 +158,21 @@ const LocationSettingsError = ErrorInfo.LocationSettingsError.Errors = {
 
 /*******************************************************************************
  *
+ * E N R O L L   M E M B E R   E R R O R
+ *
+ */
+
+const EnrollMemberError = ErrorInfo.EnrollMemberError.Errors = {
+    FAILURE:             -ErrorInfo.EnrollMemberError.base,
+    SUCCESS:              ErrorInfo.EnrollMemberError.base + 0,
+    PHONE_INVALID:        ErrorInfo.EnrollMemberError.base + 1,
+    ZIP_INVALID:          ErrorInfo.EnrollMemberError.base + 2,
+}
+
+
+
+/*******************************************************************************
+ *
  * U T I L I T I E S
  *
  */
@@ -287,6 +303,18 @@ function errorString(error) {
         return "Successfully saved settings";
     case LocationSettingsError.FAILURE:
         return "Failed to save settings";
+
+    //
+    // EnrollMemberError
+    //
+    case EnrollMemberError.SUCCESS:
+        return "Successfully enrolled member";
+    case EnrollMemberError.PHONE_INVALID:
+        return "The phone number is invalid";
+    case EnrollMemberError.ZIP_INVALID:
+        return "Please enter a valid 5-digit ZIP code";
+    case EnrollMemberError.FAILURE:
+        return "Failed to enroll member";
 
     //
     // default
