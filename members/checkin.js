@@ -32,7 +32,7 @@ $(document).ready(function() {
     showLoadingLottie(SubmitButton.CheckIn);
 
     // Send request
-    request.send(JSON.stringify(data));
+    request.send();
 });
 
 $(document).keyup(function(event) {
