@@ -28,9 +28,6 @@ $(document).ready(function() {
         }
     }
 
-    // Remove submit button in favor of a lottie
-    showLoadingLottie(SubmitButton.CheckIn);
-
     // Send request
     request.send();
 });
