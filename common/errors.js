@@ -10,15 +10,15 @@
 
 const ErrorBandWidth = 1000;
 const ErrorInfo = {
-    UnknownError:           { base: -1,                 errorElement: null,                             successElement: null                                },
-    PasswordError:          { base: ErrorBandWidth*1,   errorElement: null,                             successElement: null                                },
-    SignupError:            { base: ErrorBandWidth*2,   errorElement: "gym-sign-up-error-div",          successElement: null                                },
-    LoginError:             { base: ErrorBandWidth*3,   errorElement: "gym-login-error-div",            successElement: null                                },
-    ForgotPasswordError:    { base: ErrorBandWidth*4,   errorElement: "gym-pwreset-error-div",          successElement: "gym-pwreset-success-div"           },
-    RecoverPasswordError:   { base: ErrorBandWidth*5,   errorElement: "gym-newpw-error-div",            successElement: null                                },
-    ChangePasswordError:    { base: ErrorBandWidth*6,   errorElement: "gym-update-pw-error-div",        successElement: "gym-update-pw-success-div"         },
-    CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error-div",    successElement: "user-beta-confirm-success-div"     },
-    LocationSettingsError:  { base: ErrorBandWidth*8,   errorElement: "my-gym-edit-error-div",          successElement: "my-gym-edit-success-div"           },
+    UnknownError:           { base: -1,                 errorElement: null,                         successElement: null                            },
+    PasswordError:          { base: ErrorBandWidth*1,   errorElement: null,                         successElement: null                            },
+    SignupError:            { base: ErrorBandWidth*2,   errorElement: "gym-sign-up-error",          successElement: null                            },
+    LoginError:             { base: ErrorBandWidth*3,   errorElement: "gym-login-error",            successElement: null                            },
+    ForgotPasswordError:    { base: ErrorBandWidth*4,   errorElement: "gym-pwreset-error",          successElement: "gym-pwreset-success"           },
+    RecoverPasswordError:   { base: ErrorBandWidth*5,   errorElement: "gym-newpw-error",            successElement: null                            },
+    ChangePasswordError:    { base: ErrorBandWidth*6,   errorElement: "gym-update-pw-error",        successElement: "gym-update-pw-success"         },
+    CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error",    successElement: "user-beta-confirm-success"     },
+    LocationSettingsError:  { base: ErrorBandWidth*8,   errorElement: "my-gym-edit-error",          successElement: "my-gym-edit-success"           },
 }
 
 
