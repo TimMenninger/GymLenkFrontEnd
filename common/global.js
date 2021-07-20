@@ -19,6 +19,7 @@ const BE_forgot_password = "/forgot-password";
 const BE_check_password_key = "/check-password-key";
 const BE_change_forgotten_password = "/change-forgotten-password";
 const BE_check_in = "/validate-member";
+const BE_get_location_list = "/get-location-list";
 const BE_enroll_member = "/begin-membership";
 
 // Frontend Pages
