@@ -24,8 +24,9 @@ $(document).ready(function() {
                 }
 
                 // Duplicate the template and remove it from the list
-                var template_row = document.getElementById("my-members-div-template").cloneNode(true);
-                template_row.remove();
+                var visible_template_row = document.getElementById("my-members-div-template");
+                var template_row = visible_template_row.cloneNode(true);
+                visible_template_row.remove();
                 console.log(data)
                 data["members"].forEach(function (member) {
                     var row = document.getElementById("my-members-div-template").cloneNode(true);
