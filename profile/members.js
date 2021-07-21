@@ -26,6 +26,7 @@ $(document).ready(function() {
                 // Duplicate the template and remove it from the list
                 var template_row = document.getElementById("my-members-div-template").cloneNode(true);
                 template_row.remove();
+                console.log(data)
                 data["members"].forEach(function (member) {
                     var row = document.getElementById("my-members-div-template").cloneNode(true);
                     row.id  = "my-members-div-" + member["phone_number"];
@@ -40,8 +41,10 @@ $(document).ready(function() {
                         var item = document.getElementById(info["id"]).cloneNode(true);
                         item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
+                        console.log(item)
                         row.appendChild(item);
                     });
+                    console.log(row)
                 })
             }
         }
