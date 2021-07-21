@@ -41,7 +41,7 @@ $(document).ready(function() {
                         item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
                         row.appendChild(item);
-                    }
+                    });
                 })
             }
         }
