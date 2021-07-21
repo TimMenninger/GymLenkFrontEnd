@@ -21,6 +21,7 @@ const BE_change_forgotten_password = "/change-forgotten-password";
 const BE_check_in = "/validate-member";
 const BE_get_location_list = "/get-location-list";
 const BE_enroll_member = "/begin-membership";
+const BE_list_all_members = "/list-all-members";
 
 // Frontend Pages
 const FE_mygym = "/mygym";

@@ -5,6 +5,52 @@ $(document).ready(function() {
         window.location.replace(URL_log_in);
         return;
     });
+
+    // Get all members (so we can list them)
+    var request = new XMLHttpRequest();
+
+    // Open a new connection, using the POST request on the URL endpoint
+    request.open("POST", backend_URL + BE_list_all_members, true);
+    request.setRequestHeader("Content-Type", HDR_content_type_json);
+    request.withCredentials = true;
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            // Check error on response status
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                if (!data["success"]) {
+                    console.log("Failed to get list of members with error " + data["error"])
+                    return
+                }
+
+                // Duplicate the template and remove it from the list
+                var template_row = document.getElementById("my-members-div-template").cloneNode(true);
+                template_row.remove();
+                data["members"].forEach(function (member) {
+                    var row = document.getElementById("my-members-div-template").cloneNode(true);
+                    row.id  = "my-members-div-" + member["phone_number"];
+
+                    const row_items = [
+                        { "id" : "member-list-first-name",  "key" : "first_name"    },
+                        { "id" : "member-list-last-name",   "key" : "last_name"     },
+                        { "id" : "member-list-phone",       "key" : "phone_number"  },
+                        { "id" : "member-list-zip",         "key" : "zip"           },
+                    ];
+                    row_items.forEach(function (info) {
+                        var item = document.getElementById(info["id"]).cloneNode(true);
+                        item.id = info["id"] + "-" + member["phone_number"];
+                        item.innerText = member[info["key"]];
+                        row.appendChild(item);
+                    }
+                })
+            }
+        }
+    }
+
+    // Send request
+    request.send(JSON.stringify({
+        "session_id"    : localStorage.getItem("session_id")
+    }));
 });
 
 document.getElementById("new-member-sign-up-button").addEventListener("click", function() {
