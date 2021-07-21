@@ -45,6 +45,7 @@ document.getElementById("new-member-sign-up-button").addEventListener("click", f
 
     // Send request
     request.send(JSON.stringify({
+        "session_id"    : localStorage.getItem("session_id"),
         "first_name"    : first_name,
         "last_name"     : last_name,
         "phone_number"  : phone_number,
