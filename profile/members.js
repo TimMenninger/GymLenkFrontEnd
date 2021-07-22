@@ -24,6 +24,7 @@ $(document).ready(function() {
                 }
 
                 // Duplicate the template and remove it from the list
+                var table = document.getElementById("my-members-list-div");
                 var template_row = document.getElementById("my-members-div-template");
                 console.log(data)
                 data["members"].forEach(function (member) {
@@ -40,10 +41,11 @@ $(document).ready(function() {
                         var item = document.getElementById(info["id"]).cloneNode(true);
                         item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
-                        console.log(item)
+
                         row.appendChild(item);
                     });
-                    console.log(row)
+
+                    table.appendChild(row);
                 })
                 template_row.remove();
             }
