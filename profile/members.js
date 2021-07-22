@@ -25,8 +25,12 @@ $(document).ready(function() {
 
                 // Duplicate the template and remove it from the list
                 var table = document.getElementById("my-members-list-div");
-                var template_row = document.getElementById("my-members-row-div-template").cloneNode(true);
+                var template_row = document.getElementById("my-members-row-div").cloneNode(true);
+                document.getElementById("my-members-row-div").remove();
+                template_row.id = template_row.id + "-template";
                 data["members"].forEach(function (member) {
+                    table.appendChild(template_row);
+
                     var row = document.getElementById("my-members-row-div-template");
                     row.id  = "my-members-row-div-" + member["phone_number"];
 
@@ -41,10 +45,7 @@ $(document).ready(function() {
                         item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
                     });
-                    table.appendChild(template_row);
-
                 })
-                //document.getElementById("my-members-row-div-template").remove();
             }
         }
     }
