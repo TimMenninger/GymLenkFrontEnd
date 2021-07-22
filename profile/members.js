@@ -42,11 +42,16 @@ $(document).ready(function() {
                         item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
 
+                        console.log(item);
                         row.appendChild(item);
                     });
 
+                    console.log("----");
+                    console.log(row);
                     table.appendChild(row);
                 })
+                console.log("====");
+                console.log(table);
             }
         }
     }
