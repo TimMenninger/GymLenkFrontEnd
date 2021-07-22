@@ -25,10 +25,13 @@ $(document).ready(function() {
 
                 // Duplicate the template and remove it from the list
                 var table = document.getElementById("my-members-list-div");
-                var template_row = document.getElementById("my-members-div-template");
+                var template_row = document.getElementById("my-members-row-div-template").cloneNode(true);
+                console.log(document.getElementById("my-members-row-div-template").remove());
                 data["members"].forEach(function (member) {
-                    var row = template_row.cloneNode(true);
-                    row.id  = "my-members-div-" + member["phone_number"];
+                    table.appendChild(template_row);
+
+                    var row = document.getElementById("my-members-row-div-template");
+                    row.id  = "my-members-row-div-" + member["phone_number"];
 
                     const row_items = [
                         { "id" : "member-list-first-name",  "key" : "first_name"    },
@@ -37,21 +40,12 @@ $(document).ready(function() {
                         { "id" : "member-list-zip",         "key" : "zip"           },
                     ];
                     row_items.forEach(function (info) {
-                        var item = row.getElementById(info["id"]);
+                        var item = document.getElementById(info["id"]);
+                        item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
-
-                        console.log(item);
-                        row.appendChild(item);
                     });
-
-                    console.log("----");
-                    console.log(row);
-                    table.appendChild(row);
                 })
-                console.log("====");
-                console.log(table);
             }
-            template_row.remove();
         }
     }
 
