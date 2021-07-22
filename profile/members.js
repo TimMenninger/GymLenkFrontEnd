@@ -27,8 +27,7 @@ $(document).ready(function() {
                 var table = document.getElementById("my-members-list-div");
                 var template_row_to_remove = document.getElementById("my-members-row-div");
                 var template_row = template_row_to_remove.cloneNode(true);
-                template_row_to_remove.id = "my-members-row-div-original";
-                //template_row_to_remove.remove();
+                template_row_to_remove.remove();
 
                 data["members"].forEach(function (member) {
                     table.appendChild(template_row);
