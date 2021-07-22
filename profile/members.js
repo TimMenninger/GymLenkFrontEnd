@@ -24,9 +24,7 @@ $(document).ready(function() {
                 }
 
                 // Duplicate the template and remove it from the list
-                var visible_template_row = document.getElementById("my-members-div-template");
-                var template_row = visible_template_row.cloneNode(true);
-                visible_template_row.remove();
+                var template_row = document.getElementById("my-members-div-template");
                 console.log(data)
                 data["members"].forEach(function (member) {
                     var row = template_row.cloneNode(true);
@@ -47,6 +45,7 @@ $(document).ready(function() {
                     });
                     console.log(row)
                 })
+                template_row.remove();
             }
         }
     }
