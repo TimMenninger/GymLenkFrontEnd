@@ -29,7 +29,7 @@ $(document).ready(function() {
                 visible_template_row.remove();
                 console.log(data)
                 data["members"].forEach(function (member) {
-                    var row = document.getElementById("my-members-div-template").cloneNode(true);
+                    var row = template_row.cloneNode(true);
                     row.id  = "my-members-div-" + member["phone_number"];
 
                     const row_items = [
