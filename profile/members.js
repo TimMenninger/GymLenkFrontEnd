@@ -25,15 +25,14 @@ $(document).ready(function() {
 
                 // Duplicate the template and remove it from the list
                 var table = document.getElementById("my-members-list-div");
-                var template_row_to_remove = document.getElementById("my-members-row-div");
-                var template_row = template_row_to_remove.cloneNode(true);
-                template_row_to_remove.remove();
+                var template_row = document.getElementById("my-members-row-div").cloneNode(true);
 
                 data["members"].forEach(function (member) {
                     table.appendChild(template_row);
 
                     var row = document.getElementById("my-members-row-div");
                     row.id  = "my-members-row-div-" + member["phone_number"];
+                    row.style.display = "flex";
 
                     const row_items = [
                         { "id" : "member-list-first-name",  "key" : "first_name"    },
