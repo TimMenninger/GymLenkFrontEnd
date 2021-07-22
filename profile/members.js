@@ -37,8 +37,7 @@ $(document).ready(function() {
                         { "id" : "member-list-zip",         "key" : "zip"           },
                     ];
                     row_items.forEach(function (info) {
-                        var item = document.getElementById(info["id"]).cloneNode(true);
-                        item.id = info["id"] + "-" + member["phone_number"];
+                        var item = row.getElementById(info["id"]);
                         item.innerText = member[info["key"]];
 
                         console.log(item);
