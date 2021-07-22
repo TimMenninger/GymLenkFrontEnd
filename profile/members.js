@@ -26,7 +26,7 @@ $(document).ready(function() {
                 // Duplicate the template and remove it from the list
                 var table = document.getElementById("my-members-list-div");
                 var template_row = document.getElementById("my-members-div-template");
-                console.log(data)
+                document.getElementById("my-members-div-template").remove();
                 data["members"].forEach(function (member) {
                     var row = template_row.cloneNode(true);
                     row.id  = "my-members-div-" + member["phone_number"];
@@ -47,7 +47,6 @@ $(document).ready(function() {
 
                     table.appendChild(row);
                 })
-                template_row.remove();
             }
         }
     }
