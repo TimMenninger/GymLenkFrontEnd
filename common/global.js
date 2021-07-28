@@ -307,7 +307,7 @@ function addPhoneNumberFormatting(element_id) {
 //
 
 function clickSubmitOnPressEnter(text_element_id, submit_button_id) {
-    document.getElementById(text_element_id).keyup(function(event) {
+    document.getElementById(text_element_id).addEventListener("keyup", function(event) {
         if (event.which === 13) {
             document.getElementById(submit_button_id).click();
         }
