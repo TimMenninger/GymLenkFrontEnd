@@ -121,6 +121,7 @@ $(document).ready(function() {
 
 // Format phone number
 forcePhoneNumberFormat("gym-edit-phone");
+forceZIPCodeFormat("gym-edit-zip");
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {

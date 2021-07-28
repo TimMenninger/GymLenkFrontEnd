@@ -57,8 +57,9 @@ $(document).ready(function() {
     }
 });
 
-// Format phone number
+// Formats
 forcePhoneNumberFormat("onboarding-phone");
+forceZIPCodeFormat("onboarding-zip");
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {
