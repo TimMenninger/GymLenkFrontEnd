@@ -119,10 +119,8 @@ $(document).ready(function() {
     document.getElementById("gym-edit-twitter").value   = data["twitter"];
 })
 
-/* Format phone number */
-const inputElement = document.getElementById("gym-edit-phone");
-inputElement.addEventListener("keydown", enforceFormat);
-inputElement.addEventListener("keyup", formatToPhone);
+// Format phone number
+addPhoneNumberFormatting("gym-edit-phone");
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {

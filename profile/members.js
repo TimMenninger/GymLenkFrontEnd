@@ -56,6 +56,9 @@ $(document).ready(function() {
     }));
 });
 
+// Format phone numbers
+addPhoneNumberFormatting("new-member-phone-3");
+
 document.getElementById("new-member-sign-up-button").addEventListener("click", function() {
     // Send to backend the current password and the new one
     var first_name      = document.getElementById("new-member-first-name").value;

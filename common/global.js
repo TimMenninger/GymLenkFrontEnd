@@ -293,6 +293,28 @@ function checkPasswordRequirements(new_pw, confirm_new_pw) {
 }
 
 //
+// PHONE NUMBER FORMAT
+//
+
+function addPhoneNumberFormatting(element_id) {
+    var inputElement = document.getElementById(element_id);
+    inputElement.addEventListener("keydown", enforceFormat);
+    inputElement.addEventListener("keyup", formatToPhone);
+}
+
+//
+// PRESSING ENTER
+//
+
+function clickSubmitOnPressEnter(text_element_id, submit_button_id) {
+    document.getElementById(text_element_id).keyup(function(event) {
+        if (event.which === 13) {
+            document.getElementById(submit_button_id).click();
+        }
+    });
+}
+
+//
 // DASHBOARD
 //
 

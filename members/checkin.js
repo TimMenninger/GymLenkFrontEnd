@@ -32,6 +32,9 @@ $(document).ready(function() {
     request.send();
 });
 
+// Format phone number
+addPhoneNumberFormatting("user-beta-phone");
+
 $(document).keyup(function(event) {
     if (event.which === 13) {
         document.getElementById("user-beta-confirm-button").click()

@@ -12,14 +12,14 @@ $(document).ready(function() {
         var data = JSON.parse(localStorage.getItem("onboard_info"));
 
         // Get gym info
-        document.getElementById("onboarding-gym-name").value = data["organization_name"];
-        document.getElementById("onboarding-location-name").value = data["location_name"];
-        document.getElementById("onboarding-address1").value = data["physical_address"]["line1"];
-        document.getElementById("onboarding-address2").value = data["physical_address"]["line2"];
-        document.getElementById("onboarding-zip").value = data["physical_address"]["zip"];
-        document.getElementById("onboarding-phone").value = formatPhoneNumber(data["phone_number"]);
-        document.getElementById("onboarding-email").value = data["email"];
-        document.getElementById("onboarding-description").value = data["description"];
+        document.getElementById("onboarding-gym-name").value            = data["organization_name"];
+        document.getElementById("onboarding-location-name").value       = data["location_name"];
+        document.getElementById("onboarding-address1").value            = data["physical_address"]["line1"];
+        document.getElementById("onboarding-address2").value            = data["physical_address"]["line2"];
+        document.getElementById("onboarding-zip").value                 = data["physical_address"]["zip"];
+        document.getElementById("onboarding-phone").value               = formatPhoneNumber(data["phone_number"]); document.getElementById("onboarding-email").value = data["email"];
+        document.getElementById("onboarding-description").value         = data["description"];
+        document.getElementById("onboarding-entry-instructions").value  = data["entry_info"];
 
         for (const raw_dow of DaysOfWeek) {
             var dow = raw_dow.toLowerCase();
@@ -58,8 +58,7 @@ $(document).ready(function() {
 });
 
 // Format phone number
-document.getElementById("onboarding-phone").addEventListener("keydown", enforceFormat);
-document.getElementById("onboarding-phone").addEventListener("keyup", formatToPhone);
+addPhoneNumberFormatting("onboarding-phone");
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {
@@ -92,6 +91,7 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
     data["phone_number"]        = ('' + document.getElementById("onboarding-phone").value).replace(/\D/g, '');
     data["email"]               = document.getElementById("onboarding-email").value;
     data["description"]         = document.getElementById("onboarding-description").value;
+    data["entry_info"]          = document.getElementById("onboarding-entry-instructions").value;
     data["hours"]               = {};
 
     // Gym hours

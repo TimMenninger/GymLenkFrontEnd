@@ -5,11 +5,7 @@ $(document).ready(function() {
     });
 });
 
-$(document).keyup(function(event) {
-    if (event.which === 13) {
-        document.getElementById("gym-pwreset-button").click()
-    }
-});
+clickSubmitOnPressEnter("gym-pwreset-email", "gym-pwreset-button");
 
 document.getElementById("gym-pwreset-button").addEventListener("click", function() {
     // Get email
