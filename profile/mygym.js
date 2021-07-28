@@ -54,10 +54,8 @@ $(document).ready(function() {
         }
     }
 
-    setOrHide("gym-name2",          "organization_name",        true)
-    setOrHide("gym-name3",          "organization_name",        true)
-    setOrHide("gym-location3",      "location_name",            true)
-    setOrHide("gym-location2",      "location_name",            true)
+    displayOrganizationName("gym-name2");
+
     setOrHide("gym-phone-number",   "formatted_phone_number",   false)
     setOrHide("gym-email",          "email",                    false)
     setOrHide("gym-link-website",   "website-fixed",            false)

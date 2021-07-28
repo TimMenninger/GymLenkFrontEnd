@@ -6,6 +6,9 @@ $(document).ready(function() {
             clearState();
         });
 
+        // Gym name
+        displayOrganizationName("gym-name");
+
         // Log out when navbar logout is pressed
         document.getElementById("navbar-gymlenk-button").addEventListener("click", function() {
             window.location.replace(URL_homepage);

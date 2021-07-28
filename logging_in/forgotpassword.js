@@ -8,18 +8,6 @@ $(document).ready(function() {
 
 clickSubmitOnPressEnter("gym-pwreset-email", "gym-pwreset-button");
 
-//document.getElementById("gym-pwreset-email").keyup(function(event) {
-//    if (event.which === 13) {
-//        document.getElementById("gym-pwreset-button").click()
-//    }
-//});
-
-//$(document).keyup(function(event) {
-//    if (event.which === 13) {
-//        document.getElementById("gym-pwreset-button").click()
-//    }
-//});
-
 document.getElementById("gym-pwreset-button").addEventListener("click", function() {
     // Get email
     var email = document.getElementById("gym-pwreset-email").value;
