@@ -3,9 +3,9 @@ $(document).ready(function() {
         window.location.replace(URL_landing_after_login);
         return;
     });
-});
 
-clickSubmitOnPressEnter("gym-pwreset-email", "gym-pwreset-button");
+    clickSubmitOnPressEnter("gym-pwreset-email", "gym-pwreset-button");
+});
 
 document.getElementById("gym-pwreset-button").addEventListener("click", function() {
     // Get email
