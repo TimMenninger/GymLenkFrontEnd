@@ -56,8 +56,9 @@ $(document).ready(function() {
     }));
 });
 
-// Format phone numbers
-addPhoneNumberFormatting("new-member-phone-3");
+// Format items
+forcePhoneNumberFormat("new-member-phone-3");
+forceZIPCodeFormat("new-member-zip");
 
 document.getElementById("new-member-sign-up-button").addEventListener("click", function() {
     // Send to backend the current password and the new one

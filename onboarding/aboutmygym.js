@@ -58,7 +58,7 @@ $(document).ready(function() {
 });
 
 // Format phone number
-addPhoneNumberFormatting("onboarding-phone");
+forcePhoneNumberFormat("onboarding-phone");
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {

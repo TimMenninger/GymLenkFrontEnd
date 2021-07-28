@@ -33,7 +33,7 @@ $(document).ready(function() {
 });
 
 // Format phone number
-addPhoneNumberFormatting("user-beta-phone");
+forcePhoneNumberFormat("user-beta-phone");
 
 $(document).keyup(function(event) {
     if (event.which === 13) {

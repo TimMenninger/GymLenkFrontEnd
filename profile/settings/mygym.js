@@ -120,7 +120,7 @@ $(document).ready(function() {
 })
 
 // Format phone number
-addPhoneNumberFormatting("gym-edit-phone");
+forcePhoneNumberFormat("gym-edit-phone");
 
 // Hours checkboxes
 for (const raw_dow of DaysOfWeek) {

@@ -65,6 +65,25 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 // COMMON
 //
 
+function isNumericInput(event) {
+  const key = event.keyCode;
+  return ((key >= 48 && key <= 57) || // Allow number line
+    (key >= 96 && key <= 105) // Allow number pad
+  );
+};
+
+function isModifierKey(event) {
+  const key = event.keyCode;
+  return (event.shiftKey === true || key === 35 || key === 36) || // Allow Shift, Home, End
+    (key === 8 || key === 9 || key === 13 || key === 46) || // Allow Backspace, Tab, Enter, Delete
+    (key > 36 && key < 41) || // Allow left, up, right, down
+    (
+      // Allow Ctrl/Command + A,C,V,X,Z
+      (event.ctrlKey === true || event.metaKey === true) &&
+      (key === 65 || key === 67 || key === 86 || key === 88 || key === 90)
+    )
+};
+
 //
 // ERRORS
 //
@@ -297,45 +316,6 @@ function checkPasswordRequirements(new_pw, confirm_new_pw) {
 // Copied from: https://stackoverflow.com/questions/30058927/format-a-phone-number-as-a-user-types-using-pure-javascript
 //
 
-function isNumericInput(event) {
-  const key = event.keyCode;
-  return ((key >= 48 && key <= 57) || // Allow number line
-    (key >= 96 && key <= 105) // Allow number pad
-  );
-};
-
-function isModifierKey(event) {
-  const key = event.keyCode;
-  return (event.shiftKey === true || key === 35 || key === 36) || // Allow Shift, Home, End
-    (key === 8 || key === 9 || key === 13 || key === 46) || // Allow Backspace, Tab, Enter, Delete
-    (key > 36 && key < 41) || // Allow left, up, right, down
-    (
-      // Allow Ctrl/Command + A,C,V,X,Z
-      (event.ctrlKey === true || event.metaKey === true) &&
-      (key === 65 || key === 67 || key === 86 || key === 88 || key === 90)
-    )
-};
-
-function enforceFormat(event) {
-  // Input must be of a valid number format or a modifier key, and not longer than ten digits
-  if (!isNumericInput(event) && !isModifierKey(event)) {
-    event.preventDefault();
-  }
-};
-
-function formatToPhone(event) {
-  if (isModifierKey(event)) {
-    return;
-  }
-
-  let target = event.target;
-  if (target != null) {
-      let input = ('' + target.value).replace(/\D/g, ''); // First ten digits of input only
-      let formatted = formatPhoneNumber(input);
-      target.value = `${formatted}`;
-  }
-};
-
 function formatPhoneNumber(input) {
   // Check if the input is of correct
   let offset = 0;
@@ -366,10 +346,28 @@ function formatPhoneNumber(input) {
   }
 };
 
-function addPhoneNumberFormatting(element_id) {
+function forcePhoneNumberFormat(element_id) {
     var inputElement = document.getElementById(element_id);
-    inputElement.addEventListener("keydown", enforceFormat);
-    inputElement.addEventListener("keyup", formatToPhone);
+
+    inputElement.addEventListener("keydown", function(event) {
+      // Input must be of a valid number format or a modifier key, and not longer than ten digits
+      if (!isNumericInput(event) && !isModifierKey(event)) {
+        event.preventDefault();
+      }
+    });
+
+    inputElement.addEventListener("keyup", function(event) {
+      if (isModifierKey(event)) {
+        return;
+      }
+
+      let target = event.target;
+      if (target != null) {
+          let input = ('' + target.value).replace(/\D/g, ''); // First ten digits of input only
+          let formatted = formatPhoneNumber(input);
+          target.value = `${formatted}`;
+      }
+    });
 }
 
 //
@@ -381,6 +379,37 @@ function clickSubmitOnPressEnter(text_element_id, submit_button_id) {
         if (event.which === 13) {
             document.getElementById(submit_button_id).click();
         }
+    });
+}
+
+//
+// FORMAT ZIP CODE
+//
+
+function forceZIPCodeFormat(element_id) {
+    var inputElement = document.getElementById(element_id);
+
+    inputElement.addEventListener("keydown", function(event) {
+      // Input must be of a valid number format or a modifier key, and not longer than ten digits
+      if (!isNumericInput(event) && !isModifierKey(event)) {
+        event.preventDefault();
+      }
+    });
+
+    inputElement.addEventListener("keyup", function(event) {
+      if (isModifierKey(event)) {
+        return;
+      }
+
+      let target = event.target;
+      if (target != null) {
+          let input = ('' + target.value).replace(/\D/g, ''); // First ten digits of input only
+          if (input.length > 5) {
+              input = input.substring(0, 5);
+          }
+
+          target.value = `${input}`;
+      }
     });
 }
 
