@@ -395,7 +395,7 @@ function displayOrganizationName(text_element_id) {
     var display_name = "";
 
     if (org_name !== "" && loc_name !== "") {
-        display_name = org_name + " - " loc_name;
+        display_name = org_name + " - " + loc_name;
     } else if (org_name !== "") {
         display_name = org_name;
     } else if (loc_name !== "") {
