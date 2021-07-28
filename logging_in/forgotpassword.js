@@ -5,7 +5,7 @@ $(document).ready(function() {
     });
 });
 
-$document.getElementById("gym-pwreset-email").keyup(function(event) {
+document.getElementById("gym-pwreset-email").keyup(function(event) {
     if (event.which === 13) {
         document.getElementById("gym-pwreset-button").click()
     }
