@@ -14,7 +14,7 @@ $(document).ready(function() {
     document.getElementById("gym-edit-address").value       = data["physical_address"]["line1"];
     document.getElementById("gym-edit-address2").value      = data["physical_address"]["line2"];
     document.getElementById("gym-edit-zip").value           = data["physical_address"]["zip"];
-    document.getElementById("gym-edit-phone").value         = data["formatted_phone_number"];
+    document.getElementById("gym-edit-phone").value         = formatPhoneNumber(data["formatted_phone_number"]);
     document.getElementById("gym-edit-email").value         = data["email"];
     document.getElementById("gym-edit-description").value   = data["description"];
     document.getElementById("gym-entry-instructions").value = data["entry_info"];
@@ -155,7 +155,7 @@ document.getElementById("save-changes-my-gym-button").addEventListener("click", 
         line2   : document.getElementById("gym-edit-address2").value,
         zip     : document.getElementById("gym-edit-zip").value
     };
-    data["phone_number"]               = ('' + document.getElementById("gym-edit-phone").value).replace(/\D/g, '');
+    data["phone_number"]        = unformatPhoneNumber(document.getElementById("gym-edit-phone").value);
     data["email"]               = document.getElementById("gym-edit-email").value;
     data["description"]         = document.getElementById("gym-edit-description").value;
     data["hours"]               = {};

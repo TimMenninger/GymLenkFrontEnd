@@ -64,7 +64,7 @@ document.getElementById("new-member-sign-up-button").addEventListener("click", f
     // Send to backend the current password and the new one
     var first_name      = document.getElementById("new-member-first-name").value;
     var last_name       = document.getElementById("new-member-last-name").value;
-    var phone_number    = document.getElementById("new-member-phone").value;
+    var phone_number    = unformatPhoneNumber(document.getElementById("new-member-phone").value);
     var zip             = document.getElementById("new-member-zip").value;
 
     // Hide any previous error/success message before the next attempt

@@ -44,7 +44,7 @@ $(document).keyup(function(event) {
 document.getElementById("user-beta-confirm-button").addEventListener("click", function() {
     // The chosen gym
     var loc_id = parseInt(document.getElementById("user-beta-gym-dropdown").value, 10);
-    var phone  = document.getElementById("user-beta-phone").value;
+    var phone  = unformatPhoneNumber(document.getElementById("user-beta-phone").value);
 
     // Hide any previous error/success message before the next attempt
     hideErrors();

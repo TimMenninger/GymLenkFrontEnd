@@ -89,7 +89,7 @@ document.getElementById("onboarding-about-continue-button").addEventListener("cl
         line2   : document.getElementById("onboarding-address2").value,
         zip     : document.getElementById("onboarding-zip").value
     };
-    data["phone_number"]        = ('' + document.getElementById("onboarding-phone").value).replace(/\D/g, '');
+    data["phone_number"]        = unformatPhoneNumber(document.getElementById("onboarding-phone").value);
     data["email"]               = document.getElementById("onboarding-email").value;
     data["description"]         = document.getElementById("onboarding-description").value;
     data["entry_info"]          = document.getElementById("onboarding-entry-instructions").value;

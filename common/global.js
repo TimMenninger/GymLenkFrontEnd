@@ -346,6 +346,10 @@ function formatPhoneNumber(input) {
   }
 };
 
+function unformatPhoneNumber(formatted) {
+    return ('' + formatted).replace(/\D/g, '');
+}
+
 function forcePhoneNumberFormat(element_id) {
     var inputElement = document.getElementById(element_id);
 
