@@ -34,11 +34,13 @@ $(document).ready(function() {
                     row.id  = "my-members-row-div-" + member["phone_number"];
                     row.style.display = "flex";
 
+                    member["formatted_phone_number"] = formatPhoneNumber(member["phone_number"])
+
                     const row_items = [
-                        { "id" : "member-list-first-name",  "key" : "first_name"    },
-                        { "id" : "member-list-last-name",   "key" : "last_name"     },
-                        { "id" : "member-list-phone",       "key" : "phone_number"  },
-                        { "id" : "member-list-zip",         "key" : "zip"           },
+                        { "id" : "member-list-first-name",  "key" : "first_name"                },
+                        { "id" : "member-list-last-name",   "key" : "last_name"                 },
+                        { "id" : "member-list-phone",       "key" : "formatted_phone_number"    },
+                        { "id" : "member-list-zip",         "key" : "zip"                       },
                     ];
                     row_items.forEach(function (info) {
                         var item = document.getElementById(info["id"]);
@@ -59,6 +61,12 @@ $(document).ready(function() {
 // Format items
 forcePhoneNumberFormat("new-member-phone-3");
 forceZIPCodeFormat("new-member-zip");
+
+// Click submit on enter
+clickSubmitOnPressEnter("new-member-first-name-2", "new-member-sign-up-button");
+clickSubmitOnPressEnter("new-member-last-name-2", "new-member-sign-up-button");
+clickSubmitOnPressEnter("new-member-phone-3", "new-member-sign-up-button");
+clickSubmitOnPressEnter("new-member-zip", "new-member-sign-up-button");
 
 document.getElementById("new-member-sign-up-button").addEventListener("click", function() {
     // Send to backend the current password and the new one

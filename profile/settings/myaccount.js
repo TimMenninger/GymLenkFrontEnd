@@ -11,6 +11,10 @@ $(document).ready(function() {
     document.getElementById("gym-account-email").innerText = email;
 });
 
+clickSubmitOnPressEnter("current-pw", "update-pw-button");
+clickSubmitOnPressEnter("new-pw", "update-pw-button");
+clickSubmitOnPressEnter("confirm-new-pw", "update-pw-button");
+
 document.getElementById("update-pw-button").addEventListener("click", function() {
     // Send to backend the current password and the new one
     var current_password  = document.getElementById("current-pw").value;

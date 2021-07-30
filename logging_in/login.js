@@ -5,11 +5,8 @@ $(document).ready(function() {
     });
 });
 
-$(document).keyup(function(event) {
-    if (event.which === 13) {
-        document.getElementById("gym-login-button").click()
-    }
-});
+clickSubmitOnPressEnter("gym-login-email", "gym-login-button");
+clickSubmitOnPressEnter("gym-login-password", "gym-login-button");
 
 document.getElementById("gym-login-button").addEventListener("click", function() {
     // Get email and password
