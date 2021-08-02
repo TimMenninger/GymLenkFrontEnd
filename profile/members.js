@@ -63,8 +63,8 @@ forcePhoneNumberFormat("new-member-phone");
 forceZIPCodeFormat("new-member-zip");
 
 // Click submit on enter
-clickSubmitOnPressEnter("new-member-first-name-2", "new-member-sign-up-button");
-clickSubmitOnPressEnter("new-member-last-name-2", "new-member-sign-up-button");
+clickSubmitOnPressEnter("new-member-first-name", "new-member-sign-up-button");
+clickSubmitOnPressEnter("new-member-last-name", "new-member-sign-up-button");
 clickSubmitOnPressEnter("new-member-phone", "new-member-sign-up-button");
 clickSubmitOnPressEnter("new-member-zip", "new-member-sign-up-button");
 
