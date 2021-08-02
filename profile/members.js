@@ -59,13 +59,13 @@ $(document).ready(function() {
 });
 
 // Format items
-forcePhoneNumberFormat("new-member-phone-3");
+forcePhoneNumberFormat("new-member-phone");
 forceZIPCodeFormat("new-member-zip");
 
 // Click submit on enter
 clickSubmitOnPressEnter("new-member-first-name-2", "new-member-sign-up-button");
 clickSubmitOnPressEnter("new-member-last-name-2", "new-member-sign-up-button");
-clickSubmitOnPressEnter("new-member-phone-3", "new-member-sign-up-button");
+clickSubmitOnPressEnter("new-member-phone", "new-member-sign-up-button");
 clickSubmitOnPressEnter("new-member-zip", "new-member-sign-up-button");
 
 document.getElementById("new-member-sign-up-button").addEventListener("click", function() {
