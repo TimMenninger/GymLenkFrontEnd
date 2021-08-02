@@ -25,16 +25,12 @@ $(document).ready(function() {
 
                 // Duplicate the template and remove it from the list
                 var table = document.getElementById("my-members-list-div");
-                var template_row = document.getElementById("my-members-row-div").cloneNode(true);
-
                 data["members"].forEach(function (member) {
-                    table.appendChild(template_row);
-
                     var row = document.getElementById("my-members-row-div");
+                    var template_row = row.cloneNode(true);
+
                     row.id  = "my-members-row-div-" + member["phone_number"];
                     row.style.display = "flex";
-
-                    member["formatted_phone_number"] = formatPhoneNumber(member["phone_number"])
 
                     const row_items = [
                         { "id" : "member-list-first-name",  "key" : "first_name"                },
@@ -42,11 +38,14 @@ $(document).ready(function() {
                         { "id" : "member-list-phone",       "key" : "formatted_phone_number"    },
                         { "id" : "member-list-zip",         "key" : "zip"                       },
                     ];
+                    member["formatted_phone_number"] = formatPhoneNumber(member["phone_number"])
                     row_items.forEach(function (info) {
                         var item = document.getElementById(info["id"]);
                         item.id = info["id"] + "-" + member["phone_number"];
                         item.innerText = member[info["key"]];
                     });
+
+                    table.appendChild(template_row);
                 })
             }
         }
