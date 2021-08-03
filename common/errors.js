@@ -168,6 +168,7 @@ const EnrollMemberError = ErrorInfo.EnrollMemberError.Errors = {
     PHONE_INVALID:        ErrorInfo.EnrollMemberError.base + 1,
     ZIP_INVALID:          ErrorInfo.EnrollMemberError.base + 2,
     TEXT_FAILED:          ErrorInfo.EnrollMemberError.base + 3,
+    NAME_EMPTY:           ErrorInfo.EnrollMemberError.base + 4,
 }
 
 
@@ -316,6 +317,8 @@ function errorString(error) {
         return "Please enter a valid 5-digit ZIP code";
     case EnrollMemberError.TEXT_FAILED:
         return "Failed to send a text message with instructions";
+    case EnrollMemberError.NAME_EMPTY:
+        return "Must enter a name";
     case EnrollMemberError.FAILURE:
         return "Failed to enroll member";
 
