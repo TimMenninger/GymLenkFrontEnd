@@ -169,6 +169,7 @@ const EnrollMemberError = ErrorInfo.EnrollMemberError.Errors = {
     ZIP_INVALID:          ErrorInfo.EnrollMemberError.base + 2,
     TEXT_FAILED:          ErrorInfo.EnrollMemberError.base + 3,
     NAME_EMPTY:           ErrorInfo.EnrollMemberError.base + 4,
+    MEMBER_EXISTS:        ErrorInfo.EnrollMemberError.base + 5,
 }
 
 
@@ -319,6 +320,8 @@ function errorString(error) {
         return "Failed to send a text message with instructions";
     case EnrollMemberError.NAME_EMPTY:
         return "Must enter a name";
+    case EnrollMemberError.MEMBER_EXISTS:
+        return "You have already added this member to GymLenk";
     case EnrollMemberError.FAILURE:
         return "Failed to enroll member";
 
