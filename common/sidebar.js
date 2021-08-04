@@ -5,8 +5,10 @@ $(document).ready(function() {
         displayOrganizationName("sidebar-gym-name-2");
 
         // Log out when sidebar log out is clicked
-        document.getElementById("sidebar-log-out").addEventListener("click", function() {
-            clearState();
-        });
+        if (document.getElementById("sidebar-log-out") !== nil) {
+            document.getElementById("sidebar-log-out").addEventListener("click", function() {
+                clearState();
+            });
+        }
     });
 });

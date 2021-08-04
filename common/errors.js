@@ -10,7 +10,10 @@
 
 const ErrorBandWidth = 1000;
 const ErrorInfo = {
+    /* Cannot change the base for these */
     UnknownError:           { base: -1,                 errorElement: null,                         successElement: null                            },
+
+    /* These can have base changes and other changes */
     PasswordError:          { base: ErrorBandWidth*1,   errorElement: null,                         successElement: null                            },
     SignupError:            { base: ErrorBandWidth*2,   errorElement: "gym-sign-up-error",          successElement: null                            },
     LoginError:             { base: ErrorBandWidth*3,   errorElement: "gym-login-error",            successElement: null                            },
@@ -20,6 +23,37 @@ const ErrorInfo = {
     CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error",    successElement: "user-beta-confirm-success"     },
     LocationSettingsError:  { base: ErrorBandWidth*8,   errorElement: "my-gym-edit-error",          successElement: "my-gym-edit-success"           },
     EnrollMemberError:      { base: ErrorBandWidth*9,   errorElement: "new-member-error",           successElement: "new-member-success"            },
+}
+
+
+
+/*******************************************************************************
+ *
+ * P R O T O C O L   E R R O R S
+ *
+ */
+
+// These values are dictated by the HTTP protocol
+function httpStatusString(stat) {
+    if (stat === 200) { // OK - Success
+        return "Success";
+    }
+    if (stat === 400) { // BAD_REQUEST - Request not understandable
+        return "Something went wrong. Try refreshing.";
+    }
+    if (stat === 403) { // FORBIDDEN - Request understood but explicitly forbidden, usually due to not being signed in
+        return "You must be logged in.";
+    }
+    if (stat === 404) { // NOT_FOUND - Path was not found
+        return "Not found";
+    }
+    if (stat === 500) { // INTERNAL_SERVER_ERROR - Unknown error on the server side
+        return "Something went wrong. Please contact support or try again later.";
+    }
+    if (stat === 501) { // NOT_IMPLEMENTED - Server-side not implemented
+        return "Cool your jets, this doesn't work yet but we're getting to it.";
+    }
+    return "Unexpected status code " + stat.toString();
 }
 
 

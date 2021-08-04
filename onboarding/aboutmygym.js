@@ -2,7 +2,7 @@ $(document).ready(function() {
     // If logged in, don't allow onboarding
     ifLoggedIn(function() {
         if (onboarded()) {
-            window.location.replace(URL_landing_after_login);
+            window.location.replace(URL_landing_after_login());
         }
         return;
     })

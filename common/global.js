@@ -40,22 +40,35 @@ const FE_recover_password = "/newpassword";
 const HDR_content_type_json = "application/json; charset=UTF-8";
 
 // Other URLs
-const URL_homepage = FE_dashboard;
+const    URL_homepage = FE_dashboard;
 
-const URL_log_in = FE_login;
+const    URL_log_in = FE_login;
 
-const URL_landing_after_login = FE_mygym;
-const URL_landing_after_signup = FE_onboarding;
-const URL_landing_after_onboarding = FE_onboarding_aboutmygym;
-const URL_landing_after_onboarding_aboutmygym = FE_onboarding_amenities;
-const URL_landing_after_onboarding_amenities = FE_onboarding_links;
-const URL_landing_after_onboarding_links = FE_onboarding_getstarted
-const URL_landing_after_onboarding_getstarted = URL_landing_after_login;
-const URL_landing_after_logout = FE_login;
+const    URL_landing_after_login_default = FE_mygym;
+const    URL_landing_after_signup = FE_onboarding;
+const    URL_landing_after_onboarding = FE_onboarding_aboutmygym;
+const    URL_landing_after_onboarding_aboutmygym = FE_onboarding_amenities;
+const    URL_landing_after_onboarding_amenities = FE_onboarding_links;
+const    URL_landing_after_onboarding_links = FE_onboarding_getstarted
+const    URL_landing_after_onboarding_getstarted = URL_landing_after_login_default;
+const    URL_landing_after_logout = URL_log_in;
 
-const URL_onboarding_aboutmygym = FE_onboarding_aboutmygym;
-const URL_onboarding_amenities  = FE_onboarding_amenities;
-const URL_onboarding_links      = FE_onboarding_links;
+const    URL_landing_after_involuntary_logout__ = "URL_landing_after_involuntary_logout";
+function URL_landing_after_involuntary_logout() {
+    localStorage.setItem(URL_landing_after_login__, window.location.pathname);
+    window.location.replace(URL_landing_after_logout);
+}
+
+const    URL_landing_after_login__ = "URL_landing_after_login";
+function URL_landing_after_login() {
+    let url = localStorage.getItem(URL_landing_after_login__);
+    localStorage.removeItem(URL_landing_after_login__);
+    window.location.replace(url !== null ? url : URL_landing_after_login_default);
+}
+
+const    URL_onboarding_aboutmygym = FE_onboarding_aboutmygym;
+const    URL_onboarding_amenities  = FE_onboarding_amenities;
+const    URL_onboarding_links      = FE_onboarding_links;
 
 // Convenience
 const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
@@ -113,6 +126,10 @@ function showError(error) {
 
 function showPasswordError(error_type, password_error) {
     showErrorElement(error_type.errorElement, errorString(password_error));
+}
+
+function showHTTPError(error_type, http_status) {
+    showErrorElement(error_type.errorElement, httpStatusString(http_status));
 }
 
 function showSuccess(error_info) {
@@ -181,39 +198,29 @@ function showLoadingLottie(submit_type) {
 //
 
 function parseResponse(request, error_type, submit_type) {
-    var error = error_type.Errors.SUCCESS;
-    var data = null;
-
-    // Check error on response status
-    if (request.status != 200) {
-        // Error message
-        console.log(`Request failed with status ${request.status}`);
-        error = error_type.Errors.FAILURE;
-    }
-    // Begin accessing JSON data here
-    else {
-        data = JSON.parse(request.responseText);
-        if (!data["success"]) {
-            error = stringToError(error_type, data["error"]);
-        }
-    }
-
     // Replace the submit button and remove the lottie, regardless of
     // success/failure
     showSubmitButton(submit_type);
 
-    // Check for failure pulled from above
-    if (error !== error_type.Errors.SUCCESS) {
-        // Display error
-        showError(error);
-        showSubmitButton(submit_type);
-    }
-    // Remove any error message there was and show success (if applicable)
-    else {
-        showSuccess(error_type);
+    // Check error on response status
+    if (request.status !== 200) {
+        showHTTPError(request.status);
+        return { null, error_type.Errors.FAILURE };
     }
 
-    return { data, error };
+    // Begin accessing JSON data here on success
+    var data = JSON.parse(request.responseText);
+    if (!data["success"]) {
+        // Display error
+        let error = stringToError(error_type, data["error"]);
+        showError(error);
+        showSubmitButton(submit_type);
+        return { data, error };
+    }
+
+    // Successful if here
+    showSuccess(error_type);
+    return { data, error_type.Errors.SUCCESS };
 }
 
 //
@@ -238,7 +245,7 @@ function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
         ((localStorage.getItem("session_id") === null)
             || (localStorage.getItem("dashboard") === null)
             || (localStorage.getItem("logged_in") !== "true"));
-    if (expect_logged_in == missing_logged_in_data) {
+    if (expect_logged_in && missing_logged_in_data) {
         fxn_if_wrong_state();
         return;
     }
@@ -437,7 +444,9 @@ function displayOrganizationName(text_element_id) {
         display_name = "";
     }
 
-    document.getElementById(text_element_id).innerText = display_name;
+    if (document.getElementById(text_element_id) !== nil) {
+        document.getElementById(text_element_id).innerText = display_name;
+    }
 }
 
 //

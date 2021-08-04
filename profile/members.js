@@ -1,8 +1,30 @@
+function addMemberToList(table, member) {
+    var row = document.getElementById("my-members-row-div");
+    var template_row = row.cloneNode(true);
+
+    row.id  = "my-members-row-div-" + member["phone_number"];
+    row.style.display = "flex";
+
+    const row_items = [
+        { "id" : "member-list-first-name",  "key" : "first_name"                },
+        { "id" : "member-list-last-name",   "key" : "last_name"                 },
+        { "id" : "member-list-phone",       "key" : "formatted_phone_number"    },
+        { "id" : "member-list-zip",         "key" : "zip"                       },
+    ];
+    row_items.forEach(function (info) {
+        var item = document.getElementById(info["id"]);
+        item.id = info["id"] + "-" + member["phone_number"];
+        item.innerText = member[info["key"]];
+    });
+
+    table.appendChild(template_row);
+}
+
 $(document).ready(function() {
     // If not logged in, go back to sign in
     ifNotLoggedIn(function() {
         clearState();
-        window.location.replace(URL_log_in);
+        window.location.replace(URL_landing_after_involuntary_logout());
         return;
     });
 
@@ -26,26 +48,8 @@ $(document).ready(function() {
                 // Duplicate the template and remove it from the list
                 var table = document.getElementById("my-members-list-div");
                 data["members"].forEach(function (member) {
-                    var row = document.getElementById("my-members-row-div");
-                    var template_row = row.cloneNode(true);
-
-                    row.id  = "my-members-row-div-" + member["phone_number"];
-                    row.style.display = "flex";
-
-                    const row_items = [
-                        { "id" : "member-list-first-name",  "key" : "first_name"                },
-                        { "id" : "member-list-last-name",   "key" : "last_name"                 },
-                        { "id" : "member-list-phone",       "key" : "formatted_phone_number"    },
-                        { "id" : "member-list-zip",         "key" : "zip"                       },
-                    ];
-                    member["formatted_phone_number"] = formatPhoneNumber(member["phone_number"])
-                    row_items.forEach(function (info) {
-                        var item = document.getElementById(info["id"]);
-                        item.id = info["id"] + "-" + member["phone_number"];
-                        item.innerText = member[info["key"]];
-                    });
-
-                    table.appendChild(template_row);
+                    member["formatted_phone_number"] = formatPhoneNumber(member["phone_number"]);
+                    addMemberToList(table, member);
                 })
             }
         }
@@ -90,6 +94,15 @@ document.getElementById("new-member-sign-up-button").addEventListener("click", f
             let { _, error } = parseResponse(request, ErrorInfo.EnrollMemberError, SubmitButton.EnrollMember);
 
             if (error === EnrollMemberError.SUCCESS) {
+                let table = document.getElementById("my-members-list-div");
+                let member = {
+                    "first_name" : first_name,
+                    "last_name"  : last_name,
+                    "formatted_phone_number" : formatPhoneNumber(phone_number),
+                    "zip"        : zip
+                };
+                addMemberToList(table, member);
+
                 // Clear text on success, but not on error since they might want
                 // to keep their entries there
                 document.getElementById("new-member-first-name").value = "";

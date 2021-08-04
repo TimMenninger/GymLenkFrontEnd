@@ -1,6 +1,6 @@
 $(document).ready(function() {
     ifLoggedIn(function() {
-        window.location.replace(URL_landing_after_login);
+        window.location.replace(URL_landing_after_login());
         return;
     });
 
