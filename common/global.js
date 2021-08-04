@@ -198,30 +198,34 @@ function showLoadingLottie(submit_type) {
 //
 
 function parseResponse(request, error_type, submit_type) {
+    // Javascript is making me use variables for this
+    var data = null;
+    var error = error_type.Errors.FAILURE;
+
     // Replace the submit button and remove the lottie, regardless of
     // success/failure
     showSubmitButton(submit_type);
 
     // Check error on response status
-    var data = null;
     if (request.status !== 200) {
         showHTTPError(request.status);
-        return { data, error_type.Errors.FAILURE };
+        return { data, error };
     }
 
     // Begin accessing JSON data here on success
     data = JSON.parse(request.responseText);
     if (!data["success"]) {
         // Display error
-        let error = stringToError(error_type, data["error"]);
+        error = stringToError(error_type, data["error"]);
         showError(error);
         showSubmitButton(submit_type);
         return { data, error };
     }
 
     // Successful if here
+    error = error_type.Errors.SUCCESS;
     showSuccess(error_type);
-    return { data, error_type.Errors.SUCCESS };
+    return { data, error };
 }
 
 //
