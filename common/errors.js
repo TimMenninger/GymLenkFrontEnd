@@ -35,6 +35,9 @@ const ErrorInfo = {
 
 // These values are dictated by the HTTP protocol
 function httpStatusString(stat) {
+    if (stat === null) {
+        return "Unexpected status";
+    }
     if (stat === 200) { // OK - Success
         return "Success";
     }
