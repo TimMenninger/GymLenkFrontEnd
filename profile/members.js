@@ -94,12 +94,13 @@ document.getElementById("new-member-sign-up-button").addEventListener("click", f
             let { _, error } = parseResponse(request, ErrorInfo.EnrollMemberError, SubmitButton.EnrollMember);
 
             if (error === EnrollMemberError.SUCCESS) {
-                let table = document.getElementById("my-members-list-div");
-                let member = {
-                    "first_name" : first_name,
-                    "last_name"  : last_name,
+                var table = document.getElementById("my-members-list-div");
+                var member = {
+                    "first_name"    : first_name,
+                    "last_name"     : last_name,
+                    "phone_number"  : phone_number,
                     "formatted_phone_number" : formatPhoneNumber(phone_number),
-                    "zip"        : zip
+                    "zip"           : zip
                 };
                 addMemberToList(table, member);
 
