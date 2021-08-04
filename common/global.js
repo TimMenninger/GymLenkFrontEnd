@@ -62,10 +62,8 @@ function URL_landing_after_involuntary_logout() {
 const    URL_landing_after_login__ = "URL_landing_after_login";
 function URL_landing_after_login() {
     let url = localStorage.getItem(URL_landing_after_login__);
-    alert(url);
     localStorage.removeItem(URL_landing_after_login__);
     window.location.replace(url !== null ? url : URL_landing_after_login_default);
-    alert(url !== null ? url : URL_landing_after_login_default);
 }
 
 const    URL_onboarding_aboutmygym = FE_onboarding_aboutmygym;
@@ -451,7 +449,7 @@ function displayOrganizationName(text_element_id) {
         display_name = "";
     }
 
-    if (document.getElementById(text_element_id) !== nil) {
+    if (document.getElementById(text_element_id) !== null) {
         document.getElementById(text_element_id).innerText = display_name;
     }
 }
