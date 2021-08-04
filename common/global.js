@@ -56,14 +56,14 @@ const    URL_landing_after_logout = URL_log_in;
 const    URL_landing_after_involuntary_logout__ = "URL_landing_after_involuntary_logout";
 function URL_landing_after_involuntary_logout() {
     localStorage.setItem(URL_landing_after_login__, window.location.pathname);
-    window.location.replace(URL_landing_after_logout);
+    return URL_landing_after_logout;
 }
 
 const    URL_landing_after_login__ = "URL_landing_after_login";
 function URL_landing_after_login() {
     let url = localStorage.getItem(URL_landing_after_login__);
-    window.location.replace(url !== null ? url : URL_landing_after_login_default);
     localStorage.removeItem(URL_landing_after_login__);
+    return url !== null ? url : URL_landing_after_login_default;
 }
 
 const    URL_onboarding_aboutmygym = FE_onboarding_aboutmygym;
