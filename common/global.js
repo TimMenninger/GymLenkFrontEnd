@@ -208,7 +208,7 @@ function parseResponse(request, error_type, submit_type) {
 
     // Check error on response status
     if (request.status !== 200) {
-        showHTTPError(request.status);
+        showHTTPError(error_type, request.status);
         return { data, error };
     }
 
