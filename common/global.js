@@ -203,13 +203,14 @@ function parseResponse(request, error_type, submit_type) {
     showSubmitButton(submit_type);
 
     // Check error on response status
+    var data = null;
     if (request.status !== 200) {
         showHTTPError(request.status);
-        return { null, error_type.Errors.FAILURE };
+        return { data, error_type.Errors.FAILURE };
     }
 
     // Begin accessing JSON data here on success
-    var data = JSON.parse(request.responseText);
+    data = JSON.parse(request.responseText);
     if (!data["success"]) {
         // Display error
         let error = stringToError(error_type, data["error"]);
@@ -541,4 +542,3 @@ function storeDashboardData(dashboard) {
     // Store the dashboard now
     localStorage.setItem("dashboard", JSON.stringify(dashboard));
 }
-
