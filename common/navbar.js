@@ -9,7 +9,7 @@ $(document).ready(function() {
         }
 
         // Log out when navbar logout is pressed
-        if (document.getElementById("navbar-gymlenk-button") === null) {
+        if (document.getElementById("navbar-gymlenk-button") !== null) {
             document.getElementById("navbar-gymlenk-button").addEventListener("click", function() {
                 window.location.replace(URL_homepage);
             });
