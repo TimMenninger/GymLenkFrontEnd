@@ -65,6 +65,7 @@ function URL_landing_after_login() {
     alert(url);
     localStorage.removeItem(URL_landing_after_login__);
     window.location.replace(url !== null ? url : URL_landing_after_login_default);
+    alert(url);
 }
 
 const    URL_onboarding_aboutmygym = FE_onboarding_aboutmygym;
