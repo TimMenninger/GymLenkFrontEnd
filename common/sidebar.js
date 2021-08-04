@@ -5,7 +5,7 @@ $(document).ready(function() {
         displayOrganizationName("sidebar-gym-name-2");
 
         // Log out when sidebar log out is clicked
-        if (document.getElementById("sidebar-log-out") !== nil) {
+        if (document.getElementById("sidebar-log-out") !== null) {
             document.getElementById("sidebar-log-out").addEventListener("click", function() {
                 clearState();
             });
