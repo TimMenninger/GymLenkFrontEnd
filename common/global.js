@@ -458,6 +458,43 @@ function displayOrganizationName(text_element_id) {
 // DASHBOARD
 //
 
+function getGoogleMyBusinessInfoAsync(onComplete) {
+    // Get the google account ID, required to get location info
+    var account_id = localStorage.getItem("google_account_id");
+    if (account_id === null) {
+        return false;
+    }
+
+    // Make a GET request to get all locations for this account
+    request.open("GET", "https://mybusinessbusinessinformation.googleapis.com/v1/accounts/" + google_account_id + "/locations");
+    request.withCredentials = true;
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            if (request.status != 200) {
+                console.log("Request failed");
+                return;
+            }
+
+            // Begin accessing JSON data here.  Replace all relevant info from
+            // the dashboard
+            var dashboard = localStorage.getItem("dashboard");
+            var info = JSON.parse(request.responseText);
+
+            // TODO
+
+            // Call on complete callback
+            if (onComplete !== null) {
+                onComplete(dashboard);
+            }
+        }
+    }
+
+    // Send request
+    request.send();
+
+    return true;
+}
+
 function storeDashboardData(dashboard) {
     // Format phone number
     dashboard["formatted_phone_number"] = formatPhoneNumber(dashboard["phone_number"]);
