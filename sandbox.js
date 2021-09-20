@@ -12,6 +12,7 @@ function onGoogleSignIn(googleUser) {
     //Displaying the API response
     xhr.onload = function () {
         document.body.appendChild(document.createTextNode(xhr.responseText));
+        console.log(xhr.responseText)
     }
     xhr.send();
 }
