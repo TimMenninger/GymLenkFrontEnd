@@ -22,6 +22,7 @@ const BE_check_in = "/validate-member";
 const BE_get_location_list = "/get-location-list";
 const BE_enroll_member = "/begin-membership";
 const BE_list_all_members = "/list-all-members";
+const BE_set_gapi_auth_code = "/set-gapi-auth-code";
 
 // Frontend Pages
 const FE_mygym = "/mygym";
