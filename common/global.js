@@ -4,9 +4,9 @@
 //
 
 // Backend URL
-const host = "18.218.204.67";
-const port = "443";
-const backend_URL = "https://" + host + ":" + port;
+const host = "lenk-backend";
+const port = ":443";
+const backend_URL = "https://" + host + port;
 
 // Backend Endpoints
 const BE_create_account = "/create-account";
