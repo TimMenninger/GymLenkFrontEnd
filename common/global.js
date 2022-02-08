@@ -4,7 +4,7 @@
 //
 
 // Backend URL
-const host = "lenk-backend";
+const host = "lenk-backend.com";
 const port = ":443";
 const backend_URL = "https://" + host + port;
 
