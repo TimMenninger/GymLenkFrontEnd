@@ -75,7 +75,7 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 
 // API's
 const GAPI_gmb_version = "https://mybusinessaccountmanagement.googleapis.com/v1";
-const GAPI_client_id = "";
+const GAPI_client_id = "540274065583-2l6gvq1qva9d90v3tmemnm6qcsap3hd6";
 
 ////////////////////////////////////////////////////////////////////////////
 //
