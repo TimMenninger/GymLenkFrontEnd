@@ -73,6 +73,10 @@ const    URL_onboarding_links      = FE_onboarding_links;
 // Convenience
 const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
 
+// API's
+const GAPI_gmb_version = "https://mybusinessaccountmanagement.googleapis.com/v1";
+const GAPI_client_id = "";
+
 ////////////////////////////////////////////////////////////////////////////
 //
 // COMMON

@@ -6,6 +6,13 @@ $(document).ready(function() {
         return;
     });
 
+    // Hack for making the selection bar on the left highlight "settings" for
+    // this tab within settings
+    var Webflow = Webflow || [];
+    Webflow.push(function() {
+        $('#settings-sidebar-link').addClass("w--current");
+    });
+
     var data = JSON.parse(localStorage.getItem("dashboard"));
 
     // Get gym info
