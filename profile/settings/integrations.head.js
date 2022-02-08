@@ -6,5 +6,6 @@ function start() {
             scope: "https://www.googleapis.com/auth/business.manage",
             immediate: true
         });
+        console.log(auth2);
     });
 }
