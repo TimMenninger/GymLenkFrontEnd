@@ -31,6 +31,7 @@ document.getElementById("link-gmb-button").addEventListener("click", function() 
                 if (request.readyState === 4) {
                     // Store the access token for getting and setting Google My
                     // Business info
+                    console.log(request)
                 }
             }
 
