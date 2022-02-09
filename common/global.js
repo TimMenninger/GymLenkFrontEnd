@@ -4,8 +4,8 @@
 //
 
 // Backend URL
-const host = "lenk-backend.com";
-const port = ":443";
+const host = "www.lenk-backend.com";
+const port = "";
 const backend_URL = "https://" + host + port;
 
 // Backend Endpoints
@@ -77,6 +77,7 @@ const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fr
 // API's
 const GAPI_gmb_version = "https://mybusinessaccountmanagement.googleapis.com/v1";
 const GAPI_client_id = "540274065583-2l6gvq1qva9d90v3tmemnm6qcsap3hd6";
+const GAPI_gmb_retrieval_url = "https://mybusinessaccountmanagement.googleapis.com/v1/accounts";
 
 ////////////////////////////////////////////////////////////////////////////
 //
@@ -299,6 +300,34 @@ function checkLoggedIn_Internal(expect_logged_in, fxn_if_wrong_state) {
     }));
 
     return true;
+}
+
+//
+// GOOGLE API
+//
+
+function storeGAPIAccessToken(access_token) {
+    localStorage.setItem("access_token", access_token);
+}
+
+function getGoogleMyBusinessInfo() {
+    // Must have access token for this, which either comes from local storage
+    // or we have to refresh it if it has expired
+    var access_token = localStorage.getItem("access_token");
+
+    // Make GET request
+    var request = new XMLHttpRequest();
+
+    request.open("GET", GAPI_gmb_retrieval_url, true);
+    request.withCredentials = true;
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            console.log(request.responseText);
+        }
+    }
+
+    request.setRequestHeader("Authorization", "Bearer " + access_token);
+    request.send();
 }
 
 //

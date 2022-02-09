@@ -31,7 +31,15 @@ document.getElementById("link-gmb-button").addEventListener("click", function() 
                 if (request.readyState === 4) {
                     // Store the access token for getting and setting Google My
                     // Business info
+                    console.log(window.location.hostname)
                     console.log(request)
+
+                    data = JSON.parse(request.responseText);
+                    if (!data["success"]) {
+                    } else {
+                        storeGAPIAccessToken(data["access_token"]);
+                        getGoogleMyBusinessInfo();
+                    }
                 }
             }
 
