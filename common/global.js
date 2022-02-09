@@ -319,7 +319,6 @@ function getGoogleMyBusinessInfo() {
     var request = new XMLHttpRequest();
 
     request.open("GET", GAPI_gmb_retrieval_url, true);
-    request.withCredentials = true;
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
             console.log(request.responseText);
