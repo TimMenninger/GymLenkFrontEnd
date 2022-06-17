@@ -23,6 +23,7 @@ const BE_get_location_list = "/get-location-list";
 const BE_enroll_member = "/begin-membership";
 const BE_list_all_members = "/list-all-members";
 const BE_set_gapi_auth_code = "/set-gapi-auth-code";
+const BE_get_mbapi_access_token = "/get-mindbody-access-token";
 
 // Frontend Pages
 const FE_mygym = "/mygym";
@@ -74,10 +75,13 @@ const    URL_onboarding_links      = FE_onboarding_links;
 // Convenience
 const DaysOfWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
 
-// API's
+// Google API
 const GAPI_gmb_version = "https://mybusinessaccountmanagement.googleapis.com/v1";
 const GAPI_client_id = "540274065583-2l6gvq1qva9d90v3tmemnm6qcsap3hd6";
 const GAPI_gmb_retrieval_url = "https://mybusinessaccountmanagement.googleapis.com/v1/accounts";
+
+// Mindbody API
+const MBAPI_issue_token_url = "https://api.mindbodyonline.com/public/v6/usertoken/issue";
 
 ////////////////////////////////////////////////////////////////////////////
 //
@@ -183,6 +187,7 @@ const SubmitButton = {
     ForgotPassword:             { submit: "gym-pwreset-button",             lottie: "pwreset-loading-lottie"                },
     CheckIn:                    { submit: "user-beta-confirm-button",       lottie: "user-beta-loading-lottie"              },
     EnrollMember:               { submit: "new-member-sign-up-button",      lottie: "new-member-loading-lottie"             },
+    LinkGMB:                    { submit: "link-gmb-button",                lottie: null                                    },
 };
 
 function showSubmitButton(submit_type) {

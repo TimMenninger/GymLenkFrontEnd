@@ -23,6 +23,7 @@ const ErrorInfo = {
     CheckInError:           { base: ErrorBandWidth*7,   errorElement: "user-beta-confirm-error",    successElement: "user-beta-confirm-success"     },
     LocationSettingsError:  { base: ErrorBandWidth*8,   errorElement: "my-gym-edit-error",          successElement: "my-gym-edit-success"           },
     EnrollMemberError:      { base: ErrorBandWidth*9,   errorElement: "new-member-error",           successElement: "new-member-success"            },
+    GMBError:               { base: ErrorBandWidth*10,  errorElement: null,                         successElement: null                            },
 }
 
 
@@ -213,6 +214,19 @@ const EnrollMemberError = ErrorInfo.EnrollMemberError.Errors = {
 
 /*******************************************************************************
  *
+ * G O O G L E   M Y   B U S I N E S S   E R R O R
+ *
+ */
+
+const GMBError = ErrorInfo.GMBError.Errors = {
+    FAILURE:             -ErrorInfo.GMBError.base,
+    SUCCESS:              ErrorInfo.GMBError.base + 0,
+}
+
+
+
+/*******************************************************************************
+ *
  * U T I L I T I E S
  *
  */
@@ -361,6 +375,14 @@ function errorString(error) {
         return "You have already added this member to GymLenk";
     case EnrollMemberError.FAILURE:
         return "Failed to enroll member";
+
+    //
+    // GMBError
+    //
+    case GMBError.SUCCESS:
+        return "Successfully linked Google My Business";
+    case GMBError.FAILURE:
+        return "Failed to link Google My Business account";
 
     //
     // default
