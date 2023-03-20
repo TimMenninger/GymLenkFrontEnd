@@ -5,8 +5,8 @@
 
 // Backend URL
 const host = "44.204.52.127"
-const port = ":443";
-const backend_URL = "https://" + host + port;
+const port = ":8181";
+const backend_URL = "http://" + host + port;
 
 // Backend Endpoints
 const BE_create_account = "/create-account";
